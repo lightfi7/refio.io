@@ -124,7 +124,7 @@ export default function Page() {
         <Image
           alt="whatsapp"
           height={24}
-          src={"/images/question-circle.png"}
+          src={"/images/chat-smile.png"}
           width={24}
         />
         <div className="flex flex-col items-center gap-1 mt-3">

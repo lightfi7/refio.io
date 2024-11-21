@@ -203,7 +203,7 @@ export default function Page() {
         </form>
       </div>
       <div className="flex flex-col items-center mt-12 p-1 gap-3">
-        <Image src={"/images/question-circle.png"} width={24} />
+        <Image src={"/images/chat-smile.png"} width={24} />
         <div className="flex flex-col items-center gap-1 mt-3">
           <h5 className="text-center text-zinc-600 text-base font-medium">
             Any question or feedback?
