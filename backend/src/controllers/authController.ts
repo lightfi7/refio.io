@@ -68,7 +68,6 @@ export const loginUser = async (req: Request, res: Response) => {
         }, {
             upsert: true,
         });
-        console.log(user)
         res.status(200).json({ message: 'Welcome back!', user, accessToken });
     } catch (err) {
         console.error(err);
