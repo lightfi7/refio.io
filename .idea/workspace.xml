@@ -4,61 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a08bcd9-7eea-4a94-ac66-a673fb0d7067" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/src/models/Session.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/routes/mainRoutes.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/components/dashboard/usePokemonList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/authController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/authController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/mainController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/mainController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/userController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/userController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/middleware/authMiddleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/middleware/authMiddleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/models/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/User.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/userRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/userRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/forgot-password/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/forgot-password/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/password-changed/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/password-changed/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/reset-password/[token]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/reset-password/[token]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/sign-in/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/sign-in/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/sign-up/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/sign-up/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/verify-code/[email]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/verify-code/[email]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/account/appearance/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/account/appearance/_page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/account/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/account/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/account/license/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/account/notification/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/account/notification/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/account/profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/account/profile/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/account/security/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/account/security/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/account/session/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/account/session/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/affiliates/[id]/info/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/affiliates/[id]/info/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/affiliates/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/affiliates/[id]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/affiliates/layout.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/affiliates/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/dashboard/@modal/(..)affiliates/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/dashboard/@modal/(..)affiliates/[id]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/dashboard/@modal/(..)affiliates/default.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/dashboard/@modal/(..)affiliates/default.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/dashboard/@modal/default.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/dashboard/@modal/default.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/dashboard/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/dashboard/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/dashboard/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/dashboard/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/layout.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/providers.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/account/toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/account/toolbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/dashboard/banner.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/dashboard/banner.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/dashboard/filterbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/dashboard/filterbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/dashboard/pcard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/dashboard/pcard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/dashboard/toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/dashboard/toolbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/verification-code-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/verification-code-input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/config/site.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/config/site.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/contexts/userContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/contexts/userContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/hooks/useAuth.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/useAuth.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/lib/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/lib/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/client.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/middleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/utils/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/utils/common.ts" afterDir="false" />
-    </list>
+    <list default="true" id="4a08bcd9-7eea-4a94-ac66-a673fb0d7067" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,28 +38,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;Node.js.seed.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jsx.switch.disabled&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Fi/Documents/GitHub/referalio.com&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.seed:dev.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Fi\\Documents\\GitHub\\referalio.com\\backend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "Node.js.seed.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "jsx.switch.disabled": "true",
+    "last_opened_file_path": "C:/Users/Fi/Documents/GitHub/referalio.com",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
+    "npm.seed:dev.executor": "Run",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Users\\Fi\\Documents\\GitHub\\referalio.com\\backend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Fi\Documents\GitHub\referalio.com\backend\db\models" />
@@ -157,7 +103,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.18034.50" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.18034.82" />
+        <option value="bundled-python-sdk-975db3bf15a3-2767605e8bc2-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.18034.82" />
       </set>
     </attachedChunks>
   </component>
@@ -188,6 +135,7 @@
       <workItem from="1732077201719" duration="454000" />
       <workItem from="1732087468457" duration="4778000" />
       <workItem from="1732094772715" duration="10000" />
+      <workItem from="1732206170896" duration="44000" />
     </task>
     <servers />
   </component>
