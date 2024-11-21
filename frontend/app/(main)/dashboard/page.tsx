@@ -11,16 +11,14 @@ import { getRateValue } from "@/utils/common";
 
 export default function DashboardPage() {
   const { params } = useContext<SearchContextProps>(SearchContext);
-  const [isLoading, setIsLoading] = useState(false);
   const [programs, setPrograms] = useState([]);
   const [_pageIndex, setPageIndex] = useState(0);
   const [_pages, setPages] = useState(100);
-  const [totalCount, setTotalCount] = useState(0);
+  const [_, setTotalCount] = useState(0);
 
   const fetchData = useCallback(async () => {
     // Fetching data
     console.log("Fetching data");
-    setIsLoading(true);
     try {
       const response = await fetch("/api/main/get-programs", {
         method: "POST",
@@ -46,7 +44,6 @@ export default function DashboardPage() {
     } catch (err) {
       console.error(err);
     }
-    setIsLoading(false);
   }, [
     _pageIndex,
     params.group,
@@ -84,8 +81,10 @@ export default function DashboardPage() {
             isCompact
             showControls
             showShadow
+            className="mx-auto"
             color="default"
             page={_pageIndex}
+            size="sm"
             total={_pages}
             onChange={(page) => setPageIndex(page)}
           />
@@ -129,8 +128,10 @@ export default function DashboardPage() {
             isCompact
             showControls
             showShadow
+            className="mx-auto"
             color="default"
             page={_pageIndex}
+            size="sm"
             total={_pages}
             variant={"flat"}
             onChange={(page) => setPageIndex(page)}

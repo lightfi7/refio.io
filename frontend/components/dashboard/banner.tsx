@@ -5,7 +5,7 @@ const Banner = () => {
   return (
     <div
       className={
-        "w-full flex flex-col lg:flex-row justify-between items-center px-6 py-4 bg-purple-400/70 rounded-2xl"
+        "w-full flex flex-col lg:flex-row justify-between items-center px-6 py-4 bg-purple-300/60 rounded-2xl"
       }
       style={{
         backgroundImage: `url(/images/bg-banner.png)`,

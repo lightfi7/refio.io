@@ -204,7 +204,7 @@ export const getProgram = async (req: Request, res: Response) => {
                 { $match: { uuid } },
                 {
                     $lookup: {
-                        from: "Tag",
+                        from: "tags",
                         localField: "tags",
                         foreignField: "id",
                         as: "tags",
@@ -212,7 +212,7 @@ export const getProgram = async (req: Request, res: Response) => {
                 },
                 {
                     $lookup: {
-                        from: "Lang",
+                        from: "langs",
                         localField: "langs",
                         foreignField: "id",
                         as: "langs",
@@ -220,7 +220,7 @@ export const getProgram = async (req: Request, res: Response) => {
                 },
                 {
                     $lookup: {
-                        from: "Platform",
+                        from: "platforms",
                         localField: "platform",
                         foreignField: "id",
                         as: "platform",
