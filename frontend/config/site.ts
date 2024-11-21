@@ -17,16 +17,16 @@ export const siteConfig = {
       href: "/niche=ideas",
     },
     {
-      label: "Preferences",
-      href: "/preferences",
-    },
-    {
       label: "Our Affiliate",
       href: "/out-affiliate",
     },
     {
       label: "Add your program",
       href: "/add-program",
+    },
+    {
+      label: "Pricings",
+      href: "/pricing",
     },
   ],
   navMenuItems: [
@@ -43,16 +43,16 @@ export const siteConfig = {
       href: "/niche-ideas",
     },
     {
-      label: "Preferences",
-      href: "/preferences",
-    },
-    {
       label: "Our Affiliate",
       href: "/our-affiliate",
     },
     {
       label: "Add your program",
       href: "/add-program",
+    },
+    {
+      label: "Pricings",
+      href: "/pricing",
     },
     {
       label: "Logout",
