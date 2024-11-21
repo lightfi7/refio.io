@@ -67,7 +67,11 @@ export default function Page() {
             }
           >
             <span className={"text-md"}>Affiliate Program</span>
-            <span>{program?.commission_type}</span>
+            <span>
+              {program?.commission_type
+                ?.replace(/_/g, " ")
+                .replace(/^\w/, (c: string) => c.toUpperCase())}
+            </span>
           </div>
           <div
             className={
@@ -81,6 +85,7 @@ export default function Page() {
                     .split("_")
                     .map((s: any) => s)
                     .join(" ")
+                    .replace(/^\w/, (c: string) => c.toUpperCase())
                 : "--"}
             </span>
           </div>
