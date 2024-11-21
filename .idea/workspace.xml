@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4a08bcd9-7eea-4a94-ac66-a673fb0d7067" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/src/models/Session.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/routes/mainRoutes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/components/dashboard/usePokemonList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/controllers/authController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/authController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/controllers/mainController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/mainController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/controllers/userController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/userController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/middleware/authMiddleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/middleware/authMiddleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/models/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/User.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/routes/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/routes/userRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/userRoutes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/forgot-password/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/forgot-password/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/password-changed/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/password-changed/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/reset-password/[token]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/reset-password/[token]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/sign-in/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/sign-in/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/sign-up/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/sign-up/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/verify-code/[email]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/verify-code/[email]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/account/appearance/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/account/appearance/_page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/account/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/account/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/account/license/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/account/notification/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/account/notification/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/account/profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/account/profile/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/account/security/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/account/security/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/account/session/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/account/session/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/affiliates/[id]/info/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/affiliates/[id]/info/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/affiliates/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/affiliates/[id]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/affiliates/layout.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/affiliates/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/dashboard/@modal/(..)affiliates/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/dashboard/@modal/(..)affiliates/[id]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/dashboard/@modal/(..)affiliates/default.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/dashboard/@modal/(..)affiliates/default.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/dashboard/@modal/default.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/dashboard/@modal/default.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/dashboard/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/dashboard/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/dashboard/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(main)/dashboard/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(main)/layout.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/providers.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/account/toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/account/toolbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/dashboard/banner.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/dashboard/banner.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/dashboard/filterbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/dashboard/filterbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/dashboard/pcard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/dashboard/pcard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/dashboard/toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/dashboard/toolbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/verification-code-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/verification-code-input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/config/site.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/config/site.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/contexts/userContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/contexts/userContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/hooks/useAuth.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/useAuth.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/utils/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/utils/common.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/frontend/lib/api.ts" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/frontend/package.json" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2ooJGHru3pcz8KcXKuRjIxE8eHK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Node.js.seed.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jsx.switch.disabled&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Fi/Documents/GitHub/referalio.com&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.seed:dev.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Fi\\Documents\\GitHub\\referalio.com\\backend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Fi\Documents\GitHub\referalio.com\backend\db\models" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Fi\Documents\GitHub\referalio.com\frontend" />
+      <recent name="C:\Users\Fi\Documents\GitHub\referalio.com\frontend\pages" />
+      <recent name="C:\Users\Fi\Documents\GitHub\referalio.com\frontend\app\(auth)\verify-code\[email]" />
+      <recent name="C:\Users\Fi\Documents\GitHub\referalio.com\frontend\app\(auth)\verify-code\[email]\[token]" />
+      <recent name="C:\Users\Fi\Documents\GitHub\referalio.com\frontend\f" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.dev">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/frontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="seed:dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/backend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="seed:dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.seed:dev" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.18034.50" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4a08bcd9-7eea-4a94-ac66-a673fb0d7067" name="Changes" comment="" />
+      <created>1731529897783</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731529897783</updated>
+      <workItem from="1731529899070" duration="2276000" />
+      <workItem from="1731564599449" duration="3212000" />
+      <workItem from="1731570018549" duration="28716000" />
+      <workItem from="1731638944879" duration="19608000" />
+      <workItem from="1731679302280" duration="44000" />
+      <workItem from="1731679384107" duration="849000" />
+      <workItem from="1731680281962" duration="93000" />
+      <workItem from="1731680705450" duration="115000" />
+      <workItem from="1731682380375" duration="5926000" />
+      <workItem from="1731714953381" duration="27539000" />
+      <workItem from="1731782708234" duration="87000" />
+      <workItem from="1731783137576" duration="7151000" />
+      <workItem from="1731806370052" duration="12375000" />
+      <workItem from="1731818928493" duration="19000" />
+      <workItem from="1731818970138" duration="5512000" />
+      <workItem from="1731845895113" duration="91107000" />
+      <workItem from="1732077201719" duration="454000" />
+      <workItem from="1732087468457" duration="4778000" />
+      <workItem from="1732094772715" duration="10000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
