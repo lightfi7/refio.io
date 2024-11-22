@@ -10,7 +10,7 @@ import { useParams } from "next/navigation";
 import { Chip } from "@nextui-org/chip";
 import Link from "next/link";
 
-import { timeDiff } from "@/utils/common";
+import { getRateValue, timeDiff } from "@/utils/common";
 
 export default function Page() {
   const [program, setProgram] = useState<any>();
@@ -327,11 +327,13 @@ export default function Page() {
                 <div className="flex items-center gap-1 mt-0">
                   {"★★★★☆".split("").map((star, i) => (
                     <span key={i} className="text-purple-300 text-xl">
-                      {i < Math.floor(4.6) ? "★" : "☆"}
+                      {i < Math.floor(getRateValue(program.average_ratings))
+                        ? "★"
+                        : "☆"}
                     </span>
                   ))}
                   <span className="text-md text-divider/100 ml-1 font-medium">
-                    {4.6}/5
+                    {getRateValue(program.average_ratings)}/5
                   </span>
                 </div>
               </div>
@@ -342,11 +344,13 @@ export default function Page() {
                 <div className="flex items-center gap-1 mt-0">
                   {"★★★★☆".split("").map((star, i) => (
                     <span key={i} className="text-purple-300 text-xl">
-                      {i < Math.floor(4.6) ? "★" : "☆"}
+                      {i < Math.floor(getRateValue(program.average_ratings))
+                        ? "★"
+                        : "☆"}
                     </span>
                   ))}
                   <span className="text-md text-divider/100 ml-1 font-medium">
-                    {4.6}/5
+                    {getRateValue(program.average_ratings)}/5
                   </span>
                 </div>
               </div>
@@ -357,11 +361,13 @@ export default function Page() {
                 <div className="flex items-center gap-1 mt-0">
                   {"★★★★☆".split("").map((star, i) => (
                     <span key={i} className="text-purple-300 text-xl">
-                      {i < Math.floor(4.6) ? "★" : "☆"}
+                      {i < Math.floor(getRateValue(program.average_ratings))
+                        ? "★"
+                        : "☆"}
                     </span>
                   ))}
                   <span className="text-md text-divider/100 ml-1 font-medium">
-                    {4.6}/5
+                    {getRateValue(program.average_ratings)}/5
                   </span>
                 </div>
               </div>

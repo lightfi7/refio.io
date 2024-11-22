@@ -30,6 +30,10 @@ import { Divider } from "@nextui-org/divider";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Input } from "@nextui-org/input";
 import { Avatar } from "@nextui-org/avatar";
+import { useEffect, useState } from "react";
+import { Chip } from "@nextui-org/chip";
+
+import { getRateValue } from "@/utils/common";
 
 function getTagColor(tag: string) {
   const colors: { [key: string]: { bg: string; text: string } } = {
@@ -55,6 +59,8 @@ const tags = ["Marketing", "Affiliate Program", "Affiliate Marketing"];
 export default function Page() {
   const params = useParams();
   const router = useRouter();
+  const [_program, setProgram] = useState();
+  const [comments, setComments] = useState([]);
 
   const onClose = () => {
     router.back();
@@ -64,6 +70,41 @@ export default function Page() {
     defaultOpen: true,
     onClose,
   });
+
+
+  useEffect(() => {
+    fetch("/api/main/get-comments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ programId: _program?._id }),
+    })
+      .then((response) => response.json())
+      .then(({ comments }) => {
+        console.log("comments:", comments);
+        setComments(comments);
+      })
+      .catch((error) => console.log("error:", error));
+  }, [_program?._id]);
+
+
+
+  useEffect(() => {
+    fetch("/api/main/get-program", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ uuid: params.id }),
+    })
+      .then((response) => response.json())
+      .then(({ program }) => {
+        setProgram(program);
+      })
+      .catch((error) => console.log("error:", error));
+
+  }, [params.id]);
 
   return (
     <Modal
@@ -91,61 +132,59 @@ export default function Page() {
                     <div className={"flex space-x-2 items-center"}>
                       <BadgePercent color={"#ff0000"} size={24} />
                       <h1 className={"font-semibold text-xl"}>
-                        Cosi Affiliate Program
+                        {_program?.name}
                       </h1>
                     </div>
 
                     <div className={"flex flex-col space-y-3 mt-3 text-start"}>
                       {/*  Description*/}
                       <h4 className={"text-md font-medium"}>
-                        The Cosi Affiliate Program is an exciting opportunity
-                        for marketers and content creators to earn passive
-                        income by promoting a brand dedicated to comfort and
-                        style. With Cosi’s wide range of products—from cozy home
-                        textiles to stylish apparel—affiliates can find
-                        something that resonates with their audience.
+                        {_program?.description}
                       </h4>
                       <span className={"text-md font-medium text-divider/60"}>
-                        Platform: Direct
+                        Platform:{" "}
+                        {_program?.platform ? _program?.platform.name : "--"}
                       </span>
                       <span className={"text-md font-medium text-divider/60"}>
-                        Commision type: One time
+                        Commision type:{" "}
+                        {_program?.commission_type
+                          ?.replace(/_/g, " ")
+                          .replace(/^\w/, (c: string) => c.toUpperCase())}
                       </span>
                       {/*  Rating*/}
                       <div className="flex items-center gap-1 mt-0">
                         {"★★★★☆".split("").map((star, i) => (
                           <span key={i} className="text-purple-300 text-xl">
-                            {i < Math.floor(4.6) ? "★" : "☆"}
+                            {i <
+                              Math.floor(getRateValue(_program?.average_ratings))
+                              ? "★"
+                              : "☆"}
                           </span>
                         ))}
                         <span className="text-md text-divider/100 ml-1 font-medium">
-                          {4.6}/5
+                          {getRateValue(_program?.average_ratings)}/5
                         </span>
                       </div>
                       {/*  Tags*/}
                       <div className="flex flex-wrap gap-2 overflow-x-auto">
-                        {tags.map((tag, index) => (
-                          <span
+                        {_program?.tags.map((tag, index) => (
+                          <Chip
                             key={index}
                             className="px-3 py-1 text-sm rounded-full whitespace-nowrap font-medium"
-                            style={{
-                              backgroundColor: getTagColor(tag).bg,
-                              color: getTagColor(tag).text,
-                            }}
                           >
-                            {tag}
-                          </span>
+                            {tag.name}
+                          </Chip>
                         ))}
                       </div>
                       {/*  Time*/}
-                      <span className={"text-md font-medium"}>
+                      {/* <span className={"text-md font-medium"}>
                         Oct 18 - 2m read time - From Cosi.com
-                      </span>
+                      </span> */}
                       {/*  Image*/}
                       <Image
                         alt="NextUI hero Image"
                         className={"my-3"}
-                        src="/images/bg-affiliate.png"
+                        src={_program?.image}
                         width={400}
                       />
                     </div>
@@ -360,16 +399,21 @@ export default function Page() {
                     >
                       <div>
                         <h3 className={"text-lg font-medium"}>
-                          Cosi Affiliate Program
+                          {_program?.name}
                         </h3>
                         <div className="flex items-center gap-1 mt-0">
                           {"★★★★☆".split("").map((star, i) => (
                             <span key={i} className="text-purple-300 text-xl">
-                              {i < Math.floor(4.6) ? "★" : "☆"}
+                              {i <
+                                Math.floor(
+                                  getRateValue(_program?.average_ratings),
+                                )
+                                ? "★"
+                                : "☆"}
                             </span>
                           ))}
                           <span className="text-md text-divider/100 ml-1 font-medium">
-                            {4.6}/5
+                            {getRateValue(_program?.average_ratings)}/5
                           </span>
                         </div>
                       </div>
@@ -460,11 +504,16 @@ export default function Page() {
                           <div className="flex items-center gap-1 mt-0">
                             {"★★★★☆".split("").map((star, i) => (
                               <span key={i} className="text-purple-300 text-xl">
-                                {i < Math.floor(4.6) ? "★" : "☆"}
+                                {i <
+                                  Math.floor(
+                                    getRateValue(_program?.average_ratings),
+                                  )
+                                  ? "★"
+                                  : "☆"}
                               </span>
                             ))}
                             <span className="text-md text-divider/100 ml-1 font-medium">
-                              {4.6}/5
+                              {getRateValue(_program?.average_ratings)}/5
                             </span>
                           </div>
                         </div>

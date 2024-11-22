@@ -22,7 +22,15 @@ export interface IProgram extends Document {
     current_favorite_user: [] | undefined;
     average_ratings: [] | undefined;
     current_user_review: [] | undefined;
-    link_data: object | null;
+    link_data: object | undefined;
+    description: string | undefined;
+    image: string | undefined;
+    contacts: {
+        name: 'Whatsapp' | 'Telegram' | 'Instagram' | 'Snapchat' | 'Facebook' | 'Twitter' | 'LinkedIn' | 'Pinterest' | 'Email' | 'Other',
+        link: string,
+    }[] | undefined;
+    up_votes: string[];
+    down_votes: string[];
 }
 
 const IProgram = new Schema<IProgram>({
@@ -114,7 +122,27 @@ const IProgram = new Schema<IProgram>({
         type: Object,
         default: null,
     },
-}, {timestamps: true});
+    up_votes: [{
+        type: String,
+    }],
+    down_votes: [{
+        type: Number,
+    }],
+    description: {
+        type: String,
+    },
+    image: {
+        type: String,
+    },
+    contacts: [{
+        name: {
+            type: String,
+        },
+        link: {
+            type: String,
+        },
+    }]
+}, { timestamps: true });
 
 const Program = mongoose.model<IProgram>("Program", IProgram);
 

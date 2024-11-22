@@ -4,7 +4,7 @@ import Platform from "../models/Platform";
 import Lang from "../models/Lang";
 import Program from "../models/Program";
 import Apply from "../models/Apply";
-import Config from '../models/Config';
+import Comment from '../models/Comment';
 
 
 export const getPrograms = async (req: Request, res: Response) => {
@@ -95,8 +95,8 @@ export const getPrograms = async (req: Request, res: Response) => {
 
         if (directedProgram) query["has_featured_image"] = true;
 
-        const d = new Date();
-        d.setDate(d.getDate() - 3);
+        const date = new Date();
+        date.setDate(date.getDate() - 3);
 
         switch (group) {
             case 'all':
@@ -110,7 +110,7 @@ export const getPrograms = async (req: Request, res: Response) => {
                 query.is_international = 1;
                 break;
             case 'last_added':
-                query.createdAt = { $gte: d };
+                query.createdAt = { $gte: date };
                 break;
             default:
                 break;
@@ -268,12 +268,80 @@ export const getSearchParams = async (req: Request, res: Response) => {
     }
 }
 
-export const getConfig = async (req: Request, res: Response) => {
+export const postComment = async (req: Request, res: Response) => {
     try {
-        const config = await Config.findOne({});
-        res.status(200).json({ config });
+        const { programId, userId, comment }: { programId: string; userId: string; comment: string; } = req.body;
+        const newComment = new Comment({ user: userId, program: programId, comment });
+        await newComment.save();
+        res.status(201).send({ message: 'Comment posted successfully' });
     } catch (err) {
         console.error(err);
         res.status(500).send({ message: 'Something went wrong on our end. Please try again later!' });
+    }
+}
+
+export const getComments = async (req: Request, res: Response) => {
+    try {
+        const { programId, userId, sortBy }: { programId: string | null; userId: string | null; sortBy: string | null; } = req.body;
+        const query: any = {};
+        if (programId) {
+            query.program = programId;
+        }
+        if (userId) {
+            query.user = userId;
+        }
+        let sort: any = {};
+        if (sortBy) {
+            sort[sortBy] = -1;
+        }
+        const comments = await Comment.find(query).sort(sort);
+        res.status(200).json({ comments });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send({ message: 'Something went wrong on our end. Please try again later!' });
+    }
+}
+
+export const addVote = async (req: Request, res: Response) => {
+    try {
+        const { programId, commentId, userId, voteType } = req.body;
+        if (programId) {
+            const program = await Program.findById(programId);
+            if (!program) {
+                res.status(404).send({ message: 'Program not found' });
+                return 
+            }
+
+            updateVotes(program, userId, voteType);
+            await program.save();
+        } else if (commentId) {
+            const comment = await Comment.findById(commentId);
+            if (!comment) {
+                res.status(404).send({ message: 'Comment not found' });
+                return 
+            }
+
+            updateVotes(comment, userId, voteType);
+            await comment.save();
+        }
+
+        res.status(200).send({ message: 'Vote updated' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send({ message: 'Something went wrong on our end. Please try again later!' });
+    }
+}
+
+const updateVotes = (entity: any, userId: string, voteType: string) => {
+    if (voteType === 'up') {
+        if (!entity.up_votes.includes(userId)) {
+            entity.up_votes.push(userId);
+        }
+        entity.down_votes = entity.down_votes.filter((v: string) => v !== userId);
+    } else if (voteType === 'down') {
+        if (!entity.down_votes.includes(userId)) {
+            entity.down_votes.push(userId);
+        }
+        entity.up_votes = entity.up_votes.filter((v: string) => v !== userId);
     }
 }
