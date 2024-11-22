@@ -71,15 +71,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return session;
     },
   },
-  cookies: {
-    sessionToken: {
-      name: `next-auth.session-token`,
-      options: {
-        path: '/',
-        sameSite: 'lax',
-        httpOnly: true,
-        secure: false,
-      },
-    },
-  }
+  // cookies: {
+  //   sessionToken: {
+  //     name: `next-auth.session-token`,
+  //     options: {
+  //       path: '/',
+  //       sameSite: 'lax',
+  //       httpOnly: true,
+  //       secure: false,
+  //     },
+  //   },
+  // }
 });
