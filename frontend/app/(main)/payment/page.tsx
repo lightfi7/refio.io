@@ -3,8 +3,11 @@
 import { useSearchParams } from "next/navigation";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useState, Suspense } from "react";
+import { useSession } from "next-auth/react";
+import { subscribe } from "diagnostics_channel";
 
 function PaymentPage() {
+  const { data: session, update } = useSession();
   const searchParams = useSearchParams();
   const annual = searchParams.get("annual");
   const [message, setMessage] = useState("");
@@ -68,6 +71,9 @@ function PaymentPage() {
             onApprove={async (data) => {
               setLoading(true);
               try {
+
+                update({ ...session?.user, subscribed: true });
+
                 const response = await fetch(
                   `/api/orders/${data.orderID}/capture`,
                   {

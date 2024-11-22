@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
+
 import { auth } from "@/lib/auth";
 
 export const POST = auth(async function POST(request) {
-  const session = await auth();
   try {
     if (!request.auth)
       return NextResponse.json(
@@ -12,12 +12,12 @@ export const POST = auth(async function POST(request) {
 
     const values = await request.json();
 
-    const result = await fetch("http://127.0.0.1:5001/api/main/get-programs", {
+    const result = await fetch("http://127.0.0.1:5001/api/user/logout-other-browsers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...values, userId: session?.user.id },),
+      body: JSON.stringify(values),
     });
 
     if (result.ok) {

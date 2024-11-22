@@ -4,12 +4,16 @@ import Platform from "../models/Platform";
 import Lang from "../models/Lang";
 import Program from "../models/Program";
 import Comment from '../models/Comment';
+import User from '../models/User';
+import { subscribe } from 'diagnostics_channel';
 
 
 export const getPrograms = async (req: Request, res: Response) => {
     try {
-        const { params } = req.body;
-        const limit = 50;
+        const { params, userId } = req.body;
+        const user = await User.findById(userId);
+
+        let limit = 30;
         const {
             page,
             text,
@@ -35,6 +39,11 @@ export const getPrograms = async (req: Request, res: Response) => {
 
         let skip = Math.max(0, page - 1) * limit;
         let fields = ["tags", "platform"];
+
+        if (!user?.subscribed) {
+            skip = 0;
+            limit = 30;
+        }
 
         let query: any = {};
 
@@ -327,7 +336,6 @@ export const addVote = async (req: Request, res: Response) => {
                 res.status(404).send({ message: 'Program not found' });
                 return
             }
-            console.log(program)
             updateVotes(program, userId, voteType);
             await program.save();
             res.status(200).send({ message: 'Vote updated', program });

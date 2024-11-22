@@ -4,6 +4,7 @@ import { Response } from 'express';
 import { PrivateRequest } from "../middleware/authMiddleware";
 import Session from "../models/Session";
 
+
 export const updateUser = async (req: PrivateRequest, res: Response) => {
     try {
         const id = req.body.userId;
@@ -68,11 +69,49 @@ export const deleteAccount = async (req: PrivateRequest, res: Response) => {
     }
 };
 
-export const getBrowserSessions = async (req: PrivateRequest, res: Response) => {
+
+export const subscribed = async (req: PrivateRequest, res: Response) => {
     try {
         const id = req.body.userId;
-        const sessions = await Session.find({ userId: id });
+        const user = await User.findByIdAndUpdate(id, { subscribed: true }, { new: true });
+        if (!user) {
+            res.status(404).json({ message: 'Not Found' });
+            return;
+        }
+        res.status(200).json({
+            user: {
+                _id: user._id,
+                subscribed: user.subscribed,
+            }
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Something went wrong on our end. Please try again later!' });
 
+    }
+}
+
+export const updateBrowserSession = async (req: PrivateRequest, res: Response) => {
+    console.log(req.body)
+    await Session.findOneAndUpdate({
+        userId: req.body.userId,
+        ip: req.body.ip
+    }, {
+        $set: {
+            userId: req.body.userId,
+            ip: req.body.ip,
+            os: req.body.os,
+            browser: req.body.browser,
+        },
+    }, { upsert: true, new: true });
+    res.status(200).json({ message: 'Browser session updated successfully' });
+}
+
+
+export const getBrowserSessions = async (req: PrivateRequest, res: Response) => {
+    try {
+        const userId = req.body.userId;
+        const sessions = await Session.find({ userId });
         res.status(200).send({
             sessions,
         });
@@ -82,13 +121,11 @@ export const getBrowserSessions = async (req: PrivateRequest, res: Response) => 
     }
 };
 
-export const logOutOtherBrowsers = async (req: PrivateRequest, res: Response) => {
+export const logoutOtherBrowsers = async (req: PrivateRequest, res: Response) => {
     try {
-        const id = req.body.userId;
-
-        await Session.deleteMany({ userId: { $ne: id } });
-
-        res.status(200).send();
+        const { userId, ip, os, browser } = req.body;
+        await Session.deleteMany({ userId, ip: { $ne: ip }, os: { $ne: os }, browser: { $ne: browser } });
+        res.status(200).json({ message: 'Other browsers logged out successfully' });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Something went wrong on our end. Please try again later!' });

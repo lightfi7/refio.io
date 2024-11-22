@@ -5,7 +5,7 @@ import {
      requestPasswordReset,
      confirmVerificationCode,
      resetPassword,
-     me
+     me,
 } from '../controllers/authController';
 import { authenticateJWT } from "../middleware/authMiddleware";
 

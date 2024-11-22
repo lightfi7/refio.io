@@ -9,20 +9,61 @@ const SessionSettingPage = () => {
   const [pending, setPending] = useState<boolean>(false);
   const [sessions, setSessions] = useState<
     {
+      userId: string;
       ip: string;
-      osName: string;
-      browserName: string;
+      os: {
+        name: string,
+        version: string,
+      };
+      browser: {
+        name: string;
+        version: string;
+        major: string;
+      };
     }[]
   >([]);
   const [ip, setIp] = useState<string>("");
-  const [browserInfo, setBrowserInfo] = useState<{
-    osName: string;
-    browserName: string;
+  const [os, setOs] = useState<{
+    name: string,
+    version: string,
+  }>();
+  const [browser, setBrowser] = useState<{
+    name: string;
+    version: string;
+    major: string;
   }>();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (!session)
+      return;
 
-  const logoutOthers = async () => {};
+    fetch('/api/get-client-info', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(response => response.json())
+      .then(({ ip, os, browser }) => {
+        setIp(ip);
+        setOs(os);
+        setBrowser(browser);
+      });
+
+    fetch('/api/get-browser-sessions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userId: session?.user.id }),
+    }).then(response => response.json())
+      .then(({ sessions }) => {
+        console.log(sessions)
+        setSessions(sessions);
+      });
+
+  }, [session?.user.id]);
+
+  const logoutOthers = async () => { };
 
   return (
     <div
@@ -51,18 +92,18 @@ const SessionSettingPage = () => {
               </h6>
               <div className={"flex flex-col space-y-6"}>
                 {sessions.length > 0 &&
-                  sessions.map((session, i) => (
+                  sessions.map((s, i) => (
                     <div
                       key={i}
                       className={"flex flex-col px-4 text-divider/30"}
                     >
                       <h5>
-                        {session.osName}-{session.browserName}
+                        {s.os.name}-{s.browser.name}
                       </h5>
                       <span>
-                        {session.ip}{" "}
-                        <strong className={"text-green-200 font-mono"}>
-                          {ip == session.ip && "This device"}
+                        {s.ip}
+                        <strong className={"text-green-200 font-mono ml-2"}>
+                          {`${ip}-${os?.name}-${os?.version}-${browser?.name}-${browser?.version}-${browser?.major}` == `${s.ip}-${s.os?.name}-${s.os?.version}-${s.browser?.name}-${s.browser?.version}-${s.browser?.major}` && "this device"}
                         </strong>
                       </span>
                     </div>

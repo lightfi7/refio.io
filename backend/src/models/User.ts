@@ -6,6 +6,7 @@ export interface IUser extends Document {
     email: string;
     password: string;
     image: string | null;
+    subscribed: boolean;
     isVerified: boolean;
     verificationCode: string | null;
     resetToken: string | null;
@@ -22,15 +23,16 @@ const userSchema = new Schema<IUser>({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     image: { type: String },
+    subscribed: { type: Boolean, required: false },
     isVerified: { type: Boolean, default: false },
     verificationCode: { type: String },
     resetToken: { type: String },
     resetTokenExpiry: { type: Date },
     notifications: {
         type: {
-            new: {type: Boolean, default: false},
-            favorite: {type: Boolean, default: false},
-            feedback: {type: Boolean, default: false},
+            new: { type: Boolean, default: false },
+            favorite: { type: Boolean, default: false },
+            feedback: { type: Boolean, default: false },
         },
         default: {
             new: false,

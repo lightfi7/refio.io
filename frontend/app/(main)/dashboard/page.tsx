@@ -13,8 +13,9 @@ import { Program } from "@/types/define";
 export default function DashboardPage() {
   const { params } = useContext<SearchContextProps>(SearchContext);
   const [programs, setPrograms] = useState<Program[]>([]);
+  const [promoted, setPromoted] = useState<Program>();
   const [_pageIndex, setPageIndex] = useState(0);
-  const [_pages, setPages] = useState(100);
+  const [_pages, setPages] = useState(1);
   const [_, setTotalCount] = useState(0);
 
   const fetchData = useCallback(async () => {
@@ -37,6 +38,7 @@ export default function DashboardPage() {
           total = 50,
         } = await response.json();
 
+        setPromoted(programs.find((program: Program) => program.promoted === 1));
         setPrograms(programs);
         setPages(pages);
         setPageIndex(pageIndex);
@@ -67,7 +69,12 @@ export default function DashboardPage() {
   ]);
 
   useEffect(() => {
-    // Checking Premium
+    fetch('/api/get-client-info', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(response => response.json());
     fetchData();
   }, [fetchData]);
 
@@ -77,18 +84,20 @@ export default function DashboardPage() {
       <div className="flex">
         <Filterbar />
         <div className={"flex flex-1 flex-col space-y-4 px-2 md:px-4 py-4"}>
-          <Banner />
-          <Pagination
-            isCompact
-            showControls
-            showShadow
-            className="mx-auto"
-            color="default"
-            page={_pageIndex}
-            size="sm"
-            total={_pages}
-            onChange={(page) => setPageIndex(page)}
-          />
+          {promoted != null && <Banner program={promoted} />}
+          {programs.length != 0 &&
+            <Pagination
+              isCompact
+              showControls
+              showShadow
+              className="mx-auto"
+              color="default"
+              page={_pageIndex}
+              size="sm"
+              total={_pages}
+              onChange={(page) => setPageIndex(page)}
+            />
+          }
           <div
             className={`grid grid-cols-1 ${params.viewMode == "grid" ? "lg:grid-cols-2 xl:grid-cols-3" : ""} gap-4`}
           >
@@ -108,18 +117,19 @@ export default function DashboardPage() {
               />
             ))}
           </div>
-          <Pagination
-            isCompact
-            showControls
-            showShadow
-            className="mx-auto"
-            color="default"
-            page={_pageIndex}
-            size="sm"
-            total={_pages}
-            variant={"flat"}
-            onChange={(page) => setPageIndex(page)}
-          />
+          {programs.length != 0 &&
+            <Pagination
+              isCompact
+              showControls
+              showShadow
+              className="mx-auto"
+              color="default"
+              page={_pageIndex}
+              size="sm"
+              total={_pages}
+              onChange={(page) => setPageIndex(page)}
+            />
+          }
         </div>
       </div>
     </div>

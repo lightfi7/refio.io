@@ -9,7 +9,6 @@ export async function POST(req: Request) {
       jsonResponse: any;
       httpStatusCode: any;
     };
-
     return NextResponse.json(jsonResponse, { status: httpStatusCode });
   } catch (error) {
     return NextResponse.error();

@@ -2,9 +2,8 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 export interface ISession extends Document {
     userId: string,
-    sessionId: string,
-    browserName: string,
-    osName: string,
+    browser: object,
+    os: object,
     ip:string
 }
 
@@ -13,9 +12,8 @@ const sessionSchema = new Schema<ISession>({
         type: String,
         default: "",
     },
-    sessionId: String,
-    browserName:String,
-    osName:String,
+    browser:{},
+    os:{},
     ip:String,
 });
 

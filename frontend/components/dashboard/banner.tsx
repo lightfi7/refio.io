@@ -1,7 +1,11 @@
+"use client";
 import { BadgeCheck } from "lucide-react";
 import { Button } from "@nextui-org/button";
+import { Program } from "@/types/define";
+import { useRouter } from "next/navigation";
 
-const Banner = () => {
+const Banner = ({ program }: { program: Program }) => {
+  const router = useRouter();
   return (
     <div
       className={
@@ -20,21 +24,27 @@ const Banner = () => {
         </div>
         <div className={"text-white/90"}>
           <h3 className={"text-md font-semibold text-start"}>
-            Cosi Affiliate Program
+            {program.name}
           </h3>
           <h5 className={"text-sm font-medium text-start"}>
-            Commission: $49 per sale | Type: One time
+            Commission: {`${program.commission_amount_formatted === null ? "--" : program.commission_amount_formatted}`} per sale | Type: {program.commission_type
+              ?.replace(/_/g, " ")
+              .replace(/^\w/, (c: string) => c.toUpperCase())}
           </h5>
           <h5 className={"text-sm font-medium text-start"}>
-            This program is a promoted program. More info here.
+            {program.description} More info here.
           </h5>
         </div>
       </div>
       <div className={"flex space-x-2 mt-3 lg:mt-0"}>
-        <Button className={"bg-background text-purple-300 dark:text-white"}>
+        <Button className={"bg-background text-purple-300 dark:text-white"} onClick={() => {
+          router.push(`${program.link}`);
+        }}>
           Apply
         </Button>
-        <Button className={"bg-background text-purple-300 dark:text-white"}>
+        <Button className={"bg-background text-purple-300 dark:text-white"} onClick={() => {
+          router.push(`/affiliates/${program.uuid}`);
+        }}>
           Details
         </Button>
       </div>
