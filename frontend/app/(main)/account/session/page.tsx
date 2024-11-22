@@ -12,8 +12,8 @@ const SessionSettingPage = () => {
       userId: string;
       ip: string;
       os: {
-        name: string,
-        version: string,
+        name: string;
+        version: string;
       };
       browser: {
         name: string;
@@ -24,8 +24,8 @@ const SessionSettingPage = () => {
   >([]);
   const [ip, setIp] = useState<string>("");
   const [os, setOs] = useState<{
-    name: string,
-    version: string,
+    name: string;
+    version: string;
   }>();
   const [browser, setBrowser] = useState<{
     name: string;
@@ -34,36 +34,36 @@ const SessionSettingPage = () => {
   }>();
 
   useEffect(() => {
-    if (!session)
-      return;
+    if (!session) return;
 
-    fetch('/api/get-client-info', {
-      method: 'GET',
+    fetch("/api/get-client-info", {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-    }).then(response => response.json())
+    })
+      .then((response) => response.json())
       .then(({ ip, os, browser }) => {
         setIp(ip);
         setOs(os);
         setBrowser(browser);
       });
 
-    fetch('/api/get-browser-sessions', {
-      method: 'POST',
+    fetch("/api/get-browser-sessions", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ userId: session?.user.id }),
-    }).then(response => response.json())
+    })
+      .then((response) => response.json())
       .then(({ sessions }) => {
-        console.log(sessions)
+        console.log(sessions);
         setSessions(sessions);
       });
-
   }, [session?.user.id]);
 
-  const logoutOthers = async () => { };
+  const logoutOthers = async () => {};
 
   return (
     <div
@@ -103,7 +103,9 @@ const SessionSettingPage = () => {
                       <span>
                         {s.ip}
                         <strong className={"text-green-200 font-mono ml-2"}>
-                          {`${ip}-${os?.name}-${os?.version}-${browser?.name}-${browser?.version}-${browser?.major}` == `${s.ip}-${s.os?.name}-${s.os?.version}-${s.browser?.name}-${s.browser?.version}-${s.browser?.major}` && "this device"}
+                          {`${ip}-${os?.name}-${os?.version}-${browser?.name}-${browser?.version}-${browser?.major}` ==
+                            `${s.ip}-${s.os?.name}-${s.os?.version}-${s.browser?.name}-${s.browser?.version}-${s.browser?.major}` &&
+                            "this device"}
                         </strong>
                       </span>
                     </div>

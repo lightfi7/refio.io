@@ -1,11 +1,13 @@
 "use client";
 import { BadgeCheck } from "lucide-react";
 import { Button } from "@nextui-org/button";
-import { Program } from "@/types/define";
 import { useRouter } from "next/navigation";
+
+import { Program } from "@/types/define";
 
 const Banner = ({ program }: { program: Program }) => {
   const router = useRouter();
+
   return (
     <div
       className={
@@ -23,11 +25,12 @@ const Banner = ({ program }: { program: Program }) => {
           <BadgeCheck color={"#ff0000"} size={28} />
         </div>
         <div className={"text-white/90"}>
-          <h3 className={"text-md font-semibold text-start"}>
-            {program.name}
-          </h3>
+          <h3 className={"text-md font-semibold text-start"}>{program.name}</h3>
           <h5 className={"text-sm font-medium text-start"}>
-            Commission: {`${program.commission_amount_formatted === null ? "--" : program.commission_amount_formatted}`} per sale | Type: {program.commission_type
+            Commission:{" "}
+            {`${program.commission_amount_formatted === null ? "--" : program.commission_amount_formatted}`}{" "}
+            per sale | Type:{" "}
+            {program.commission_type
               ?.replace(/_/g, " ")
               .replace(/^\w/, (c: string) => c.toUpperCase())}
           </h5>
@@ -37,14 +40,20 @@ const Banner = ({ program }: { program: Program }) => {
         </div>
       </div>
       <div className={"flex space-x-2 mt-3 lg:mt-0"}>
-        <Button className={"bg-background text-purple-300 dark:text-white"} onClick={() => {
-          router.push(`${program.link}`);
-        }}>
+        <Button
+          className={"bg-background text-purple-300 dark:text-white"}
+          onClick={() => {
+            router.push(`${program.link}`);
+          }}
+        >
           Apply
         </Button>
-        <Button className={"bg-background text-purple-300 dark:text-white"} onClick={() => {
-          router.push(`/affiliates/${program.uuid}`);
-        }}>
+        <Button
+          className={"bg-background text-purple-300 dark:text-white"}
+          onClick={() => {
+            router.push(`/affiliates/${program.uuid}`);
+          }}
+        >
           Details
         </Button>
       </div>

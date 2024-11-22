@@ -11,12 +11,12 @@ export default function PublicLayout({
         {children}
         <div className={"hidden md:inline"}>
           <Image
-            width={640}
-            height={578}
-            src={'/images/preview.png'}
             alt="preview"
+            height={578}
+            src={"/images/preview.png"}
+            width={640}
           />
-          </div>
+        </div>
       </section>
     </>
   );

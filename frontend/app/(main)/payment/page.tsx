@@ -4,7 +4,6 @@ import { useSearchParams } from "next/navigation";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useState, Suspense } from "react";
 import { useSession } from "next-auth/react";
-import { subscribe } from "diagnostics_channel";
 
 function PaymentPage() {
   const { data: session, update } = useSession();
@@ -71,7 +70,6 @@ function PaymentPage() {
             onApprove={async (data) => {
               setLoading(true);
               try {
-
                 update({ ...session?.user, subscribed: true });
 
                 const response = await fetch(

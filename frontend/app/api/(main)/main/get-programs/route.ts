@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
+
 import { auth } from "@/lib/auth";
 
 export const POST = auth(async function POST(request) {
   const session = await auth();
+
   try {
     if (!request.auth)
       return NextResponse.json(
@@ -17,7 +19,7 @@ export const POST = auth(async function POST(request) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...values, userId: session?.user.id },),
+      body: JSON.stringify({ ...values, userId: session?.user.id }),
     });
 
     if (result.ok) {

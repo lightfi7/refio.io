@@ -38,7 +38,9 @@ export default function DashboardPage() {
           total = 50,
         } = await response.json();
 
-        setPromoted(programs.find((program: Program) => program.promoted === 1));
+        setPromoted(
+          programs.find((program: Program) => program.promoted === 1),
+        );
         setPrograms(programs);
         setPages(pages);
         setPageIndex(pageIndex);
@@ -69,12 +71,12 @@ export default function DashboardPage() {
   ]);
 
   useEffect(() => {
-    fetch('/api/get-client-info', {
-      method: 'GET',
+    fetch("/api/get-client-info", {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-    }).then(response => response.json());
+    }).then((response) => response.json());
     fetchData();
   }, [fetchData]);
 
@@ -85,7 +87,7 @@ export default function DashboardPage() {
         <Filterbar />
         <div className={"flex flex-1 flex-col space-y-4 px-2 md:px-4 py-4"}>
           {promoted != null && <Banner program={promoted} />}
-          {programs.length != 0 &&
+          {programs.length != 0 && (
             <Pagination
               isCompact
               showControls
@@ -97,7 +99,7 @@ export default function DashboardPage() {
               total={_pages}
               onChange={(page) => setPageIndex(page)}
             />
-          }
+          )}
           <div
             className={`grid grid-cols-1 ${params.viewMode == "grid" ? "lg:grid-cols-2 xl:grid-cols-3" : ""} gap-4`}
           >
@@ -117,7 +119,7 @@ export default function DashboardPage() {
               />
             ))}
           </div>
-          {programs.length != 0 &&
+          {programs.length != 0 && (
             <Pagination
               isCompact
               showControls
@@ -129,7 +131,7 @@ export default function DashboardPage() {
               total={_pages}
               onChange={(page) => setPageIndex(page)}
             />
-          }
+          )}
         </div>
       </div>
     </div>

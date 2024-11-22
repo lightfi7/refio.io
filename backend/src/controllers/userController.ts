@@ -92,7 +92,6 @@ export const subscribed = async (req: PrivateRequest, res: Response) => {
 }
 
 export const updateBrowserSession = async (req: PrivateRequest, res: Response) => {
-    console.log(req.body)
     await Session.findOneAndUpdate({
         userId: req.body.userId,
         ip: req.body.ip

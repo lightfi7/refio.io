@@ -14,10 +14,10 @@ export async function POST(
       httpStatusCode: any;
     };
 
-    await fetch('http://127.0.0.1:5001/api/user/subscribed', {
-      method: 'POST',
+    await fetch("http://127.0.0.1:5001/api/user/subscribed", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ userId }),
     });

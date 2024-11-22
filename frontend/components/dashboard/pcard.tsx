@@ -50,7 +50,8 @@ const PCard = ({
                       Platform: {platform}
                     </span>
                     <span className="truncate font-medium">
-                      Commission type: {commissionType
+                      Commission type:{" "}
+                      {commissionType
                         ?.replace(/_/g, " ")
                         .replace(/^\w/, (c: string) => c.toUpperCase())}
                     </span>
@@ -99,9 +100,9 @@ const PCard = ({
                 <Chip
                   size={"sm"}
                   key={index}
-                // style={{
-                //     backgroundColor: tag.color,
-                // }}
+                  // style={{
+                  //     backgroundColor: tag.color,
+                  // }}
                 >
                   {tag.name}
                 </Chip>
@@ -194,9 +195,9 @@ const PCard = ({
                 <Chip
                   size={"sm"}
                   key={index}
-                // style={{
-                //     backgroundColor: tag.name,
-                // }}
+                  // style={{
+                  //     backgroundColor: tag.name,
+                  // }}
                 >
                   {tag.name}
                 </Chip>
