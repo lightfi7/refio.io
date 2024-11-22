@@ -39,7 +39,7 @@ export const registerUser = async (req: Request, res: Response) => {
 };
 
 export const loginUser = async (req: Request, res: Response) => {
-    const { email, password, browser } = req.body;
+    const { email, password} = req.body;
     try {
         const user = await User.findOne({ email });
         if (!user) {
@@ -53,21 +53,8 @@ export const loginUser = async (req: Request, res: Response) => {
             return;
         }
 
-        const accessToken = jwt.sign({ userId: user._id, browser }, JWT_SECRET, { expiresIn: JWT_EXPIRATION });
-
-        await Session.updateOne({
-            ip: browser?.ip,
-            osName: browser?.osName,
-            browserName: browser?.browserName,
-        }, {
-            userId: user._id,
-            ip: browser?.ip,
-            sessionId: accessToken,
-            osName: browser?.osName,
-            browserName: browser?.browserName,
-        }, {
-            upsert: true,
-        });
+        const accessToken = jwt.sign({ userId: user._id}, JWT_SECRET, { expiresIn: JWT_EXPIRATION });
+        
         res.status(200).json({ message: 'Welcome back!', user, accessToken });
     } catch (err) {
         console.error(err);
