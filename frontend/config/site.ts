@@ -54,10 +54,6 @@ export const siteConfig = {
       label: "Pricings",
       href: "/pricing",
     },
-    {
-      label: "Logout",
-      href: "/logout",
-    },
   ],
   userNavItems: [
     {
