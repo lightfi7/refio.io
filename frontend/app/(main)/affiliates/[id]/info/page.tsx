@@ -327,13 +327,13 @@ export default function Page() {
                 <div className="flex items-center gap-1 mt-0">
                   {"★★★★☆".split("").map((star, i) => (
                     <span key={i} className="text-purple-300 text-xl">
-                      {i < Math.floor(getRateValue(program.average_ratings))
+                      {i < Math.floor(getRateValue(program?.average_ratings))
                         ? "★"
                         : "☆"}
                     </span>
                   ))}
                   <span className="text-md text-divider/100 ml-1 font-medium">
-                    {getRateValue(program.average_ratings)}/5
+                    {getRateValue(program?.average_ratings)}/5
                   </span>
                 </div>
               </div>
@@ -344,13 +344,13 @@ export default function Page() {
                 <div className="flex items-center gap-1 mt-0">
                   {"★★★★☆".split("").map((star, i) => (
                     <span key={i} className="text-purple-300 text-xl">
-                      {i < Math.floor(getRateValue(program.average_ratings))
+                      {i < Math.floor(getRateValue(program?.average_ratings))
                         ? "★"
                         : "☆"}
                     </span>
                   ))}
                   <span className="text-md text-divider/100 ml-1 font-medium">
-                    {getRateValue(program.average_ratings)}/5
+                    {getRateValue(program?.average_ratings)}/5
                   </span>
                 </div>
               </div>
@@ -361,13 +361,13 @@ export default function Page() {
                 <div className="flex items-center gap-1 mt-0">
                   {"★★★★☆".split("").map((star, i) => (
                     <span key={i} className="text-purple-300 text-xl">
-                      {i < Math.floor(getRateValue(program.average_ratings))
+                      {i < Math.floor(getRateValue(program?.average_ratings))
                         ? "★"
                         : "☆"}
                     </span>
                   ))}
                   <span className="text-md text-divider/100 ml-1 font-medium">
-                    {getRateValue(program.average_ratings)}/5
+                    {getRateValue(program?.average_ratings)}/5
                   </span>
                 </div>
               </div>

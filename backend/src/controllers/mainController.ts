@@ -3,7 +3,6 @@ import Tag from "../models/Tag";
 import Platform from "../models/Platform";
 import Lang from "../models/Lang";
 import Program from "../models/Program";
-import Apply from "../models/Apply";
 import Comment from '../models/Comment';
 
 
@@ -196,6 +195,18 @@ export const getPrograms = async (req: Request, res: Response) => {
     }
 }
 
+export const getSamplePrograms = async (req: Request, res: Response) => {
+    try {
+        const data = await Program.aggregate([
+            { $sample: { size: 6 } }
+        ]);
+        res.status(200).json({ message: 'Success', programs: data });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send({ message: 'Something went wrong on our end. Please try again later!' });
+    }
+}
+
 export const getProgram = async (req: Request, res: Response) => {
     try {
         const { uuid } = req.body;
@@ -237,9 +248,8 @@ export const getProgram = async (req: Request, res: Response) => {
             ]);
             const program = data.length > 0 ? data[0] : null;
             if (program) {
-                const applies = await Apply.find({ program: program })
-                    .populate('User Program', undefined, undefined, { strictPopulate: false });
-                res.status(200).json({ program: { ...program, applies } });
+                const applies = []
+                res.status(200).json({ program: { ...program } });
             } else {
                 res.status(404).send({ message: 'Not Found' });
             }
@@ -271,9 +281,10 @@ export const getSearchParams = async (req: Request, res: Response) => {
 export const postComment = async (req: Request, res: Response) => {
     try {
         const { programId, userId, comment }: { programId: string; userId: string; comment: string; } = req.body;
-        const newComment = new Comment({ user: userId, program: programId, comment });
+        const newComment = new Comment({ user: userId, program: programId, content: comment });
         await newComment.save();
-        res.status(201).send({ message: 'Comment posted successfully' });
+        await newComment.populate('user');
+        res.status(201).send({ message: 'Comment posted successfully', comment: newComment });
     } catch (err) {
         console.error(err);
         res.status(500).send({ message: 'Something went wrong on our end. Please try again later!' });
@@ -290,11 +301,16 @@ export const getComments = async (req: Request, res: Response) => {
         if (userId) {
             query.user = userId;
         }
-        let sort: any = {};
+        let sort: any = {
+            createdAt: -1
+        };
         if (sortBy) {
             sort[sortBy] = -1;
         }
-        const comments = await Comment.find(query).sort(sort);
+        const comments = await Comment.find(query)
+            .populate('user')
+            .sort(sort)
+            .limit(10);
         res.status(200).json({ comments });
     } catch (err) {
         console.error(err);
@@ -309,23 +325,25 @@ export const addVote = async (req: Request, res: Response) => {
             const program = await Program.findById(programId);
             if (!program) {
                 res.status(404).send({ message: 'Program not found' });
-                return 
+                return
             }
-
+            console.log(program)
             updateVotes(program, userId, voteType);
             await program.save();
+            res.status(200).send({ message: 'Vote updated', program });
+
         } else if (commentId) {
             const comment = await Comment.findById(commentId);
             if (!comment) {
                 res.status(404).send({ message: 'Comment not found' });
-                return 
+                return
             }
 
             updateVotes(comment, userId, voteType);
             await comment.save();
+            res.status(200).send({ message: 'Vote updated', comment });
         }
 
-        res.status(200).send({ message: 'Vote updated' });
     } catch (err) {
         console.error(err);
         res.status(500).send({ message: 'Something went wrong on our end. Please try again later!' });

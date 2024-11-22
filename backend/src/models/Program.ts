@@ -13,22 +13,20 @@ export interface IProgram extends Document {
     cash_limit_per_referal: string;
     promoted: number;
     is_international: number;
-    commission_type: object | null;
+    commission_type: string | object | null;
     product_type: object | null;
-    platform: number | null;
-    tags: (number | null)[];
-    langs: (number | null)[];
+    platform: number | string | null;
+    tags: number[];
+    langs: number[];
     current_user_apply: [] | undefined;
     current_favorite_user: [] | undefined;
     average_ratings: [] | undefined;
     current_user_review: [] | undefined;
     link_data: object | undefined;
+    link: string | undefined;
     description: string | undefined;
     image: string | undefined;
-    contacts: {
-        name: 'Whatsapp' | 'Telegram' | 'Instagram' | 'Snapchat' | 'Facebook' | 'Twitter' | 'LinkedIn' | 'Pinterest' | 'Email' | 'Other',
-        link: string,
-    }[] | undefined;
+    contacts: string[] | undefined;
     up_votes: string[];
     down_votes: string[];
 }
@@ -94,14 +92,14 @@ const IProgram = new Schema<IProgram>({
         type: Number,
         default: null,
     },
-    tags: {
+    tags: [{
         type: Number,
         default: null,
-    },
-    langs: {
+    }],
+    langs: [{
         type: Number,
         default: null,
-    },
+    }],
     current_user_apply: {
         type: Array,
         default: [],
@@ -126,21 +124,19 @@ const IProgram = new Schema<IProgram>({
         type: String,
     }],
     down_votes: [{
-        type: Number,
+        type: String,
     }],
     description: {
+        type: String,
+    },
+    link: {
         type: String,
     },
     image: {
         type: String,
     },
     contacts: [{
-        name: {
-            type: String,
-        },
-        link: {
-            type: String,
-        },
+        type: String,
     }]
 }, { timestamps: true });
 

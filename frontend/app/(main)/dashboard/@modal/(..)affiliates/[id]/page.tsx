@@ -10,15 +10,13 @@ import {
   useDisclosure,
 } from "@nextui-org/modal";
 import {
-  ArrowDownAzIcon,
-  ArrowDownIcon,
-  ArrowUpIcon,
   BadgePercent,
   BookmarkIcon,
   CopyIcon,
   CornerUpRightIcon,
   FacebookIcon,
   InstagramIcon,
+  LinkedinIcon,
   LinkIcon,
   MessageSquareIcon,
   ThumbsDownIcon,
@@ -27,40 +25,45 @@ import {
 } from "lucide-react";
 import { Image } from "@nextui-org/image";
 import { Divider } from "@nextui-org/divider";
-import { Select, SelectItem } from "@nextui-org/select";
 import { Input } from "@nextui-org/input";
 import { Avatar } from "@nextui-org/avatar";
 import { useEffect, useState } from "react";
 import { Chip } from "@nextui-org/chip";
+import { useSession } from "next-auth/react";
 
 import { getRateValue } from "@/utils/common";
-
-function getTagColor(tag: string) {
-  const colors: { [key: string]: { bg: string; text: string } } = {
-    Marketing: { bg: "#3D978C", text: "#fff" },
-    "Affiliate Program": { bg: "#163D55", text: "#fff" },
-    "Affiliate Marketing": { bg: "#572064", text: "#fff" },
-    SEO: { bg: "#0C232A", text: "#fff" },
-    Backlink: { bg: "#6E1C97", text: "#fff" },
-    SaaS: { bg: "#e6f7f4", text: "#fff" },
-    AI: { bg: "#2F5516", text: "#fff" },
-    Automation: { bg: "#551629", text: "#fff" },
-    "Content Management": { bg: "#3B6420", text: "#fff" },
-    "Text Generation": { bg: "#551629", text: "#fff" },
-  };
-
-  return colors[tag] || { bg: "#f3f4f6", text: "#4b5563" };
-}
+import { Comment, Program } from "@/types/define";
 
 const sortList = [{ key: "latest_update", label: "Latest update" }];
 
-const tags = ["Marketing", "Affiliate Program", "Affiliate Marketing"];
+const socials = {
+  facebook: {
+    name: "Facebook",
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#3b5998" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.895 0 0 .895 0 2.025v19.95C0 23.105.895 24 2.025 24h21.95C23.105 24 24 23.105 24 21.975V2.025C24 .895 23.105 0 22.675 0zM12 24V12h-3v-4h3V6c0-3.1 1.9-4 4-4h3v4h-2c-1.1 0-1 .5-1 1v3h4l-1 4h-3v12H12z"/></svg>`,
+  },
+  twitter: {
+    name: "Twitter",
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#1DA1F2" viewBox="0 0 24 24"><path d="M23.643 4.937c-.835.375-1.73.63-2.68.74a4.686 4.686 0 002.042-2.573c-.92.546-1.937.943-3.021 1.155a4.663 4.663 0 00-7.97 4.257A13.215 13.215 0 011.671 3c-.42-.018-.84-.063-1.25-.063-.43 0-.855-.026-1.274-.075a4.663 4.663 0 003.031-5.196c-1 .592-2 .99-3 .99A4.664 4.664 0 0012 .007c2 .001 3 .003z"/></svg>`,
+  },
+  linkedin: {
+    name: "LinkedIn",
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#0077B5" viewBox="0 0 24 24"><path d="M22.225 0h-20.45C1.01 0 .001 1 .001 2.225v19.55C0 22.99 1 .001l20 .001c1 .001l20 .001C23 .001l20 .001C23 .001zM6 .001c1 .001l20 .001C6 .001zM8 .003H5v18H8V8zm11 .003h-3v18h3V8zm-11 .003H5V8h3z"/></svg>`,
+  },
+  instagram: {
+    name: "Instagram",
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#E1306C" viewBox="0 0 24 24"><path d="M12 .002c3.313-.002 6 .0027,9,3c2,2,2,5,2,9s-.0027,6 -2,9c-3,3 -5,3 -9,3s-6 -.0027 -9 -3c-2 -2 -2 -5 -2 -9s0 -7,2 -9C6,.0027,8,.0027,12,.002zm6,12a6,6,0,1,1,-12,.002a6,6,0,1,1,12,.002zm-.004,-8a1,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,/></svg>`,
+  },
+};
 
 export default function Page() {
+  const { data: session } = useSession();
   const params = useParams();
   const router = useRouter();
-  const [_program, setProgram] = useState();
-  const [comments, setComments] = useState([]);
+
+  const [_program, setProgram] = useState<Program>();
+  const [samples, setSamples] = useState<Program[]>([]);
+  const [comments, setComments] = useState<Comment[]>([]);
+  const [comment, setComment] = useState<string>();
 
   const onClose = () => {
     router.back();
@@ -71,40 +74,139 @@ export default function Page() {
     onClose,
   });
 
-
   useEffect(() => {
-    fetch("/api/main/get-comments", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ programId: _program?._id }),
-    })
-      .then((response) => response.json())
-      .then(({ comments }) => {
-        console.log("comments:", comments);
-        setComments(comments);
-      })
-      .catch((error) => console.log("error:", error));
+    fetchComments();
   }, [_program?._id]);
 
-
-
   useEffect(() => {
-    fetch("/api/main/get-program", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ uuid: params.id }),
-    })
-      .then((response) => response.json())
-      .then(({ program }) => {
-        setProgram(program);
-      })
-      .catch((error) => console.log("error:", error));
-
+    fetchProgram();
+    fetchSamples();
   }, [params.id]);
+
+  const fetchComments = async () => {
+    try {
+      const response = await fetch("/api/main/get-comments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ programId: _program?._id }),
+      });
+      const data = await response.json();
+
+      if (data.comments) setComments(data.comments);
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+    }
+  };
+
+  const fetchProgram = async () => {
+    try {
+      const response = await fetch("/api/main/get-program", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ uuid: params.id }),
+      });
+      const data = await response.json();
+
+      setProgram(data.program);
+    } catch (error) {
+      console.error("Error fetching program:", error);
+    }
+  };
+
+  const fetchSamples = async () => {
+    try {
+      const response = await fetch("/api/main/get-sample-programs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ uuid: params.id }),
+      });
+      const data = await response.json();
+
+      setSamples(data.programs);
+    } catch (error) {
+      console.error("Error fetching program:", error);
+    }
+  };
+
+  const postComment = async () => {
+    if (!comment) return;
+
+    try {
+      const response = await fetch("/api/main/post-comment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          programId: _program?._id,
+          userId: session?.user?.id,
+          comment,
+        }),
+      });
+
+      if (response.ok) {
+        const newComment = await response.json();
+
+        setComments([newComment.comment, ...comments]);
+        setComment("");
+      }
+    } catch (error) {
+      console.error("Error posting comment:", error);
+    }
+  };
+
+  const addVote2Comment = async (comment_: Comment, voteType: string) => {
+    try {
+      const response = await fetch("/api/main/add-vote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: session?.user?.id,
+          commentId: comment_._id,
+          voteType,
+        }),
+      });
+
+      if (response.ok) {
+        const { comment } = await response.json();
+
+        setComments(
+          comments.map((c) => (c._id === comment_._id ? comment : c)),
+        );
+      }
+    } catch (error) {
+      console.error("Error adding vote:", error);
+    }
+  };
+
+  const addVote2Program = async (
+    program: Program | undefined,
+    voteType: string,
+  ) => {
+    try {
+      const response = await fetch("/api/main/add-vote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: session?.user?.id,
+          programId: program?._id,
+          voteType,
+        }),
+      });
+
+      if (response.ok) {
+        const { program } = await response.json();
+
+        setProgram((prev) => {
+          if (prev) {
+            if (program?.up_votes) prev.up_votes = program?.up_votes;
+
+            return Object.create(prev);
+          }
+        });
+      }
+    } catch (error) {
+      console.error("Error adding vote:", error);
+    }
+  };
 
   return (
     <Modal
@@ -120,14 +222,14 @@ export default function Page() {
             <ModalBody>
               <div className={"flex flex-col md:flex-row space-x-2"}>
                 <div className={"flex-1"}>
-                  <div className={"flex gap-2"}>
+                  {/* <div className={"flex gap-2"}>
                     <Button isIconOnly size={"md"} variant={"shadow"}>
                       <ArrowUpIcon size={14} />
                     </Button>
                     <Button isIconOnly size={"md"} variant={"shadow"}>
                       <ArrowDownIcon size={14} />
                     </Button>
-                  </div>
+                  </div> */}
                   <div className={"px-2 py-6"}>
                     <div className={"flex space-x-2 items-center"}>
                       <BadgePercent color={"#ff0000"} size={24} />
@@ -156,7 +258,7 @@ export default function Page() {
                         {"★★★★☆".split("").map((star, i) => (
                           <span key={i} className="text-purple-300 text-xl">
                             {i <
-                              Math.floor(getRateValue(_program?.average_ratings))
+                            Math.floor(getRateValue(_program?.average_ratings))
                               ? "★"
                               : "☆"}
                           </span>
@@ -191,9 +293,12 @@ export default function Page() {
                     {/*  Comment*/}
                     <div className={"flex flex-col space-y-3 py-6 mt-8"}>
                       <div className={"flex space-x-6"}>
-                        <span className={"text-lg font-medium"}>1 Upvote</span>
                         <span className={"text-lg font-medium"}>
-                          3 Comments
+                          {_program?.up_votes ? _program?.up_votes.length : 0}{" "}
+                          Upvotes
+                        </span>
+                        <span className={"text-lg font-medium"}>
+                          {comments?.length} Comments
                         </span>
                       </div>
                       <div
@@ -204,11 +309,25 @@ export default function Page() {
                         <div
                           className={"flex bg-divider rounded-xl items-center"}
                         >
-                          <Button isIconOnly size={"md"} variant={"light"}>
+                          <Button
+                            isIconOnly
+                            size={"md"}
+                            variant={"light"}
+                            onClick={async () => {
+                              await addVote2Program(_program, "up");
+                            }}
+                          >
                             <ThumbsUpIcon size={16} />
                           </Button>
                           <Divider className={"h-6"} orientation={"vertical"} />
-                          <Button isIconOnly size={"md"} variant={"light"}>
+                          <Button
+                            isIconOnly
+                            size={"md"}
+                            variant={"light"}
+                            onClick={async () => {
+                              await addVote2Program(_program, "down");
+                            }}
+                          >
                             <ThumbsDownIcon size={16} />
                           </Button>
                         </div>
@@ -237,7 +356,7 @@ export default function Page() {
                           </div>
                         </div>
                       </div>
-                      <div className="md:px-2 flex items-center space-x-4">
+                      {/* <div className="md:px-2 flex items-center space-x-4">
                         <div className="flex items-center md:space-x-1.5">
                           <ArrowDownAzIcon size={24} strokeWidth={1} />
                           <span className="hidden md:inline whitespace-nowrap text-divider/60">
@@ -247,23 +366,29 @@ export default function Page() {
                         <Select
                           className="w-40"
                           defaultSelectedKeys={["latest_update"]}
-                          size={"md"}
+                          size={"sm"}
                           variant={"flat"}
                         >
                           {sortList.map((s) => (
                             <SelectItem key={s.key}>{s.label}</SelectItem>
                           ))}
                         </Select>
-                      </div>
+                      </div> */}
                     </div>
                     {/*  Post comments*/}
                     <Input
+                      aria-multiline
                       classNames={{
                         mainWrapper: ["py-6"],
                         inputWrapper: ["px-2"],
                       }}
                       endContent={
-                        <Button color={"secondary"} radius={"full"} size={"sm"}>
+                        <Button
+                          color={"secondary"}
+                          radius={"full"}
+                          size={"sm"}
+                          onClick={async () => await postComment()}
+                        >
                           Post
                         </Button>
                       }
@@ -274,109 +399,84 @@ export default function Page() {
                         <div className={"min-w-10 min-h-10 flex items-center"}>
                           <Avatar
                             showFallback
+                            name={session?.user?.name}
                             size={"sm"}
-                            src="https://images.unsplash.com/broken"
+                            src={session?.user?.image}
                           />
                         </div>
                       }
+                      value={comment}
                       variant={"bordered"}
+                      onChange={(e) => setComment(e.target.value)}
                     />
                     {/*  Last comments*/}
                     <div className={"flex flex-col space-y-3"}>
-                      <div className={"flex items-start space-x-4"}>
-                        <Avatar className={"min-w-10 min-h-10"} />
-                        <div>
-                          <div className={"flex space-x-2 items-center"}>
-                            <h3 className={"font-medium text-lg"}>
-                              Sidiat Bruma
-                            </h3>
-                            <span className={"text-sm text-divider/30"}>
-                              2 days ago
-                            </span>
-                          </div>
-                          <h6
-                            className={
-                              "font-medium text-start text-sm text-divider/70"
-                            }
-                          >
-                            The Cosi Affiliate Program sounds like a fantastic
-                            opportunity! I love that they offer a diverse range
-                            of products, making it easy to find something that
-                            fits my audience&apos;s interests. The competitive
-                            commissions and access to marketing materials really
-                            streamline the process. It’s great to see a brand
-                            that prioritizes quality and customer satisfaction.
-                            I&apos;m excited to explore this further and
-                            potentially start promoting Cosi!
-                          </h6>
-                          <div
-                            className={"flex justify-between items-center mt-2"}
-                          >
-                            <div>
-                              <Button isIconOnly variant={"light"}>
-                                <ThumbsUpIcon size={18} />
-                              </Button>
-                              <Button isIconOnly variant={"light"}>
-                                <ThumbsDownIcon size={18} />
-                              </Button>
+                      {comments.map((c) => (
+                        <div
+                          key={c._id}
+                          className={"flex items-start space-x-4"}
+                        >
+                          <Avatar
+                            className={"min-w-10 min-h-10"}
+                            name={c.user?.name}
+                            src={c.user?.image}
+                          />
+                          <div className="flex-1">
+                            <div className={"flex space-x-2 items-center"}>
+                              <h3 className={"font-medium text-lg"}>
+                                {c.user?.name}
+                              </h3>
+                              <span className={"text-sm text-divider/30"}>
+                                {c.createdAt}
+                              </span>
                             </div>
-                            <span
-                              className={"text-divider/60 font-medium text-sm"}
+                            <h6
+                              className={
+                                "font-medium text-start text-sm text-divider/70"
+                              }
                             >
-                              1 Upvote
-                            </span>
+                              {c.content}
+                            </h6>
+                            <div
+                              className={
+                                "flex justify-between items-center mt-2"
+                              }
+                            >
+                              <div>
+                                <Button
+                                  isIconOnly
+                                  variant={"light"}
+                                  onClick={() => {
+                                    addVote2Comment(c, "up");
+                                  }}
+                                >
+                                  <ThumbsUpIcon size={18} />
+                                </Button>
+                                <Button
+                                  isIconOnly
+                                  variant={"light"}
+                                  onClick={() => {
+                                    addVote2Comment(c, "down");
+                                  }}
+                                >
+                                  <ThumbsDownIcon size={18} />
+                                </Button>
+                              </div>
+                              <span
+                                className={
+                                  "text-divider/60 font-medium text-sm"
+                                }
+                              >
+                                {c.up_votes.length} Upvote
+                              </span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className={"flex items-start space-x-4"}>
-                        <Avatar className={"min-w-10 min-h-10"} />
-                        <div>
-                          <div className={"flex space-x-2 items-center"}>
-                            <h3 className={"font-medium text-lg"}>
-                              Sidiat Bruma
-                            </h3>
-                            <span className={"text-sm text-divider/30"}>
-                              2 days ago
-                            </span>
-                          </div>
-                          <h6
-                            className={
-                              "font-medium  text-start text-sm text-divider/70"
-                            }
-                          >
-                            The Cosi Affiliate Program sounds like a fantastic
-                            opportunity! I love that they offer a diverse range
-                            of products, making it easy to find something that
-                            fits my audience&apos;s interests. The competitive
-                            commissions and access to marketing materials really
-                            streamline the process. It’s great to see a brand
-                            that prioritizes quality and customer satisfaction.
-                            I&apos;m excited to explore this further and
-                            potentially start promoting Cosi!
-                          </h6>
-                          <div
-                            className={"flex justify-between items-center mt-2"}
-                          >
-                            <div>
-                              <Button isIconOnly variant={"light"}>
-                                <ThumbsUpIcon size={18} />
-                              </Button>
-                              <Button isIconOnly variant={"light"}>
-                                <ThumbsDownIcon size={18} />
-                              </Button>
-                            </div>
-                            <span
-                              className={"text-divider/60 font-medium text-sm"}
-                            >
-                              1 Upvote
-                            </span>
-                          </div>
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>
-                <div className={"min-w-80 px-6"}>
+                <div className={"max-w-[360px] flex-1 w-full px-6"}>
                   <div>
                     <Button
                       color={"secondary"}
@@ -397,7 +497,7 @@ export default function Page() {
                         "flex flex-col md:flex-row justify-between mt-6 space-y-6 md:space-y-0"
                       }
                     >
-                      <div>
+                      <div className="p-1">
                         <h3 className={"text-lg font-medium"}>
                           {_program?.name}
                         </h3>
@@ -405,9 +505,9 @@ export default function Page() {
                           {"★★★★☆".split("").map((star, i) => (
                             <span key={i} className="text-purple-300 text-xl">
                               {i <
-                                Math.floor(
-                                  getRateValue(_program?.average_ratings),
-                                )
+                              Math.floor(
+                                getRateValue(_program?.average_ratings),
+                              )
                                 ? "★"
                                 : "☆"}
                             </span>
@@ -421,7 +521,8 @@ export default function Page() {
                         className="w-full md:w-auto"
                         color={"secondary"}
                         size={"md"}
-                        variant={"faded"}
+                        variant={"light"}
+                        onClick={() => router.push(`${_program?.link}`)}
                       >
                         Follow
                       </Button>
@@ -432,46 +533,121 @@ export default function Page() {
                         "rounded-xl bg-default/20 border border-divider p-6 flex justify-between"
                       }
                     >
-                      <div className={"flex flex-col items-center space-y-2"}>
-                        <Button isIconOnly color={"success"} variant={"light"}>
-                          <CopyIcon size={28} />
-                        </Button>
-                        <span
-                          className={"text-sm hidden md:block text-divider/30"}
-                        >
-                          Copy Link
-                        </span>
-                      </div>
-                      <div className={"flex flex-col items-center space-y-2"}>
-                        <Button isIconOnly color={"danger"} variant={"light"}>
-                          <InstagramIcon size={28} />
-                        </Button>
-                        <span
-                          className={"text-sm hidden md:block text-divider/30"}
-                        >
-                          Instagram
-                        </span>
-                      </div>
-                      <div className={"flex flex-col items-center space-y-2"}>
-                        <Button isIconOnly color={"primary"} variant={"light"}>
-                          <FacebookIcon size={28} />
-                        </Button>
-                        <span
-                          className={"text-sm hidden md:block text-divider/30"}
-                        >
-                          Facebook
-                        </span>
-                      </div>
-                      <div className={"flex flex-col items-center space-y-2"}>
-                        <Button isIconOnly color={"default"} variant={"light"}>
-                          <TwitterIcon size={28} />
-                        </Button>
-                        <span
-                          className={"text-sm hidden md:block text-divider/30"}
-                        >
-                          Twitter
-                        </span>
-                      </div>
+                      {_program?.contacts?.map((contact: string, i) => {
+                        if (contact.includes("instagram"))
+                          return (
+                            <div
+                              key={i}
+                              className={"flex flex-col items-center space-y-2"}
+                            >
+                              <Button
+                                isIconOnly
+                                color={"danger"}
+                                variant={"light"}
+                              >
+                                <InstagramIcon size={28} />
+                              </Button>
+                              <span
+                                className={
+                                  "text-sm hidden md:block text-divider/30"
+                                }
+                              >
+                                Instagram
+                              </span>
+                            </div>
+                          );
+                        if (contact.includes("facebook"))
+                          return (
+                            <div
+                              key={i}
+                              className={"flex flex-col items-center space-y-2"}
+                            >
+                              <Button
+                                isIconOnly
+                                color={"primary"}
+                                variant={"light"}
+                              >
+                                <FacebookIcon size={28} />
+                              </Button>
+                              <span
+                                className={
+                                  "text-sm hidden md:block text-divider/30"
+                                }
+                              >
+                                Facebook
+                              </span>
+                            </div>
+                          );
+                        if (contact.includes("twitter"))
+                          return (
+                            <div
+                              key={i}
+                              className={"flex flex-col items-center space-y-2"}
+                            >
+                              <Button
+                                isIconOnly
+                                color={"default"}
+                                variant={"light"}
+                              >
+                                <TwitterIcon size={28} />
+                              </Button>
+                              <span
+                                className={
+                                  "text-sm hidden md:block text-divider/30"
+                                }
+                              >
+                                Twitter
+                              </span>
+                            </div>
+                          );
+                        if (contact.includes("linkedin"))
+                          return (
+                            <div
+                              key={i}
+                              className={"flex flex-col items-center space-y-2"}
+                            >
+                              <Button
+                                isIconOnly
+                                color={"default"}
+                                variant={"light"}
+                              >
+                                <LinkedinIcon size={28} />
+                              </Button>
+                              <span
+                                className={
+                                  "text-sm hidden md:block text-divider/30"
+                                }
+                              >
+                                Twitter
+                              </span>
+                            </div>
+                          );
+
+                        return (
+                          <div
+                            key={i}
+                            className={"flex flex-col items-center space-y-2"}
+                          >
+                            <Button
+                              isIconOnly
+                              color={"success"}
+                              variant={"light"}
+                              onClick={async () => {
+                                await navigator.clipboard.writeText(contact);
+                              }}
+                            >
+                              <CopyIcon size={28} />
+                            </Button>
+                            <span
+                              className={
+                                "text-sm hidden md:block text-divider/30"
+                              }
+                            >
+                              Copy Link
+                            </span>
+                          </div>
+                        );
+                      })}
                     </div>
                     {/*  */}
                     <div
@@ -490,34 +666,43 @@ export default function Page() {
                       >
                         <h3 className="text-lg font-medium ">You Might Like</h3>
                       </div>
-                      <div className={"p-4"}>
-                        <div className={"flex flex-col items-start"}>
-                          <h3 className={"text-lg font-medium"}>
-                            143Vinly.com
-                          </h3>
-                          <span className={"text-sm text-divider/60"}>
-                            Platform: Direct
-                          </span>
-                          <span className={"text-sm text-divider/60"}>
-                            Commision type: Recurring
-                          </span>
-                          <div className="flex items-center gap-1 mt-0">
-                            {"★★★★☆".split("").map((star, i) => (
-                              <span key={i} className="text-purple-300 text-xl">
-                                {i <
-                                  Math.floor(
-                                    getRateValue(_program?.average_ratings),
-                                  )
-                                  ? "★"
-                                  : "☆"}
-                              </span>
-                            ))}
-                            <span className="text-md text-divider/100 ml-1 font-medium">
-                              {getRateValue(_program?.average_ratings)}/5
+                      {samples.map((sample, i) => (
+                        <div key={i} className={"p-4"}>
+                          <div className={"flex flex-col items-start"}>
+                            <h3 className={"text-lg font-medium"}>
+                              {sample.name}
+                            </h3>
+                            <span className={"text-sm text-divider/60"}>
+                              Platform:{" "}
+                              {sample.platform ? sample.platform.name : "--"}
                             </span>
+                            <span className={"text-sm text-divider/60"}>
+                              Commision type:{" "}
+                              {sample.commission_type
+                                ?.replace(/_/g, " ")
+                                .replace(/^\w/, (c: string) => c.toUpperCase())}
+                            </span>
+                            <div className="flex items-center gap-1 mt-0">
+                              {"★★★★☆".split("").map((star, i) => (
+                                <span
+                                  key={i}
+                                  className="text-purple-300 text-xl"
+                                >
+                                  {i <
+                                  Math.floor(
+                                    getRateValue(sample.average_ratings),
+                                  )
+                                    ? "★"
+                                    : "☆"}
+                                </span>
+                              ))}
+                              <span className="text-md text-divider/100 ml-1 font-medium">
+                                {getRateValue(sample.average_ratings)}/5
+                              </span>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>

@@ -12,13 +12,16 @@ export const POST = auth(async function POST(request) {
 
     const values = await request.json();
 
-    const result = await fetch("http://127.0.0.1:5001/api/main/get-comments", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const result = await fetch(
+      "http://127.0.0.1:5001/api/main/get-sample-programs",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
       },
-      body: JSON.stringify(values),
-    });
+    );
 
     if (result.ok) {
       const data = await result.json();

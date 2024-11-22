@@ -1,12 +1,12 @@
 import express from 'express';
-import { getProgram, getPrograms, getSearchParams, postComment, addVote, getComments } from "../controllers/mainController";
+import { getProgram, getPrograms, getSearchParams, postComment, addVote, getComments, getSamplePrograms } from "../controllers/mainController";
 
 import { authenticateJWT } from "../middleware/authMiddleware";
-
 
 const router = express.Router();
 
 router.post('/get-programs', getPrograms);
+router.post('/get-sample-programs', getSamplePrograms);
 router.post('/get-program', getProgram);
 router.post('/get-search-params', getSearchParams);
 router.post('/post-comment', postComment);
