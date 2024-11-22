@@ -15,7 +15,7 @@ export default function Page() {
   const [pending, setPending] = useState(false);
 
   const initialValues = {
-    email: "light7fi@outlook.com",
+    email: "",
   };
 
   const validationSchema = Yup.object({

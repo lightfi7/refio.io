@@ -10,10 +10,10 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 
 const initialValues = {
-  name: "John",
-  email: "light7fi@outlook.com",
-  password: "p@ssW0rd",
-  confirmPassword: "p@ssW0rd",
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
 };
 
 const validationSchema = Yup.object({

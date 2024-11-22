@@ -11,8 +11,8 @@ import { signIn } from "next-auth/react";
 import * as Yup from "yup";
 
 const initialValues = {
-  email: "light7fi@outlook.com",
-  password: "p@ssW0rd",
+  email: "",
+  password: "",
 };
 
 const validationSchema = Yup.object({
