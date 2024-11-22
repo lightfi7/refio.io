@@ -7,7 +7,7 @@ export default function PublicLayout({
 }) {
   return (
     <>
-      <section className="grid grid-cols-1 items-baseline md:grid-cols-2 min-h-screen">
+      <section className="grid grid-cols-1 items-center md:grid-cols-2 min-h-screen">
         {children}
         <div className={"hidden md:inline"}>
           <Image
