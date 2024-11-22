@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 import { sendResetPasswordEmail, sendVerificationEmail } from "../utils/mailer";
 import { Request, Response } from "express";
 import { PrivateRequest } from "../middleware/authMiddleware";
-import Session from "../models/Session";
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 const JWT_EXPIRATION = '1h';
@@ -39,6 +38,7 @@ export const registerUser = async (req: Request, res: Response) => {
 };
 
 export const loginUser = async (req: Request, res: Response) => {
+    console.log('=>')
     const { email, password} = req.body;
     try {
         const user = await User.findOne({ email });
