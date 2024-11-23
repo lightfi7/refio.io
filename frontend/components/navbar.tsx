@@ -66,7 +66,7 @@ export const Navbar = () => {
                 key="logout"
                 color="danger"
                 onClick={async () => {
-                  await signOut();
+                  await signOut({ redirectTo: '/sign-in' });
                 }}
               >
                 Log Out
