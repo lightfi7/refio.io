@@ -5,13 +5,13 @@ import { authenticateJWT } from "../middleware/authMiddleware";
 
 const router = express.Router();
 
-router.post('/get-programs', getPrograms);
-router.post('/get-sample-programs', getSamplePrograms);
-router.post('/get-program', getProgram);
+router.post('/get-programs', authenticateJWT, getPrograms);
+router.post('/get-sample-programs', authenticateJWT, getSamplePrograms);
+router.post('/get-program', authenticateJWT, getProgram);
 router.post('/get-search-params', getSearchParams);
-router.post('/post-comment', postComment);
-router.post('/get-comments', getComments);
-router.post('/add-vote', addVote);
+router.post('/post-comment', authenticateJWT, postComment);
+router.post('/get-comments', authenticateJWT, getComments);
+router.post('/add-vote', authenticateJWT, addVote);
 
 
 export default router;

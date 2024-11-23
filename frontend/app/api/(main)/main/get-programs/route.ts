@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 
 import { auth } from "@/lib/auth";
+import sessionHandler from "@/lib/session-handler";
 
-export const POST = auth(async function POST(request) {
+export const POST = auth(sessionHandler(async function POST(request) {
   const session = await auth();
 
   try {
@@ -34,4 +35,4 @@ export const POST = auth(async function POST(request) {
   } catch (error) {
     return NextResponse.error();
   }
-});
+}));

@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import { userAgent } from "next/server";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object({
@@ -18,15 +19,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: {},
         password: {},
       },
-      authorize: async (credentials) => {
+      authorize: async (credentials, req: Request) => {
         let user = null;
         const values = await validationSchema.validate(credentials);
+        const { os, browser } = userAgent(req);
+        const forwarded = req.headers.get("x-forwarded-for");
+        let ip = forwarded ? forwarded.split(",")[0].trim() : "unknown";
+
+        if (ip === "::1") {
+          ip = "127.0.0.1";
+        }
+
         const result = await fetch("http://127.0.0.1:5001/api/auth/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(values),
+          body: JSON.stringify({ ...values, ip, os, browser }),
         });
 
         if (result.ok) {
@@ -73,7 +82,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   cookies: {
     sessionToken: {
-      name: `next-auth.session-token`,
       options: {
         path: '/',
         sameSite: 'lax',

@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import Session from "../models/Session";
 
 export interface PrivateRequest extends Request {
-  token?:string;
+  token?: string;
   userId?: string;
 }
 

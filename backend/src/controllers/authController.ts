@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import { sendResetPasswordEmail, sendVerificationEmail } from "../utils/mailer";
 import { Request, Response } from "express";
 import { PrivateRequest } from "../middleware/authMiddleware";
+import Session from "../models/Session";
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 const JWT_EXPIRATION = '1h';
@@ -39,7 +40,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
 export const loginUser = async (req: Request, res: Response) => {
     console.log('=>')
-    const { email, password} = req.body;
+    const { email, password, ip, os, browser } = req.body;
     try {
         const user = await User.findOne({ email });
         if (!user) {
@@ -53,9 +54,28 @@ export const loginUser = async (req: Request, res: Response) => {
             return;
         }
 
-        const accessToken = jwt.sign({ userId: user._id}, JWT_SECRET, { expiresIn: JWT_EXPIRATION });
-        
+        Session.findOneAndUpdate({
+            userId: user._id,
+            ip,
+            os,
+            browser,
+        }, {
+            $set: {
+                userId: user._id,
+                ip,
+                os,
+                browser,
+            },
+        }, { upsert: true, new: true }).then(() => {
+            console.log('Browser session updated successfully')
+        })
+            .catch(err => console.log(err));
+
+
+        const accessToken = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: JWT_EXPIRATION });
+
         res.status(200).json({ message: 'Welcome back!', user, accessToken });
+
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Something went wrong on our end. Please try again later!' });

@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-
 import { auth } from "@/lib/auth";
+import sessionHandler from "@/lib/session-handler";
 
-export const POST = auth(async function POST(request) {
+export const POST = auth(sessionHandler(async function POST(request) {
   try {
     if (!request.auth)
       return NextResponse.json(
@@ -35,8 +35,6 @@ export const POST = auth(async function POST(request) {
     if (result.ok) {
       const data = await result.json();
 
-      console.log(data);
-
       return NextResponse.json(data);
     } else {
       const { message } = await result.json();
@@ -48,4 +46,4 @@ export const POST = auth(async function POST(request) {
 
     return NextResponse.error();
   }
-});
+}));

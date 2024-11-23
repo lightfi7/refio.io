@@ -63,7 +63,21 @@ const SessionSettingPage = () => {
       });
   }, [session?.user.id]);
 
-  const logoutOthers = async () => {};
+  const logoutOthers = async () => {
+    setPending(true);
+    try {
+      await fetch("/api/logout-others", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: session?.user.id }),
+      });
+    } catch (error) { }
+    finally {
+      setPending(false);
+    }
+  };
 
   return (
     <div
@@ -91,7 +105,7 @@ const SessionSettingPage = () => {
                 your password
               </h6>
               <div className={"flex flex-col space-y-6"}>
-                {sessions.length > 0 &&
+                {sessions?.length > 0 &&
                   sessions.map((s, i) => (
                     <div
                       key={i}

@@ -120,10 +120,37 @@ export const getBrowserSessions = async (req: PrivateRequest, res: Response) => 
     }
 };
 
+
+
+export const getBrowserSession = async (req: PrivateRequest, res: Response) => {
+    try {
+        const { userId, ip, os, browser } = req.body;
+        const session = await Session.findOne({
+            userId,
+            ip,
+            os,
+            browser,
+        });
+        if (!session) {
+            res.status(401).json({
+                message: 'No session found'
+            });
+            return
+        }
+        res.status(200).send({
+            session,
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Something went wrong on our end. Please try again later!' });
+    }
+};
+
 export const logoutOtherBrowsers = async (req: PrivateRequest, res: Response) => {
     try {
         const { userId, ip, os, browser } = req.body;
-        await Session.deleteMany({ userId, ip: { $ne: ip }, os: { $ne: os }, browser: { $ne: browser } });
+        await Session.deleteMany({ userId });
+        // await Session.deleteMany({ userId, ip: { $ne: ip }, os: { $ne: os }, browser: { $ne: browser } });
         res.status(200).json({ message: 'Other browsers logged out successfully' });
     } catch (err) {
         console.error(err);

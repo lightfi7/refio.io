@@ -71,13 +71,13 @@ export default function DashboardPage() {
   ]);
 
   useEffect(() => {
-    fetch("/api/get-client-info", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => response.json())
-      .catch(err => console.log(err));
+    // fetch("/api/get-client-info", {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // }).then((response) => response.json())
+    //   .catch(err => console.log(err));
     fetchData();
   }, [fetchData]);
 
