@@ -24,6 +24,7 @@ export default function PublicLayout({
         {children}
         <div className={"hidden md:inline"}>
           <Image
+            className=""
             alt="preview"
             height={578}
             src={"/images/preview.png"}
