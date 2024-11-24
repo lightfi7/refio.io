@@ -142,7 +142,7 @@ const MyProfilePage = () => {
                   <Avatar
                     className={"w-24 h-24 text-large mr-4"}
                     name={session?.user?.name}
-                    src={`http://127.0.0.1:5001/${session?.user?.image}`}
+                    src={`https://refio.io/images/${session?.user?.image}`}
                   />
                 ) : (
                   <Avatar
