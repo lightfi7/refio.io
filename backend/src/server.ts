@@ -14,7 +14,7 @@ connectDB();
 
 app.use(cors());
 app.use(express.json());
-app.use("images", express.static('uploads/avatars'));
+app.use(express.static('uploads/avatars'));
 
 initializeRoutes(app);
 
