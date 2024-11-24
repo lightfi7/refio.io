@@ -55,6 +55,7 @@ export default function Page() {
       } else {
         console.log("Sign in successful");
         router.push("/dashboard");
+        router.push("/dashboard");
       }
       setPending(false);
     },
