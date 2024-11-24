@@ -17,7 +17,7 @@ export default function PublicLayout({
         {
           toast.message && (
             <Toast message={toast.message} type={toast.type} onDismiss={() => {
-              toast.setToast(null, null);
+              toast.dismiss();
             }} />
           )
         }

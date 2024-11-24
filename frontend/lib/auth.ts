@@ -80,14 +80,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return session;
     },
   },
-  cookies: {
-    sessionToken: {
-      options: {
-        path: '/',
-        sameSite: 'lax',
-        httpOnly: true,
-        secure: false,
-      },
-    },
-  }
+  // cookies: {
+  //   sessionToken: {
+  //     options: {
+  //       path: '/',
+  //       sameSite: 'lax',
+  //       httpOnly: true,
+  //       secure: false,
+  //     },
+  //   },
+  // }
 });
