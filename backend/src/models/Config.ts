@@ -23,7 +23,6 @@ export interface IConfig extends Document {
 const ConfigSchema = new Schema<IConfig>({
     type: {
         type: String,
-        default: 'system'
     },
     paypal: {
         client_id: String,
