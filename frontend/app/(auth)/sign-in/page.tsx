@@ -37,6 +37,7 @@ export default function Page() {
     onSubmit: async (values) => {
       setPending(true);
       const result = await signIn("credentials", {
+        redirect: false,
         redirectTo: '/dashboard',
         ...values,
       });
