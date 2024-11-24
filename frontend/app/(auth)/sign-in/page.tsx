@@ -37,8 +37,7 @@ export default function Page() {
     onSubmit: async (values) => {
       setPending(true);
       const result = await signIn("credentials", {
-        redirect: false,
-        // redirectTo: '/dashboard',
+        redirectTo: '/dashboard',
         ...values,
       });
 
@@ -54,7 +53,6 @@ export default function Page() {
         }
       } else {
         console.log("Sign in successful");
-        router.push("/dashboard");
         router.push("/dashboard");
       }
       setPending(false);
