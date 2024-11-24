@@ -7,7 +7,11 @@ import seed from "./data.json";
 dotenv.config();
 
 mongoose
-    .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/homestead', {})
+    .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/homestead', {
+        authSource: "admin",
+        user: "devman",
+        pass: "mari2Ana23sem",
+      })
     .then(async () => {
         console.log("=== Seed initializing ===");
         await Tag.deleteMany({});
