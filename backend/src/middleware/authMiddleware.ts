@@ -10,7 +10,6 @@ export interface PrivateRequest extends Request {
 
 export const authenticateJWT = async (req: Request, res: Response, next: NextFunction) => {
   const { userId, ip, os, browser } = req.body;
-  console.log(userId, ip, os, browser);
 
   const user = await User.findById(userId);
   if (!user) {
@@ -18,7 +17,6 @@ export const authenticateJWT = async (req: Request, res: Response, next: NextFun
     return;
   }
   const session = await Session.findOne({ userId, ip, os, browser });
-  console.log(session)
   if (!session) {
     res.status(401).json({ message: 'No session found' });
     return;

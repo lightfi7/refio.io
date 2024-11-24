@@ -7,7 +7,7 @@ import { deleteAccount, getBrowserSession, getBrowserSessions, logoutOtherBrowse
 const router = express.Router();
 
 router.post('/subscribed', authenticateJWT, subscribed);
-router.put('/update', upload, authenticateJWT, updateUser);
+router.put('/update', authenticateJWT, upload, updateUser);
 router.delete('/delete', authenticateJWT, deleteAccount);
 
 router.post('/get-browser-session', authenticateJWT, getBrowserSession);
