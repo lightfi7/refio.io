@@ -38,7 +38,7 @@ export default function Page() {
       setPending(true);
       const result = await signIn("credentials", {
         redirect: false,
-        redirectTo: '/dashboard',
+        // redirectTo: '/dashboard',
         ...values,
       });
 
@@ -55,6 +55,7 @@ export default function Page() {
       } else {
         console.log("Sign in successful");
         router.push("/dashboard");
+        location.href = "/dashboard";
       }
       setPending(false);
     },
