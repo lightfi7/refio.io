@@ -47,8 +47,6 @@ export const getPrograms = async (req: Request, res: Response) => {
             limit = 30;
         } else {
             if (user.membershipEndDate.getTime() < today.getTime()) {
-                user.isPremium = false;
-                await user.save();
                 skip = 0;
                 limit = 30;
             }
