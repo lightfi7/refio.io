@@ -18,6 +18,7 @@ export const authenticateJWT = async (req: Request, res: Response, next: NextFun
     return;
   }
   const session = await Session.findOne({ userId, ip, os, browser });
+  console.log(session)
   if (!session) {
     res.status(401).json({ message: 'No session found' });
     return;

@@ -20,6 +20,7 @@ export const POST = auth(sessionHandler(async function POST(request) {
         method: "PUT",
         body: formData,
       });
+      
     } else {
       const data = await request.json();
 
