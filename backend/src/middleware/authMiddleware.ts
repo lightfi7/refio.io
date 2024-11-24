@@ -10,7 +10,7 @@ export interface PrivateRequest extends Request {
 
 export const authenticateJWT = async (req: Request, res: Response, next: NextFunction) => {
   const { userId, ip, os, browser } = req.body;
-
+  console.log(userId);
   const user = await User.findById(userId);
   if (!user) {
     res.status(401).json({ message: 'User not found' });
