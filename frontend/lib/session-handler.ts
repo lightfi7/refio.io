@@ -2,7 +2,7 @@ import { NextAuthRequest } from "next-auth/lib";
 import { NextResponse, userAgent } from "next/server";
 import { signOut } from "./auth";
 
-const sessionHandler = (handler: (req: NextAuthRequest) => Promise<Response>) => {
+const sessionHandler = (handler: (req: NextAuthRequest, options?: any) => Promise<Response>) => {
     return async (req: NextAuthRequest) => {
         const { os, browser } = userAgent(req);
         const forwarded = req.headers.get("x-forwarded-for");

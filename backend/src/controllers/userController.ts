@@ -69,11 +69,14 @@ export const deleteAccount = async (req: PrivateRequest, res: Response) => {
     }
 };
 
-
 export const subscribed = async (req: PrivateRequest, res: Response) => {
     try {
         const id = req.body.userId;
-        const user = await User.findByIdAndUpdate(id, { subscribed: true }, { new: true });
+        const today = new Date();
+        const membershipStartDate = today;
+        today.setDate(today.getDate() + 30);
+        const membershipEndDate = today
+        const user = await User.findByIdAndUpdate(id, { isPremium: true, membershipStartDate, membershipEndDate }, { new: true });
         if (!user) {
             res.status(404).json({ message: 'Not Found' });
             return;
@@ -81,7 +84,9 @@ export const subscribed = async (req: PrivateRequest, res: Response) => {
         res.status(200).json({
             user: {
                 _id: user._id,
-                subscribed: user.subscribed,
+                isPremium: user.isPremium,
+                membershipStartDate: user.membershipStartDate,
+                membershipEndDate: user.membershipEndDate,
             }
         });
     } catch (err) {
@@ -121,7 +126,6 @@ export const getBrowserSessions = async (req: PrivateRequest, res: Response) => 
 };
 
 
-
 export const getBrowserSession = async (req: PrivateRequest, res: Response) => {
     try {
         const { userId, ip, os, browser } = req.body;
@@ -149,8 +153,7 @@ export const getBrowserSession = async (req: PrivateRequest, res: Response) => {
 export const logoutOtherBrowsers = async (req: PrivateRequest, res: Response) => {
     try {
         const { userId, ip, os, browser } = req.body;
-        await Session.deleteMany({ userId });
-        // await Session.deleteMany({ userId, ip: { $ne: ip }, os: { $ne: os }, browser: { $ne: browser } });
+        await Session.deleteMany({ userId, ip: { $ne: ip }, os: { $ne: os }, browser: { $ne: browser } });
         res.status(200).json({ message: 'Other browsers logged out successfully' });
     } catch (err) {
         console.error(err);

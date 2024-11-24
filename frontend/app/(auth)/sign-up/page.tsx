@@ -5,9 +5,10 @@ import { Checkbox } from "@nextui-org/checkbox";
 import { Button } from "@nextui-org/button";
 import { Link } from "@nextui-org/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { ToastContext } from "@/app/providers";
 
 const initialValues = {
   name: "",
@@ -33,6 +34,7 @@ const validationSchema = Yup.object({
 
 export default function Page() {
   const router = useRouter();
+  const toast = useContext(ToastContext);
   const [error, setError] = useState<string>();
   const [pending, setPending] = useState(false);
 
@@ -54,11 +56,12 @@ export default function Page() {
           router.push("/sign-in");
         } else {
           const { message } = await response.json();
-
+          toast.error(message);
           setError(message);
         }
       } catch (err: any) {
         setError(err.message);
+        toast.error(err.message);
       } finally {
         setPending(false);
       }

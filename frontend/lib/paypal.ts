@@ -11,27 +11,47 @@ import {
 export const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID as string;
 const PAYPAL_CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET as string;
 
-const client = new Client({
-  clientCredentialsAuthCredentials: {
-    oAuthClientId: PAYPAL_CLIENT_ID,
-    oAuthClientSecret: PAYPAL_CLIENT_SECRET,
-  },
-  timeout: 0,
-  environment: Environment.Sandbox,
-  logging: {
-    logLevel: LogLevel.Info,
-    logRequest: {
-      logBody: true,
-    },
-    logResponse: {
-      logHeaders: true,
-    },
-  },
-});
+// const client = new Client({
+//   clientCredentialsAuthCredentials: {
+//     oAuthClientId: PAYPAL_CLIENT_ID,
+//     oAuthClientSecret: PAYPAL_CLIENT_SECRET,
+//   },
+//   timeout: 0,
+//   environment: Environment.Sandbox,
+//   logging: {
+//     logLevel: LogLevel.Info,
+//     logRequest: {
+//       logBody: true,
+//     },
+//     logResponse: {
+//       logHeaders: true,
+//     },
+//   },
+// });
 
-const ordersController = new OrdersController(client);
+// const ordersController = new OrdersController(client);
 
-export const createOrder = async (amount: any) => {
+export const createOrder = async (amount: any, clientId: string, secretKey: string) => {
+  const client = new Client({
+    clientCredentialsAuthCredentials: {
+      oAuthClientId: clientId,
+      oAuthClientSecret: secretKey,
+    },
+    timeout: 0,
+    environment: Environment.Sandbox,
+    logging: {
+      logLevel: LogLevel.Info,
+      logRequest: {
+        logBody: true,
+      },
+      logResponse: {
+        logHeaders: true,
+      },
+    },
+  });
+  
+  const ordersController = new OrdersController(client);
+
   const collect = {
     body: {
       intent: CheckoutPaymentIntent.Capture,
@@ -69,7 +89,28 @@ export const createOrder = async (amount: any) => {
   }
 };
 
-export const captureOrder = async (orderID: any) => {
+export const captureOrder = async (orderID: any, clientId: string, secretKey: string) => {
+
+  const client = new Client({
+    clientCredentialsAuthCredentials: {
+      oAuthClientId: clientId,
+      oAuthClientSecret: secretKey,
+    },
+    timeout: 0,
+    environment: Environment.Sandbox,
+    logging: {
+      logLevel: LogLevel.Info,
+      logRequest: {
+        logBody: true,
+      },
+      logResponse: {
+        logHeaders: true,
+      },
+    },
+  });
+  
+  const ordersController = new OrdersController(client);
+
   const collect = {
     id: orderID,
     prefer: "return=minimal",

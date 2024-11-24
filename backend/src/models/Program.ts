@@ -116,10 +116,6 @@ const IProgram = new Schema<IProgram>({
         type: Array,
         default: [],
     },
-    link_data: {
-        type: Object,
-        default: null,
-    },
     up_votes: [{
         type: String,
     }],

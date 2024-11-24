@@ -13,7 +13,7 @@ export const POST = auth(sessionHandler(async function POST(request) {
       );
     const values = await request.json();
 
-    const result = await fetch("http://127.0.0.1:5001/api/main/get-program", {
+    const result = await fetch("http://127.0.0.1:5001/api/main/get-config", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

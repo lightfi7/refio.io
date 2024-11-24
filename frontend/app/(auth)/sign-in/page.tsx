@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Image } from "@nextui-org/image";
 import { Input } from "@nextui-org/input";
 import { Checkbox } from "@nextui-org/checkbox";
@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import { signIn } from "next-auth/react";
 import * as Yup from "yup";
+import { ToastContext } from "@/app/providers";
 
 const initialValues = {
   email: "",
@@ -25,6 +26,7 @@ const validationSchema = Yup.object({
 });
 
 export default function Page() {
+  const toast = useContext(ToastContext);
   const router = useRouter();
   const [error, setError] = useState<string>();
   const [pending, setPending] = useState(false);
@@ -36,18 +38,22 @@ export default function Page() {
       setPending(true);
       const result = await signIn("credentials", {
         redirect: false,
+        // redirectTo: '/dashboard',
         ...values,
       });
 
       if (result?.error) {
         switch (result.error) {
           case "CredentialsSignin":
+            toast.error("Invalid email or password.");
             setError("Invalid email or password.");
             break;
           default:
+            toast.error("An unexpected error occurred.");
             setError("An unexpected error occurred.");
         }
       } else {
+        console.log("Sign in successful");
         router.push("/dashboard");
       }
       setPending(false);

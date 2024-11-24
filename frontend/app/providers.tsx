@@ -75,7 +75,7 @@ export const SearchContext = createContext<SearchContextProps>({
     viewMode: "grid",
     sortType: "asc",
   },
-  setSearchParams: () => {},
+  setSearchParams: () => { },
 });
 
 interface SearchProviderProps {
@@ -118,3 +118,68 @@ export const SearchProvider: React.FC<SearchProviderProps> = (props) => {
     </SearchContext.Provider>
   );
 };
+
+
+export interface ToastProviderProps {
+  children: React.ReactNode;
+}
+
+export interface ToastContextProps {
+  message: string | null | undefined;
+  type: 'error' | 'info' | 'success' | 'warning',
+  success: Function;
+  error: Function;
+  warning: Function;
+  info: Function;
+  dismiss: Function;
+}
+
+
+export const ToastContext = createContext<ToastContextProps>({
+  message: "",
+  type: 'success',
+  success: () => { },
+  error: () => { },
+  warning: () => { },
+  info: () => { },
+  dismiss: () => { },
+})
+
+
+export function ToastProvider({ children }: ToastProviderProps) {
+  const router = useRouter();
+  const [message, setMessage] = React.useState<string | null | undefined>();
+  const [type, setType] = React.useState<'error' | 'info' | 'success' | 'warning'>('success');
+
+  const setToast = (message: string, type: 'error' | 'info' | 'success' | 'warning') => {
+    setMessage(message);
+    setType(type);
+  };
+
+  const success = (message: string) => {
+    setToast(message, "success");
+  };
+
+  const error = (message: string) => {
+    setToast(message, "error");
+  };
+
+  const warning = (message: string) => {
+    setToast(message, "warning");
+  };
+
+  const info = (message: string) => {
+    setToast(message, "info");
+  };
+
+  const dismiss = () => {
+    setMessage(null);
+    setType('success');
+  };
+
+  return (
+    <ToastContext.Provider value={{ message, type, success, error, warning, info, dismiss }}>
+      {children}
+    </ToastContext.Provider>
+  );
+}

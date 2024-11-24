@@ -5,11 +5,13 @@ import { Button } from "@nextui-org/button";
 import { ArrowLeftIcon } from "lucide-react";
 import { Link } from "@nextui-org/link";
 import { useParams, useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { ToastContext } from "@/app/providers";
 
 export default function Page() {
+  const toast = useContext(ToastContext);
   const router = useRouter();
   const { token }: { token: string } = useParams();
   const [error, setError] = useState<string>();
@@ -47,7 +49,7 @@ export default function Page() {
           router.push("/sign-in");
         } else {
           const { message } = await response.json();
-
+          toast.error(message);
           setError(message);
         }
       } catch (err) {

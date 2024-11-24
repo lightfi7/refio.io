@@ -4,11 +4,13 @@ import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FormikState } from "formik/dist/types";
 import { useSession } from "next-auth/react";
+import { ToastContext } from "@/app/providers";
 
 const SecuritySettingPage = () => {
+  const toast = useContext(ToastContext);
   const { data: session, update } = useSession();
   const [pending, setPending] = useState<boolean>(false);
 
@@ -44,6 +46,10 @@ const SecuritySettingPage = () => {
       });
 
       if (response.ok) {
+        toast.success('Successfully changed password');
+      }
+      else {
+        toast.error('Failed to change password');
       }
       setPending(false);
     },

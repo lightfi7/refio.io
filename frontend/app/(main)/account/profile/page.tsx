@@ -4,10 +4,11 @@ import { Avatar, AvatarIcon } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
 import { Trash2Icon, UploadIcon } from "lucide-react";
 import { Input } from "@nextui-org/input";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useSession } from "next-auth/react";
+import { ToastContext } from "@/app/providers";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -19,6 +20,7 @@ const validationSchema = Yup.object({
 });
 
 const MyProfilePage = () => {
+  const toast = useContext(ToastContext);
   const { data: session, update } = useSession();
   const [pending, setPending] = useState(false);
 
@@ -57,8 +59,11 @@ const MyProfilePage = () => {
 
       if (response.ok) {
         const { user } = await response.json();
-
+        toast.success("Profile updated successfully!");
         update({ user });
+      }
+      else {
+        toast.error("Failed to update profile");
       }
       setPending(false);
     },
@@ -80,8 +85,10 @@ const MyProfilePage = () => {
 
     if (response.ok) {
       const { user } = await response.json();
-
+      toast.success("Avatar updated successfully!");
       update({ user });
+    } else {
+      toast.error("Failed to update avatar");
     }
   };
 
@@ -96,8 +103,10 @@ const MyProfilePage = () => {
 
     if (response.ok) {
       const { user } = await response.json();
-
+      toast.success("Avatar removed successfully!");
       update({ user });
+    } else {
+      toast.error("Failed to remove avatar");
     }
   };
 

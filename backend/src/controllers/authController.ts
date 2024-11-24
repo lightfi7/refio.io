@@ -188,10 +188,8 @@ export const resetPassword = async (req: Request, res: Response) => {
             return;
         }
 
-        // Ideally hash the password here
         user.password = password;
 
-        // Clear reset token and expiry
         user.resetToken = null;
         user.resetTokenExpiry = null;
 

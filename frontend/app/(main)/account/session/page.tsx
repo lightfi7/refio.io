@@ -1,10 +1,12 @@
 "use client";
 import { Card, CardBody } from "@nextui-org/card";
 import { Button } from "@nextui-org/button";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import { ToastContext } from "@/app/providers";
 
 const SessionSettingPage = () => {
+  const toast = useContext(ToastContext);
   const { data: session, update } = useSession();
   const [pending, setPending] = useState<boolean>(false);
   const [sessions, setSessions] = useState<
@@ -58,7 +60,6 @@ const SessionSettingPage = () => {
     })
       .then((response) => response.json())
       .then(({ sessions }) => {
-        console.log(sessions);
         setSessions(sessions);
       });
   }, [session?.user.id]);
@@ -73,6 +74,7 @@ const SessionSettingPage = () => {
         },
         body: JSON.stringify({ userId: session?.user.id }),
       });
+      toast.success("Logged out of other sessions successfully!");
     } catch (error) { }
     finally {
       setPending(false);

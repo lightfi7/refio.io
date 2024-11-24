@@ -2,13 +2,15 @@
 import { Card, CardBody } from "@nextui-org/card";
 import { Button } from "@nextui-org/button";
 import { Checkbox } from "@nextui-org/checkbox";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { FormikState } from "formik/dist/types";
 import { useSession } from "next-auth/react";
+import { ToastContext } from "@/app/providers";
 
 const NotificationSettingPage = () => {
+  const toast = useContext(ToastContext);
   const { data: session } = useSession();
   const [pending, setPending] = useState<boolean>(false);
 
@@ -33,7 +35,9 @@ const NotificationSettingPage = () => {
       });
 
       if (response.ok) {
-        alert("Notification settings saved successfully");
+        toast.success("Notification settings saved successfully");
+      }else{
+        toast.error("Failed to save notification settings");
       }
       setPending(false);
     },

@@ -5,7 +5,7 @@ import Lang from "../models/Lang";
 import Program from "../models/Program";
 import Comment from '../models/Comment';
 import User from '../models/User';
-import { subscribe } from 'diagnostics_channel';
+import Config from '../models/Config';
 
 
 export const getPrograms = async (req: Request, res: Response) => {
@@ -40,9 +40,18 @@ export const getPrograms = async (req: Request, res: Response) => {
         let skip = Math.max(0, page - 1) * limit;
         let fields = ["tags", "platform"];
 
-        if (!user?.subscribed) {
+        const today = new Date();
+
+        if (!user?.isPremium) {
             skip = 0;
             limit = 30;
+        } else {
+            if (user.membershipEndDate.getTime() < today.getTime()) {
+                user.isPremium = false;
+                await user.save();
+                skip = 0;
+                limit = 30;
+            }
         }
 
         let query: any = {};
@@ -369,5 +378,15 @@ const updateVotes = (entity: any, userId: string, voteType: string) => {
             entity.down_votes.push(userId);
         }
         entity.up_votes = entity.up_votes.filter((v: string) => v !== userId);
+    }
+}
+
+export const getConfig = async (req: Request, res: Response) => {
+    try {
+        const config = await Config.findOne({ type: 'system' });
+        res.status(200).json({ config });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send({ message: 'Something went wrong on our end. Please try again later!' });
     }
 }

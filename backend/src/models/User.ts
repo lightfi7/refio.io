@@ -6,13 +6,18 @@ export interface IUser extends Document {
     email: string;
     password: string;
     image: string | null;
-    subscribed: boolean;
     isVerified: boolean;
     verificationCode: string | null;
     resetToken: string | null;
     resetTokenExpiry: Date | null;
     notifications: object;
     browserSessions: [];
+    membershipStartDate: Date;
+    membershipEndDate: Date;
+    isAdmin: boolean;
+    isPremium: boolean;
+    lastActivedAt: Date;
+    isBlocked: number;
     createdAt: Date;
     updatedAt: Date;
     comparePassword(candidatePassword: string): Promise<boolean>;
@@ -23,7 +28,6 @@ const userSchema = new Schema<IUser>({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     image: { type: String },
-    subscribed: { type: Boolean, required: false },
     isVerified: { type: Boolean, default: false },
     verificationCode: { type: String },
     resetToken: { type: String },
@@ -40,6 +44,12 @@ const userSchema = new Schema<IUser>({
             feedback: false
         }
     },
+    membershipStartDate: { type: Date, default: new Date() },
+    membershipEndDate: { type: Date, default: new Date() },
+    isAdmin: { type: Boolean, default: false },
+    isPremium: { type: Boolean, default: false },
+    lastActivedAt: { type: Date },
+    isBlocked: { type: Number, default: 0 }
 }, { timestamps: true });
 
 

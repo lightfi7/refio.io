@@ -3,13 +3,15 @@ import { Image } from "@nextui-org/image";
 import { Button } from "@nextui-org/button";
 import { Link } from "@nextui-org/link";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
 import VerificationCodeInput from "@/components/verification-code-input";
+import { ToastContext } from "@/app/providers";
 
 export default function Page() {
+  const toast = useContext(ToastContext);
   const router = useRouter();
   const { email }: { email: string } = useParams();
   const searchParams = useSearchParams();
@@ -47,7 +49,7 @@ export default function Page() {
           router.push(`${redirectUrl}`);
         } else {
           const { message } = await response.json();
-
+          toast.error(message);
           setError(message);
         }
       } catch (err) {
