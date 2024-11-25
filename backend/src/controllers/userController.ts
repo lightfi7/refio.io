@@ -157,8 +157,11 @@ export const logoutOtherBrowsers = async (req: PrivateRequest, res: Response) =>
             userId,
             $or: [
                 { ip: { $ne: ip } },
-                { os: { $ne: os } },
-                { browser: { $ne: browser } }
+                { 'os.name': { $ne: os.name } },
+                { 'os.version': { $ne: os.version } },
+                { 'browser.name': { $ne: browser.name } },
+                { 'browser.version': { $ne: browser.version } },
+                { 'browser.major': { $ne: browser.major } }
             ]
         });
         res.status(200).json({ message: 'Other browsers logged out successfully' });
