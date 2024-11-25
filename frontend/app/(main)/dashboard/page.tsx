@@ -14,7 +14,7 @@ export default function DashboardPage() {
   const { params } = useContext<SearchContextProps>(SearchContext);
   const [programs, setPrograms] = useState<Program[]>([]);
   const [promoted, setPromoted] = useState<Program>();
-  const [_pageIndex, setPageIndex] = useState(0);
+  const [_pageIndex, setPageIndex] = useState(1);
   const [_pages, setPages] = useState(1);
   const [_, setTotalCount] = useState(0);
 
@@ -32,8 +32,8 @@ export default function DashboardPage() {
 
       if (response.ok) {
         const {
+          page = 1,
           programs = [],
-          pageIndex = 1,
           totalPages = 1,
           totalCount = 50,
         } = await response.json();
@@ -43,7 +43,7 @@ export default function DashboardPage() {
         );
         setPrograms(programs);
         setPages(totalPages);
-        setPageIndex(pageIndex);
+        setPageIndex(page);
         setTotalCount(totalCount);
       }
     } catch (err) {
