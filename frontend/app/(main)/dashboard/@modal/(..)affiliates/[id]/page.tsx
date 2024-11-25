@@ -239,7 +239,7 @@ export default function Page() {
                         {"★★★★☆".split("").map((star, i) => (
                           <span key={i} className="text-purple-300 text-xl">
                             {i <
-                            Math.floor(getRateValue(_program?.average_ratings))
+                              Math.floor(getRateValue(_program?.average_ratings))
                               ? "★"
                               : "☆"}
                           </span>
@@ -486,9 +486,9 @@ export default function Page() {
                           {"★★★★☆".split("").map((star, i) => (
                             <span key={i} className="text-purple-300 text-xl">
                               {i <
-                              Math.floor(
-                                getRateValue(_program?.average_ratings),
-                              )
+                                Math.floor(
+                                  getRateValue(_program?.average_ratings),
+                                )
                                 ? "★"
                                 : "☆"}
                             </span>
@@ -503,7 +503,7 @@ export default function Page() {
                         color={"secondary"}
                         size={"md"}
                         variant={"light"}
-                        onClick={() => router.push(`${_program?.link}`)}
+                        onClick={() => router.push(`${_program?.link?_program?.link:'#'}`)}
                       >
                         Follow
                       </Button>
@@ -670,9 +670,9 @@ export default function Page() {
                                   className="text-purple-300 text-xl"
                                 >
                                   {i <
-                                  Math.floor(
-                                    getRateValue(sample.average_ratings),
-                                  )
+                                    Math.floor(
+                                      getRateValue(sample.average_ratings),
+                                    )
                                     ? "★"
                                     : "☆"}
                                 </span>

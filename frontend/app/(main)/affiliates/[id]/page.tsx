@@ -443,7 +443,7 @@ export default function Page() {
               color={"secondary"}
               size={"md"}
               variant={"light"}
-              onClick={() => router.push(`${_program?.link}`)}
+              onClick={() => router.push(`${_program?.link?_program?.link:'#'}`)}
             >
               Follow
             </Button>
