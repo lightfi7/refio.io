@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import React, { useContext, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+
 import { ToastContext } from "@/app/providers";
 
 export default function Page() {
@@ -42,6 +43,7 @@ export default function Page() {
 
         if (!response.ok) {
           const { message } = await response.json();
+
           toast.error(message);
           setError(message);
         } else {
@@ -51,6 +53,7 @@ export default function Page() {
         }
       } catch (err) {
         console.error(err);
+        toast.error("An unexpected error occurred.");
       } finally {
         setPending(false);
       }

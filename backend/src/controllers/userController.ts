@@ -132,7 +132,7 @@ export const getBrowserSession = async (req: PrivateRequest, res: Response) => {
         const session = await Session.findOne({
             userId,
             $and: [
-                { ip: { $ne: ip } },
+                { ip: ip },
                 { 'os.name': os.name },
                 { 'os.version': os.version },
                 { 'browser.name': browser.name },

@@ -75,7 +75,7 @@ export const SearchContext = createContext<SearchContextProps>({
     viewMode: "grid",
     sortType: "asc",
   },
-  setSearchParams: () => { },
+  setSearchParams: () => {},
 });
 
 interface SearchProviderProps {
@@ -119,14 +119,13 @@ export const SearchProvider: React.FC<SearchProviderProps> = (props) => {
   );
 };
 
-
 export interface ToastProviderProps {
   children: React.ReactNode;
 }
 
 export interface ToastContextProps {
   message: string | null | undefined;
-  type: 'error' | 'info' | 'success' | 'warning',
+  type: "error" | "info" | "success" | "warning";
   success: Function;
   error: Function;
   warning: Function;
@@ -134,24 +133,27 @@ export interface ToastContextProps {
   dismiss: Function;
 }
 
-
 export const ToastContext = createContext<ToastContextProps>({
   message: "",
-  type: 'success',
-  success: () => { },
-  error: () => { },
-  warning: () => { },
-  info: () => { },
-  dismiss: () => { },
-})
-
+  type: "success",
+  success: () => {},
+  error: () => {},
+  warning: () => {},
+  info: () => {},
+  dismiss: () => {},
+});
 
 export function ToastProvider({ children }: ToastProviderProps) {
   const router = useRouter();
   const [message, setMessage] = React.useState<string | null | undefined>();
-  const [type, setType] = React.useState<'error' | 'info' | 'success' | 'warning'>('success');
+  const [type, setType] = React.useState<
+    "error" | "info" | "success" | "warning"
+  >("success");
 
-  const setToast = (message: string, type: 'error' | 'info' | 'success' | 'warning') => {
+  const setToast = (
+    message: string,
+    type: "error" | "info" | "success" | "warning",
+  ) => {
     setMessage(message);
     setType(type);
   };
@@ -174,11 +176,13 @@ export function ToastProvider({ children }: ToastProviderProps) {
 
   const dismiss = () => {
     setMessage(null);
-    setType('success');
+    setType("success");
   };
 
   return (
-    <ToastContext.Provider value={{ message, type, success, error, warning, info, dismiss }}>
+    <ToastContext.Provider
+      value={{ message, type, success, error, warning, info, dismiss }}
+    >
       {children}
     </ToastContext.Provider>
   );

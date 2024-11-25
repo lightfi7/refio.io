@@ -8,6 +8,7 @@ import React, { useContext, useEffect, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useSession } from "next-auth/react";
+
 import { ToastContext } from "@/app/providers";
 
 const validationSchema = Yup.object({
@@ -59,11 +60,11 @@ const MyProfilePage = () => {
 
       if (response.ok) {
         const { user } = await response.json();
+
         toast.success("Profile updated successfully!");
         update({ user });
-      }
-      else {
-        toast.error("Failed to update profile");
+      } else {
+        toast.error("An unexpected error occurred.");
       }
       setPending(false);
     },
@@ -85,10 +86,11 @@ const MyProfilePage = () => {
 
     if (response.ok) {
       const { user } = await response.json();
+
       toast.success("Avatar updated successfully!");
       update({ user });
     } else {
-      toast.error("Failed to update avatar");
+      toast.error("An unexpected error occurred.");
     }
   };
 
@@ -103,10 +105,11 @@ const MyProfilePage = () => {
 
     if (response.ok) {
       const { user } = await response.json();
+
       toast.success("Avatar removed successfully!");
       update({ user });
     } else {
-      toast.error("Failed to remove avatar");
+      toast.error("An unexpected error occurred.");
     }
   };
 

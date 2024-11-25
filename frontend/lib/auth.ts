@@ -41,6 +41,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         if (result.ok) {
           const data = await result.json();
+
           user = {
             id: data.user._id,
             name: data.user.name,
@@ -78,6 +79,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (token.email) session.user.email = token.email as string;
       if (token.name) session.user.name = token.name as string;
       session.user.image = token.image as string;
+
       return session;
     },
   },

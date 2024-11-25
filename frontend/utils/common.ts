@@ -1,18 +1,25 @@
-export const getRateValue = (value: any, group: string = '') => {
+export const getRateValue = (value: any, group: string = "") => {
   if (!value || !Array.isArray(value) || !value.length) {
     return 0;
   }
 
   let total = 0;
+
   switch (group) {
-    case 'easy_to_join':
-      value.forEach((v) => { total += Number(v.easy_to_join); });
+    case "easy_to_join":
+      value.forEach((v) => {
+        total += Number(v.easy_to_join);
+      });
       break;
-    case 'relationship':
-      value.forEach((v) => { total += Number(v.relationship); });
+    case "relationship":
+      value.forEach((v) => {
+        total += Number(v.relationship);
+      });
       break;
-    case 'payment_deadline':
-      value.forEach((v) => { total += Number(v.payment_deadline); });
+    case "payment_deadline":
+      value.forEach((v) => {
+        total += Number(v.payment_deadline);
+      });
       break;
     default:
       value.forEach((v) => {

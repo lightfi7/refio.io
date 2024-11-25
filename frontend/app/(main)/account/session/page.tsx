@@ -3,6 +3,7 @@ import { Card, CardBody } from "@nextui-org/card";
 import { Button } from "@nextui-org/button";
 import { useContext, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+
 import { ToastContext } from "@/app/providers";
 
 const SessionSettingPage = () => {
@@ -74,9 +75,23 @@ const SessionSettingPage = () => {
         },
         body: JSON.stringify({ userId: session?.user.id }),
       });
+      setSessions((prev) => {
+        const newSessions = prev.filter(
+          (s) =>
+            s.ip == ip &&
+            s.os.name == os?.name &&
+            s.os.version == os?.version &&
+            s.browser.name == browser?.name &&
+            s.browser.version == browser?.version &&
+            s.browser.major == browser?.major,
+        );
+
+        return newSessions;
+      });
       toast.success("Logged out of other sessions successfully!");
-    } catch (error) { }
-    finally {
+    } catch (error) {
+      toast.error("An unexpected error occurred.");
+    } finally {
       setPending(false);
     }
   };

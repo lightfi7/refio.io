@@ -138,7 +138,11 @@ const Toolbar = () => {
               Sort by:
             </span>
           </div>
-          <Select className="min-w-44" onChange={onChangeSortType}>
+          <Select
+            className="min-w-44"
+            defaultSelectedKeys={["latest_update"]}
+            onChange={onChangeSortType}
+          >
             {sortList.map((s) => (
               <SelectItem key={s.key}>{s.name}</SelectItem>
             ))}

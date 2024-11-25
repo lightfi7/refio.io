@@ -31,7 +31,11 @@ const PAYPAL_CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET as string;
 
 // const ordersController = new OrdersController(client);
 
-export const createOrder = async (amount: any, clientId: string, secretKey: string) => {
+export const createOrder = async (
+  amount: any,
+  clientId: string,
+  secretKey: string,
+) => {
   const client = new Client({
     clientCredentialsAuthCredentials: {
       oAuthClientId: clientId,
@@ -49,7 +53,7 @@ export const createOrder = async (amount: any, clientId: string, secretKey: stri
       },
     },
   });
-  
+
   const ordersController = new OrdersController(client);
 
   const collect = {
@@ -89,8 +93,11 @@ export const createOrder = async (amount: any, clientId: string, secretKey: stri
   }
 };
 
-export const captureOrder = async (orderID: any, clientId: string, secretKey: string) => {
-
+export const captureOrder = async (
+  orderID: any,
+  clientId: string,
+  secretKey: string,
+) => {
   const client = new Client({
     clientCredentialsAuthCredentials: {
       oAuthClientId: clientId,
@@ -108,7 +115,7 @@ export const captureOrder = async (orderID: any, clientId: string, secretKey: st
       },
     },
   });
-  
+
   const ordersController = new OrdersController(client);
 
   const collect = {

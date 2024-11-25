@@ -49,11 +49,13 @@ export default function Page() {
           router.push(`${redirectUrl}`);
         } else {
           const { message } = await response.json();
+
           toast.error(message);
           setError(message);
         }
       } catch (err) {
         setPending(false);
+        toast.error("An unexpected error occurred.");
       } finally {
         setPending(false);
       }

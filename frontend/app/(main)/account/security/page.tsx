@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import { useContext, useState } from "react";
 import { FormikState } from "formik/dist/types";
 import { useSession } from "next-auth/react";
+
 import { ToastContext } from "@/app/providers";
 
 const SecuritySettingPage = () => {
@@ -46,10 +47,9 @@ const SecuritySettingPage = () => {
       });
 
       if (response.ok) {
-        toast.success('Successfully changed password');
-      }
-      else {
-        toast.error('Failed to change password');
+        toast.success("Successfully changed password");
+      } else {
+        toast.error("An unexpected error occurred.");
       }
       setPending(false);
     },

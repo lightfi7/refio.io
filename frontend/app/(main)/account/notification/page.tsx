@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { FormikState } from "formik/dist/types";
 import { useSession } from "next-auth/react";
+
 import { ToastContext } from "@/app/providers";
 
 const NotificationSettingPage = () => {
@@ -36,8 +37,8 @@ const NotificationSettingPage = () => {
 
       if (response.ok) {
         toast.success("Notification settings saved successfully");
-      }else{
-        toast.error("Failed to save notification settings");
+      } else {
+        toast.error("An unexpected error occurred.");
       }
       setPending(false);
     },

@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import React, { useContext, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+
 import { ToastContext } from "@/app/providers";
 
 const initialValues = {
@@ -56,12 +57,13 @@ export default function Page() {
           router.push("/sign-in");
         } else {
           const { message } = await response.json();
+
           toast.error(message);
           setError(message);
         }
       } catch (err: any) {
         setError(err.message);
-        toast.error(err.message);
+        toast.error("An unexpected error occurred.");
       } finally {
         setPending(false);
       }

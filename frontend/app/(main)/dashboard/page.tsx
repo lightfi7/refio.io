@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { Suspense, useCallback, useContext, useEffect, useState } from "react";
 import { Pagination } from "@nextui-org/pagination";
 
 import PCard from "@/components/dashboard/pcard";
@@ -71,21 +71,18 @@ export default function DashboardPage() {
   ]);
 
   useEffect(() => {
-    // fetch("/api/get-client-info", {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // }).then((response) => response.json())
-    //   .catch(err => console.log(err));
     fetchData();
   }, [fetchData]);
 
   return (
     <div className="flex flex-col">
-      <Toolbar />
+      <Suspense fallback={<>Loading...</>}>
+        <Toolbar />
+      </Suspense>
       <div className="flex">
-        <Filterbar />
+        <Suspense fallback={<>Loading...</>}>
+          <Filterbar />
+        </Suspense>
         <div className={"flex flex-1 flex-col space-y-4 px-2 md:px-4 py-4"}>
           {promoted != null && <Banner program={promoted} />}
           {programs.length != 0 && (

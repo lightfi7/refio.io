@@ -82,10 +82,10 @@ export default function Page() {
             <span>
               {program?.product_type
                 ? program?.product_type.machine_name
-                  .split("_")
-                  .map((s: any) => s)
-                  .join(" ")
-                  .replace(/^\w/, (c: string) => c.toUpperCase())
+                    .split("_")
+                    .map((s: any) => s)
+                    .join(" ")
+                    .replace(/^\w/, (c: string) => c.toUpperCase())
                 : "--"}
             </span>
           </div>
@@ -100,9 +100,9 @@ export default function Page() {
                 ? "International"
                 : program?.langs.length
                   ? program?.langs
-                    .slice(0, 8)
-                    .map((item: any) => item.country_code)
-                    .join(", ")
+                      .slice(0, 8)
+                      .map((item: any) => item.country_code)
+                      .join(", ")
                   : "--"}
             </span>
           </div>
@@ -327,13 +327,16 @@ export default function Page() {
                 <div className="flex items-center gap-1 mt-0">
                   {"★★★★☆".split("").map((star, i) => (
                     <span key={i} className="text-purple-300 text-xl">
-                      {i < Math.floor(getRateValue(program?.average_ratings, 'easy_to_join'))
+                      {i <
+                      Math.floor(
+                        getRateValue(program?.average_ratings, "easy_to_join"),
+                      )
                         ? "★"
                         : "☆"}
                     </span>
                   ))}
                   <span className="text-md text-divider/100 ml-1 font-medium">
-                    {getRateValue(program?.average_ratings, 'easy_to_join')}/5
+                    {getRateValue(program?.average_ratings, "easy_to_join")}/5
                   </span>
                 </div>
               </div>
@@ -344,13 +347,16 @@ export default function Page() {
                 <div className="flex items-center gap-1 mt-0">
                   {"★★★★☆".split("").map((star, i) => (
                     <span key={i} className="text-purple-300 text-xl">
-                      {i < Math.floor(getRateValue(program?.average_ratings, 'relationship'))
+                      {i <
+                      Math.floor(
+                        getRateValue(program?.average_ratings, "relationship"),
+                      )
                         ? "★"
                         : "☆"}
                     </span>
                   ))}
                   <span className="text-md text-divider/100 ml-1 font-medium">
-                    {getRateValue(program?.average_ratings, 'relationship')}/5
+                    {getRateValue(program?.average_ratings, "relationship")}/5
                   </span>
                 </div>
               </div>
@@ -361,13 +367,20 @@ export default function Page() {
                 <div className="flex items-center gap-1 mt-0">
                   {"★★★★☆".split("").map((star, i) => (
                     <span key={i} className="text-purple-300 text-xl">
-                      {i < Math.floor(getRateValue(program?.average_ratings, 'payment_deadline'))
+                      {i <
+                      Math.floor(
+                        getRateValue(
+                          program?.average_ratings,
+                          "payment_deadline",
+                        ),
+                      )
                         ? "★"
                         : "☆"}
                     </span>
                   ))}
                   <span className="text-md text-divider/100 ml-1 font-medium">
-                    {getRateValue(program?.average_ratings, 'payment_deadline')}/5
+                    {getRateValue(program?.average_ratings, "payment_deadline")}
+                    /5
                   </span>
                 </div>
               </div>

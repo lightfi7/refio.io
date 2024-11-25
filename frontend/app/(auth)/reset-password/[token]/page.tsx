@@ -8,6 +8,7 @@ import { useParams, useRouter } from "next/navigation";
 import React, { useContext, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+
 import { ToastContext } from "@/app/providers";
 
 export default function Page() {
@@ -49,6 +50,7 @@ export default function Page() {
           router.push("/sign-in");
         } else {
           const { message } = await response.json();
+
           toast.error(message);
           setError(message);
         }

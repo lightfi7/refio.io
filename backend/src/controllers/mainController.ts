@@ -91,7 +91,6 @@ export const getPrograms = async (req: Request, res: Response) => {
 
         if (easy2Join !== 0 || relationShip !== 0 || paymentDeadline !== 0) {
             query.average_ratings = { $elemMatch: {} };
-
             if (easy2Join !== 0) {
                 query.average_ratings.$elemMatch.easy_to_join = { $lte: easy2Join.toString() };
             }
@@ -210,6 +209,21 @@ export const getPrograms = async (req: Request, res: Response) => {
         res.status(500).send({ message: 'Something went wrong on our end. Please try again later!' });
     }
 }
+
+
+export const getPromoted = async (req: Request, res: Response) => {
+    try {
+        const data = await Program.aggregate([
+            { $match: { promoted: 1 } },
+            { $sample: { size: 6 } }
+        ]);
+        res.status(200).json({ message: 'Success', programs: data });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send({ message: 'Something went wrong on our end. Please try again later!' });
+    }
+}
+
 
 export const getSamplePrograms = async (req: Request, res: Response) => {
     try {
