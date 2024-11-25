@@ -1,7 +1,9 @@
 export default function Home() {
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <section className="relative isolate pt-8" id="hero">
+    <section className="relative flex flex-col items-center justify-center rounded-xl gap-4 py-8 md:py-10"
+    >
+      <img src="/images/bg.png" className="absolute backdrop-blur-sm bg-transparent rounded-xl opacity-10 md:opacity-90" />
+      <section className="relative isolate pt-8" id="hero" >
         <div className="py-24 lg:pb-40">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-4xl text-center">
@@ -29,7 +31,7 @@ export default function Home() {
                   </span>
                 </a>
               </div>
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl flex flex-col space-y-1">
+              <h1 className="text-4xl font-bold tracking-tight text-divider/90 sm:text-6xl flex flex-col space-y-1">
                 <span>
                   <span className="text-blue-600">17074</span> Affiliate
                   Programs
@@ -38,26 +40,26 @@ export default function Home() {
                   <span className="text-blue-600">708</span> Niches
                 </span>
               </h1>
-              <p className="mt-6 text-lg leading-8 text-gray-600 max-w-2xl mx-auto">
-                Affilisting.com offers you the best solution to find the
+              <p className="mt-6 text-lg leading-8 text-divider/70 max-w-2xl mx-auto">
+                Refio.io offers you the best solution to find the
                 affiliate programs that match your niches in a minute.
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <a
                   className="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                  href="https://affilisting.com/buy"
+                  href="https://refio.io/pricing"
                 >
-                  Get for $99
+                  Get for $19
                 </a>
                 <a
-                  className="text-sm font-semibold leading-6 text-gray-900"
-                  href="https://affilisting.com/register"
+                  className="text-sm font-semibold leading-6 text-divider/90"
+                  href="https://refio.io/sign-up"
                 >
                   Try for free <span aria-hidden="true">→</span>
                 </a>
               </div>
 
-              <div className="text-xs text-gray-700 mt-4">
+              <div className="text-xs text-divider/70 mt-4">
                 <p>One time payment, lifetime access.</p>
                 <p>
                   Access to all affiliate programs that we will add in the
@@ -68,6 +70,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
     </section>
   );
 }
