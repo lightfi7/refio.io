@@ -133,7 +133,7 @@ export default function Page() {
         const { comment } = await response.json();
 
         setComments(
-          comments.map((c) => (c._id === comment_._id ? comment : c)),
+          comments?.map((c) => (c._id === comment_._id ? comment : c)),
         );
       }
     } catch (error) {
@@ -352,7 +352,7 @@ export default function Page() {
           />
           {/*  Last comments*/}
           <div className={"flex flex-col space-y-4"}>
-            {comments.map((c) => (
+            {comments?.map((c) => (
               <div key={c._id} className={"flex items-start space-x-4"}>
                 <Avatar
                   className={"min-w-10 min-h-10"}

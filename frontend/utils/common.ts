@@ -1,17 +1,28 @@
-export const getRateValue = (value: any) => {
+export const getRateValue = (value: any, group: string = '') => {
   if (!value || !Array.isArray(value) || !value.length) {
     return 0;
   }
 
   let total = 0;
-
-  value.forEach((v) => {
-    total +=
-      (Number(v.easy_to_join) +
-        Number(v.relationship) +
-        Number(v.payment_deadline)) /
-      3;
-  });
+  switch (group) {
+    case 'easy_to_join':
+      value.forEach((v) => { total += Number(v.easy_to_join); });
+      break;
+    case 'relationship':
+      value.forEach((v) => { total += Number(v.relationship); });
+      break;
+    case 'payment_deadline':
+      value.forEach((v) => { total += Number(v.payment_deadline); });
+      break;
+    default:
+      value.forEach((v) => {
+        total +=
+          (Number(v.easy_to_join) +
+            Number(v.relationship) +
+            Number(v.payment_deadline)) /
+          3;
+      });
+  }
   const average = total / value.length;
 
   return parseInt(average.toFixed(2));

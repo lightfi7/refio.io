@@ -169,7 +169,7 @@ export default function Page() {
         const { comment } = await response.json();
 
         setComments(
-          comments.map((c) => (c._id === comment_._id ? comment : c)),
+          comments?.map((c) => (c._id === comment_._id ? comment : c)),
         );
       }
     } catch (error) {
@@ -411,7 +411,7 @@ export default function Page() {
                     />
                     {/*  Last comments*/}
                     <div className={"flex flex-col space-y-3"}>
-                      {comments.map((c) => (
+                      {comments?.map((c) => (
                         <div
                           key={c._id}
                           className={"flex items-start space-x-4"}
@@ -666,7 +666,7 @@ export default function Page() {
                       >
                         <h3 className="text-lg font-medium ">You Might Like</h3>
                       </div>
-                      {samples.map((sample, i) => (
+                      {samples?.map((sample, i) => (
                         <div key={i} className={"p-4"}>
                           <div className={"flex flex-col items-start"}>
                             <h3 className={"text-lg font-medium"}>
