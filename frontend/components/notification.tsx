@@ -1,7 +1,3 @@
 export default function Notification() {
-    return (
-        <div>
-            Enter
-        </div>
-    );
+  return <div>Enter</div>;
 }

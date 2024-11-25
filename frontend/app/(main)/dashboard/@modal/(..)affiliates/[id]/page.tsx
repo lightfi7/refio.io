@@ -30,6 +30,7 @@ import { Avatar } from "@nextui-org/avatar";
 import { useEffect, useState } from "react";
 import { Chip } from "@nextui-org/chip";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 import { getRateValue } from "@/utils/common";
 import { Comment, Program } from "@/types/define";
@@ -515,7 +516,7 @@ export default function Page() {
                     {/*  */}
                     <div
                       className={
-                        "rounded-xl bg-default/20 border border-divider p-6 flex justify-between"
+                        "rounded-xl bg-default/20 border border-divider p-6 flex justify-around"
                       }
                     >
                       {_program?.contacts?.map((contact: string, i) => {
@@ -525,13 +526,13 @@ export default function Page() {
                               key={i}
                               className={"flex flex-col items-center space-y-2"}
                             >
-                              <Button
-                                isIconOnly
+                              <Link
                                 color={"danger"}
-                                variant={"light"}
+                                href={contact}
+                                target={"_blank"}
                               >
                                 <InstagramIcon size={28} />
-                              </Button>
+                              </Link>
                               <span
                                 className={
                                   "text-sm hidden md:block text-divider/30"
@@ -547,13 +548,13 @@ export default function Page() {
                               key={i}
                               className={"flex flex-col items-center space-y-2"}
                             >
-                              <Button
-                                isIconOnly
+                              <Link
                                 color={"primary"}
-                                variant={"light"}
+                                href={contact}
+                                target={"_blank"}
                               >
                                 <FacebookIcon size={28} />
-                              </Button>
+                              </Link>
                               <span
                                 className={
                                   "text-sm hidden md:block text-divider/30"
@@ -569,13 +570,13 @@ export default function Page() {
                               key={i}
                               className={"flex flex-col items-center space-y-2"}
                             >
-                              <Button
-                                isIconOnly
+                              <Link
                                 color={"default"}
-                                variant={"light"}
+                                href={contact}
+                                target={"_blank"}
                               >
                                 <TwitterIcon size={28} />
-                              </Button>
+                              </Link>
                               <span
                                 className={
                                   "text-sm hidden md:block text-divider/30"
@@ -591,19 +592,19 @@ export default function Page() {
                               key={i}
                               className={"flex flex-col items-center space-y-2"}
                             >
-                              <Button
-                                isIconOnly
+                              <Link
                                 color={"default"}
-                                variant={"light"}
+                                href={contact}
+                                target={"_blank"}
                               >
                                 <LinkedinIcon size={28} />
-                              </Button>
+                              </Link>
                               <span
                                 className={
                                   "text-sm hidden md:block text-divider/30"
                                 }
                               >
-                                Twitter
+                                Linkedin
                               </span>
                             </div>
                           );
@@ -613,16 +614,15 @@ export default function Page() {
                             key={i}
                             className={"flex flex-col items-center space-y-2"}
                           >
-                            <Button
-                              isIconOnly
+                            <Link
                               color={"success"}
-                              variant={"light"}
+                              href={"#"}
                               onClick={async () => {
                                 await navigator.clipboard.writeText(contact);
                               }}
                             >
                               <CopyIcon size={28} />
-                            </Button>
+                            </Link>
                             <span
                               className={
                                 "text-sm hidden md:block text-divider/30"
