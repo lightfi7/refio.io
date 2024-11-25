@@ -153,7 +153,14 @@ export const getBrowserSession = async (req: PrivateRequest, res: Response) => {
 export const logoutOtherBrowsers = async (req: PrivateRequest, res: Response) => {
     try {
         const { userId, ip, os, browser } = req.body;
-        await Session.deleteMany({ userId, ip: { $ne: ip }, os: { $ne: os }, browser: { $ne: browser } });
+        await Session.deleteMany({
+            userId,
+            $or: [
+                { ip: { $ne: ip } },
+                { os: { $ne: os } },
+                { browser: { $ne: browser } }
+            ]
+        });
         res.status(200).json({ message: 'Other browsers logged out successfully' });
     } catch (err) {
         console.error(err);
