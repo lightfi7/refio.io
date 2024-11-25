@@ -10,6 +10,7 @@ export const POST = auth(sessionHandler(async function POST(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
+    const session = await auth();
     const orderID = (await params).id;
     const { userId } = await request.json();
     const result = await fetch("http://127.0.0.1:5001/api/main/get-config", {
@@ -17,7 +18,7 @@ export const POST = auth(sessionHandler(async function POST(
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({}),
+      body: JSON.stringify({ userId: session?.user.id }),
     });
 
     if (result.ok) {
@@ -35,7 +36,7 @@ export const POST = auth(sessionHandler(async function POST(
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId }),
+        body: JSON.stringify({ userId: session?.user.id }),
       });
 
       return NextResponse.json(jsonResponse, { status: httpStatusCode });

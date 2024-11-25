@@ -36,25 +36,6 @@ import { Comment, Program } from "@/types/define";
 
 const sortList = [{ key: "latest_update", label: "Latest update" }];
 
-const socials = {
-  facebook: {
-    name: "Facebook",
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#3b5998" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.895 0 0 .895 0 2.025v19.95C0 23.105.895 24 2.025 24h21.95C23.105 24 24 23.105 24 21.975V2.025C24 .895 23.105 0 22.675 0zM12 24V12h-3v-4h3V6c0-3.1 1.9-4 4-4h3v4h-2c-1.1 0-1 .5-1 1v3h4l-1 4h-3v12H12z"/></svg>`,
-  },
-  twitter: {
-    name: "Twitter",
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#1DA1F2" viewBox="0 0 24 24"><path d="M23.643 4.937c-.835.375-1.73.63-2.68.74a4.686 4.686 0 002.042-2.573c-.92.546-1.937.943-3.021 1.155a4.663 4.663 0 00-7.97 4.257A13.215 13.215 0 011.671 3c-.42-.018-.84-.063-1.25-.063-.43 0-.855-.026-1.274-.075a4.663 4.663 0 003.031-5.196c-1 .592-2 .99-3 .99A4.664 4.664 0 0012 .007c2 .001 3 .003z"/></svg>`,
-  },
-  linkedin: {
-    name: "LinkedIn",
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#0077B5" viewBox="0 0 24 24"><path d="M22.225 0h-20.45C1.01 0 .001 1 .001 2.225v19.55C0 22.99 1 .001l20 .001c1 .001l20 .001C23 .001l20 .001C23 .001zM6 .001c1 .001l20 .001C6 .001zM8 .003H5v18H8V8zm11 .003h-3v18h3V8zm-11 .003H5V8h3z"/></svg>`,
-  },
-  instagram: {
-    name: "Instagram",
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#E1306C" viewBox="0 0 24 24"><path d="M12 .002c3.313-.002 6 .0027,9,3c2,2,2,5,2,9s-.0027,6 -2,9c-3,3 -5,3 -9,3s-6 -.0027 -9 -3c-2 -2 -2 -5 -2 -9s0 -7,2 -9C6,.0027,8,.0027,12,.002zm6,12a6,6,0,1,1,-12,.002a6,6,0,1,1,12,.002zm-.004,-8a1,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,.9999A10,/></svg>`,
-  },
-};
-
 export default function Page() {
   const { data: session } = useSession();
   const params = useParams();

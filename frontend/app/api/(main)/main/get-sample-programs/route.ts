@@ -5,6 +5,8 @@ import sessionHandler from "@/lib/session-handler";
 
 export const POST = auth(sessionHandler(async function POST(request) {
   try {
+    const session = await auth();
+    
     if (!request.auth)
       return NextResponse.json(
         { message: "Not authenticated" },
@@ -20,7 +22,7 @@ export const POST = auth(sessionHandler(async function POST(request) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, userId: session?.user.id }),
       },
     );
 

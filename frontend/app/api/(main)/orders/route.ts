@@ -7,6 +7,7 @@ import sessionHandler from "@/lib/session-handler";
 
 export const POST = auth(sessionHandler(async function POST(req) {
   try {
+    const session = await auth();
     const { amount } = await req.json();
 
     const result = await fetch("http://127.0.0.1:5001/api/main/get-config", {
@@ -14,7 +15,7 @@ export const POST = auth(sessionHandler(async function POST(req) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({}),
+      body: JSON.stringify({userId: session?.user.id }),
     });
 
     if (result.ok) {
