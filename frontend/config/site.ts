@@ -14,11 +14,11 @@ export const siteConfig = {
     },
     {
       label: "Niche Ideas",
-      href: "/niche=ideas",
+      href: "/niche-ideas",
     },
     {
       label: "Our Affiliate",
-      href: "/out-affiliate",
+      href: "/our-affiliate",
     },
     {
       label: "Add your program",
@@ -57,14 +57,14 @@ export const siteConfig = {
   ],
   userNavItems: [
     {
-      label: "Account Settings",
-      href: "/account-setting",
+      label: "My Settings",
+      href: "/account/profile",
     },
   ],
   userNavMenuItems: [
     {
-      label: "Account Settings",
-      href: "/account-setting",
+      label: "My Settings",
+      href: "/account/profile",
     },
   ],
   links: {

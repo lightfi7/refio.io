@@ -32,7 +32,7 @@ const PCard = ({
         {isGrid ? (
           <>
             <div
-              className="rounded-t-xl p-6"
+              className="rounded-t-xl p-6 border-b-1 dark:border-b-0"
               style={{
                 backgroundImage: "url(/images/bg-pcard.png)",
                 backgroundSize: "cover",
