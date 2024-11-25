@@ -32,7 +32,7 @@ export const siteConfig = {
   navMenuItems: [
     {
       label: "Listing",
-      href: "/",
+      href: "/dashboard",
     },
     {
       label: "For you",
