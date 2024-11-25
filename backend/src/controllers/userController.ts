@@ -131,9 +131,14 @@ export const getBrowserSession = async (req: PrivateRequest, res: Response) => {
         const { userId, ip, os, browser } = req.body;
         const session = await Session.findOne({
             userId,
-            ip,
-            os,
-            browser,
+            $and: [
+                { ip: { $ne: ip } },
+                { 'os.name': os.name },
+                { 'os.version': os.version },
+                { 'browser.name': browser.name },
+                { 'browser.version': browser.version },
+                { 'browser.major': browser.major }
+            ]
         });
         if (!session) {
             res.status(401).json({
