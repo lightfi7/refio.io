@@ -1,10 +1,18 @@
-import { NextResponse } from "next/server";
+import { NextResponse, userAgent } from "next/server";
 
 import { auth } from "@/lib/auth";
 import sessionHandler from "@/lib/session-handler";
 
 export const POST = auth(sessionHandler(async function POST(request) {
   try {
+    const { os, browser } = userAgent(request);
+    const forwarded = request.headers.get("x-forwarded-for");
+    let ip = forwarded ? forwarded.split(",")[0].trim() : "unknown";
+
+    if (ip === "::1") {
+      ip = "127.0.0.1";
+    }
+
     if (!request.auth)
       return NextResponse.json(
         { message: "Not authenticated" },
@@ -20,7 +28,7 @@ export const POST = auth(sessionHandler(async function POST(request) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, ip, os, browser }),
       },
     );
 
