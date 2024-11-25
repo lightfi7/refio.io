@@ -289,7 +289,7 @@ export default function Page() {
                   </span>
                 </div>
               </div>
-              <div className="py-2">
+              <div className="py-2 text-center">
                 <Link
                   className="flex font-semibold gap-2 items-center justify-center py-2 text-[#9A86FF]"
                   href={`/affiliates/${program?._id}/apply`}
