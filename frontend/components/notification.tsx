@@ -1,7 +1,7 @@
-export default () => {
+export default function Notification() {
     return (
         <div>
-            Notification
+            Enter
         </div>
     );
 }

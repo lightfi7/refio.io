@@ -10,7 +10,8 @@ import { Slider } from "@nextui-org/slider";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { SharedSelection } from "@nextui-org/system";
 import { useInfiniteScroll } from "@nextui-org/use-infinite-scroll";
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
+
 import { SearchContext, SearchContextProps } from "@/app/providers";
 import { usePokemonList } from "@/components/dashboard/usePokemonList";
 
@@ -117,14 +118,14 @@ const Filterbar = () => {
       hideApplied,
       directedProgram,
     });
-  }, 500)
-
+  }, 500);
 
   useEffect(() => {
     debouncedSetParams();
+
     return () => {
       debouncedSetParams.cancel();
-    }
+    };
   }, [
     Array.from(selectedNiches as Set<any>).length,
     Array.from(selectedPlatforms as Set<any>).length,

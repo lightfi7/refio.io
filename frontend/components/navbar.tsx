@@ -21,11 +21,10 @@ import {
 import { Avatar } from "@nextui-org/avatar";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
-import { Logo } from "@/components/icons";
-import Image from "next/image";
 
 export const Navbar = () => {
   const router = useRouter();
@@ -92,7 +91,7 @@ export const Navbar = () => {
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit mr-2">
           <NextLink className="flex justify-start items-center gap-1" href="/">
-            <Image src={'/images/logo.png'} alt="logo" width={32} height={32} />
+            <Image alt="logo" height={32} src={"/images/logo.png"} width={32} />
             <p className="font-bold text-2xl">Referalio</p>
           </NextLink>
         </NavbarBrand>

@@ -97,12 +97,12 @@ const Toolbar = () => {
             </div>
             <div className="hidden md:inline-block">
               <Input
-                variant="bordered"
                 isClearable
                 className="max-w-xs"
                 placeholder="Search list"
                 startContent={<SearchIcon />}
                 value={searchText}
+                variant="bordered"
                 onValueChange={onChangeSearchText}
               />
             </div>
@@ -110,8 +110,8 @@ const Toolbar = () => {
         </div>
         <div className="md:px-4">
           <Tabs
-            variant='solid'
             aria-label="Options"
+            variant="solid"
             onSelectionChange={(key) =>
               onChangeViewMode(key === "Grid" ? "grid" : "list")
             }
@@ -141,9 +141,9 @@ const Toolbar = () => {
             </span>
           </div>
           <Select
-            variant="bordered"
             className="min-w-44"
             defaultSelectedKeys={["latest_update"]}
+            variant="bordered"
             onChange={onChangeSortType}
           >
             {sortList.map((s) => (

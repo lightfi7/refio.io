@@ -22,7 +22,6 @@ export const POST = auth(
         },
         body: JSON.stringify({ ...values, userId: session?.user.id }),
       });
-
     } catch (error) {
       return NextResponse.error();
     }

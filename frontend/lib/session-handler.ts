@@ -30,6 +30,7 @@ const sessionHandler = (
     } else {
       if (response.status === 401) {
         await signOut();
+
         return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
       }
 
