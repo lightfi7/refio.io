@@ -34,17 +34,17 @@ export default function DashboardPage() {
         const {
           programs = [],
           pageIndex = 1,
-          pages = 1,
-          total = 50,
+          totalPages = 1,
+          totalCount = 50,
         } = await response.json();
 
         setPromoted(
           programs.find((program: Program) => program.promoted === 1),
         );
         setPrograms(programs);
-        setPages(pages);
+        setPages(totalPages);
         setPageIndex(pageIndex);
-        setTotalCount(total);
+        setTotalCount(totalCount);
       }
     } catch (err) {
       console.error(err);
