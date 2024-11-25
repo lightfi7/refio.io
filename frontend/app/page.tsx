@@ -2,7 +2,6 @@ export default function Home() {
   return (
     <section className="relative flex flex-col items-center justify-center rounded-xl gap-4 py-8 md:py-10"
     >
-      <img src="/images/bg.png" className="absolute backdrop-blur-sm bg-transparent rounded-xl opacity-10 md:opacity-90" alt="hero" />
       <section className="relative isolate pt-8" id="hero" >
         <div className="py-24 lg:pb-40">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
