@@ -54,8 +54,8 @@ export default function Page() {
         }
       } else {
         console.log("Sign in successful");
-        router.refresh();
         router.push("/dashboard");
+        location.href = "/dashboard";
       }
       setPending(false);
     },
