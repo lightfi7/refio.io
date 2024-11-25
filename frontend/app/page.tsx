@@ -68,7 +68,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <img src="/images/bg.png" className="backdrop-blur-sm bg-transparent rounded-xl opacity-10 md:opacity-90" alt="hero" />
+      <img src="/images/bg.png" className="backdrop-blur-sm bg-transparent rounded-xl opacity-10 md:opacity-90 border-1 border-divider/10" alt="hero" />
     </section>
   );
 }
