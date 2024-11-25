@@ -1,6 +1,7 @@
 import { NextAuthRequest } from "next-auth/lib";
 import { NextResponse, userAgent } from "next/server";
 import { signOut } from "./auth";
+import { redirect } from "next/navigation";
 
 const sessionHandler = (handler: (req: NextAuthRequest, options?: any) => Promise<Response>) => {
     return async (req: NextAuthRequest) => {
@@ -24,6 +25,7 @@ const sessionHandler = (handler: (req: NextAuthRequest, options?: any) => Promis
         } else {
             if (response.status === 401) {
                 await signOut();
+                redirect('/sign-in');
             }
             return NextResponse.json(
                 { message: "No session found" },
