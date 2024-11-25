@@ -153,6 +153,7 @@ export const getBrowserSession = async (req: PrivateRequest, res: Response) => {
 export const logoutOtherBrowsers = async (req: PrivateRequest, res: Response) => {
     try {
         const { userId, ip, os, browser } = req.body;
+        console.log(ip, browser, os, userId);
         await Session.deleteMany({
             userId,
             $or: [
