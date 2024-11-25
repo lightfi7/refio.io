@@ -9,7 +9,7 @@ const menuItems = [
   { link: "/account/security", title: "Password/Security" },
   { link: "/account/notification", title: "Notification Settings" },
   // {link: '/account/appearance', title: 'Appearance Themes'},
-  { link: "/account/session", title: "Browser Sessions" },
+  // { link: "/account/session", title: "Browser Sessions" },
 ];
 
 const Toolbar = () => {
