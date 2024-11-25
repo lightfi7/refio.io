@@ -44,7 +44,7 @@ export const Navbar = () => {
                 size="md"
                 src={
                   session?.user?.image
-                    ? `https://refio.io/images/${session?.user?.image}`
+                    ? `https://refio.io/avatars/${session?.user?.image}`
                     : ""
                 }
               />
