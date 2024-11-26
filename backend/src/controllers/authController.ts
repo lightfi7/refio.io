@@ -28,7 +28,7 @@ export const registerUser = async (req: Request, res: Response) => {
         const newUser = new User({ name, email, password: hashedPassword, verificationCode });
         await newUser.save();
 
-        await sendVerificationEmail(email, verificationCode);
+        // await sendVerificationEmail(email, verificationCode);
 
         const validToken = jwt.sign({ email, action: 'verify-code' }, JWT_SECRET, { expiresIn: JWT_EXPIRATION });
         res.status(200).json({ message: 'Welcome aboard! Please check your email to verify your account.', user: newUser, validToken });
