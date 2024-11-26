@@ -195,14 +195,15 @@ export default function Page() {
       isOpen={isOpen}
       scrollBehavior={"outside"}
       size="5xl"
+      radius="lg"
       onOpenChange={onOpenChange}
     >
-      <ModalContent>
+      <ModalContent className="before:bg-default-200 bg-gradient-to-br from-white to-default-200 bg-opacity-30 backdrop:blur-2xl dark:from-default-100 dark:to-black">
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1" />
             <ModalBody>
-              <div className={"flex flex-col md:flex-row space-x-2"}>
+              <div className={"flex flex-col md:flex-row gap-2"}>
                 <div className={"flex-1"}>
                   {/* <div className={"flex gap-2"}>
                     <Button isIconOnly size={"md"} variant={"shadow"}>
@@ -462,7 +463,7 @@ export default function Page() {
                     </div>
                   </div>
                 </div>
-                <div className={"md:max-w-[360px] flex-1 w-full px-6"}>
+                <div className={"md:max-w-[360px] flex-1 w-full md:px-6"}>
                   <div>
                     <Button
                       color={"secondary"}

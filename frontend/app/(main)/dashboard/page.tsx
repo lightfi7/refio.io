@@ -97,9 +97,11 @@ export default function DashboardPage() {
         <Toolbar />
       </Suspense>
       <div className="flex">
-        <Suspense fallback={<>Loading...</>}>
-          <Filterbar />
-        </Suspense>
+        <div className="hidden md:block">
+          <Suspense fallback={<>Loading...</>}>
+            <Filterbar />
+          </Suspense>
+        </div>
         <div className={"flex flex-1 flex-col space-y-4 px-2 md:px-4 py-4"}>
           {promoted != null && <Banner program={promoted} />}
           {programs.length != 0 && (
@@ -110,7 +112,6 @@ export default function DashboardPage() {
               className="mx-auto"
               color="default"
               page={_pageIndex}
-              size="sm"
               total={_pages}
               onChange={(page) => setPageIndex(page)}
             />
@@ -142,7 +143,6 @@ export default function DashboardPage() {
               className="mx-auto"
               color="default"
               page={_pageIndex}
-              size="sm"
               total={_pages}
               onChange={(page) => setPageIndex(page)}
             />

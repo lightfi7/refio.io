@@ -34,7 +34,15 @@ export const Navbar = () => {
     return (
       <>
         {session?.user != null && (
-          <Dropdown offset={10} placement="left-end">
+          <Dropdown
+            type="menu"
+            placement="left-end"
+            backdrop="blur"
+            classNames={{
+              base: "before:bg-default-200", // change arrow background
+              content: "py-1 px-1 border border-default-200 bg-gradient-to-br from-white to-default-200 dark:from-default-50 dark:to-black",
+            }}
+          >
             <DropdownTrigger>
               <Avatar
                 as="button"
@@ -49,7 +57,7 @@ export const Navbar = () => {
                 }
               />
             </DropdownTrigger>
-            <DropdownMenu variant="solid">
+            <DropdownMenu variant="solid" className="min-w-60">
               <DropdownItem key="profile" isDisabled className="h-14 gap-2">
                 <p className="font-semibold">Signed in as</p>
                 <p className="font-semibold">{session?.user?.email}</p>
@@ -84,7 +92,7 @@ export const Navbar = () => {
       maxWidth="2xl"
       position="sticky"
     >
-      <NavbarContent className="md:hidden basis-1 pl-4" justify="start">
+      <NavbarContent className="md:hidden basis-1 pl-2" justify="start">
         <NavbarMenuToggle />
       </NavbarContent>
 
@@ -95,7 +103,7 @@ export const Navbar = () => {
             <p className="font-bold text-2xl">Referalio</p>
           </NextLink>
         </NavbarBrand>
-        <ul className="hidden md:flex gap-4 justify-start pl-2">
+        <ul className="hidden md:flex gap-4 justify-start ml-2">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
               <NextLink

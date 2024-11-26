@@ -176,7 +176,7 @@ export default function Page() {
   return (
     <div
       className={
-        "flex flex-col md:flex-row justify-between space-x-2 py-10 mx-auto max-w-7xl"
+        "flex flex-col md:flex-row justify-between gap-2 py-10 mx-auto max-w-7xl"
       }
     >
       <div className={"flex flex-1 flex-col"}>
