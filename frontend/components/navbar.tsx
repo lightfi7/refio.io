@@ -89,13 +89,13 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <NavbarBrand as="li" className="gap-3 max-w-fit mr-2">
+        <NavbarBrand as="li" className="gap-3 max-w-fit pr-4">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <Image alt="logo" height={32} src={"/images/logo.png"} width={32} />
             <p className="font-bold text-2xl">Referalio</p>
           </NextLink>
         </NavbarBrand>
-        <ul className="hidden md:flex gap-4 justify-start ml-2">
+        <ul className="hidden md:flex gap-4 justify-start pl-2">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
               <NextLink
