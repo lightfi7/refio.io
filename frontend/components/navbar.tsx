@@ -112,16 +112,18 @@ export const Navbar = () => {
           ))}
           {
             session?.user == null && (
-              <NextLink
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
-                )}
-                color="foreground"
-                href={'/sign-in'}
-              >
-                Signin
-              </NextLink>
+              <NavbarItem key={'sign-in'}>
+                <NextLink
+                  className={clsx(
+                    linkStyles({ color: "foreground" }),
+                    "data-[active=true]:text-primary data-[active=true]:font-medium",
+                  )}
+                  color="foreground"
+                  href={'/sign-in'}
+                >
+                  Signin
+                </NextLink>
+              </NavbarItem>
             )
           }
         </ul>
