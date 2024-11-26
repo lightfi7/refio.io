@@ -121,7 +121,7 @@ export const Navbar = () => {
                   color="foreground"
                   href={'/sign-in'}
                 >
-                  Signin
+                  Sign in
                 </NextLink>
               </NavbarItem>
             )
