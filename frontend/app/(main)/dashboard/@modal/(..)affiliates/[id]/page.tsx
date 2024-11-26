@@ -462,11 +462,12 @@ export default function Page() {
                     </div>
                   </div>
                 </div>
-                <div className={"max-w-[360px] flex-1 w-full px-6"}>
+                <div className={"md:max-w-[360px] flex-1 w-full px-6"}>
                   <div>
                     <Button
                       color={"secondary"}
                       size={"md"}
+                      className="w-full md:w-auto"
                       startContent={<CornerUpRightIcon />}
                       variant={"flat"}
                       onClick={() => {
@@ -483,7 +484,7 @@ export default function Page() {
                         "flex flex-col md:flex-row justify-between mt-6 space-y-6 md:space-y-0"
                       }
                     >
-                      <div className="p-1">
+                      <div className="p-1 flex flex-col items-center md:items-start">
                         <h3 className={"text-lg font-medium"}>
                           {_program?.name}
                         </h3>
@@ -516,6 +517,12 @@ export default function Page() {
                       >
                         Follow
                       </Button>
+                    </div>
+                    {/*  */}
+                    <div className="flex flex-col md:flex-row justify-around items-center gap-2">
+                      <Link href={'/dashboard'} target="_blank" className="text-sm text-secondary p-2 rounded-lg">Visit website</Link>
+                      <Link href={`/affiliates/${_program?.uuid}`} className="text-sm text-secondary p-2 rounded-lg">More Infos</Link>
+                      <Link as={'button'} href={_program?.link ? _program?.link : '#'} target="_blank" className="text-sm text-secondary p-2 rounded-lg">Apply</Link>
                     </div>
                     {/*  */}
                     <div
