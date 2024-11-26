@@ -226,7 +226,11 @@ export default function Page() {
               {_program?.tags.map((tag, index) => (
                 <Chip
                   key={index}
-                  className="px-3 py-1 text-sm rounded-full whitespace-nowrap font-medium"
+                  className={`px-3 py-1 text-sm rounded-full whitespace-nowrap font-medium text-white`}
+                  style={{
+                    backgroundColor: tag.color,
+                    color: 'white'
+                  }}
                 >
                   {tag.name}
                 </Chip>

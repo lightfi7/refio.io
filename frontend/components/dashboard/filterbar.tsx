@@ -209,6 +209,7 @@ const Filterbar = () => {
           }}
           selectionMode="multiple"
           showDivider={false}
+          defaultExpandedKeys={['1']}
         >
           <AccordionItem key="1" aria-label="Niches" title="Niches">
             {

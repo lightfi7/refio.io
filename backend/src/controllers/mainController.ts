@@ -215,9 +215,14 @@ export const getPromoted = async (req: Request, res: Response) => {
     try {
         const data = await Program.aggregate([
             { $match: { promoted: 1 } },
-            { $sample: { size: 6 } }
+            { $sample: { size: 1 } }
         ]);
-        res.status(200).json({ message: 'Success', programs: data });
+        const program = data.length > 0 ? data[0] : null;
+        if (program) {
+            res.status(200).json({ message: 'Success', program });
+        } else {
+            res.status(404).send({ message: 'No promoted program found' });
+        }
     } catch (err) {
         console.error(err);
         res.status(500).send({ message: 'Something went wrong on our end. Please try again later!' });

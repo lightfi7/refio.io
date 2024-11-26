@@ -9,6 +9,7 @@ import Filterbar from "@/components/dashboard/filterbar";
 import { SearchContext, SearchContextProps } from "@/app/providers";
 import { getRateValue } from "@/utils/common";
 import { Program } from "@/types/define";
+import { debounce } from "lodash";
 
 export default function DashboardPage() {
   const { params } = useContext<SearchContextProps>(SearchContext);
@@ -18,7 +19,19 @@ export default function DashboardPage() {
   const [_pages, setPages] = useState(1);
   const [_, setTotalCount] = useState(0);
 
-  const fetchData = useCallback(async () => {
+  const fetchPromoted = debounce(async () => {
+    const response = await fetch('/api/main/get-promoted', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({}),
+    });
+    if (response.ok) {
+      const { program } = await response.json();
+      setPromoted(program);
+    }
+  }, 300);
+
+  const fetchData = debounce(async () => {
     // Fetching data
     console.log("Fetching data");
     try {
@@ -38,19 +51,28 @@ export default function DashboardPage() {
           totalCount = 50,
         } = await response.json();
 
-        setPromoted(
-          programs.find((program: Program) => program.promoted === 1),
-        );
         setPrograms(programs);
         setPages(totalPages);
-        setPageIndex(page);
         setTotalCount(totalCount);
       }
     } catch (err) {
       console.error(err);
     }
-  }, [
-    _pageIndex,
+  }, 500);
+
+  useEffect(() => {
+    fetchPromoted();
+    return () => {
+      fetchPromoted.cancel();
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchData();
+    return () => {
+      fetchData.cancel();
+    }
+  }, [_pageIndex,
     params.group,
     params.niches.length,
     params.text,
@@ -67,12 +89,7 @@ export default function DashboardPage() {
     params.productType,
     params.hideApplied,
     params.directedProgram,
-    params.sortType,
-  ]);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    params.sortType,]);
 
   return (
     <div className="flex flex-col">

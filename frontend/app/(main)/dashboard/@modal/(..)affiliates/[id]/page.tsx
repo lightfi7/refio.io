@@ -240,7 +240,7 @@ export default function Page() {
                         {"★★★★☆".split("").map((star, i) => (
                           <span key={i} className="text-purple-300 text-xl">
                             {i <
-                            Math.floor(getRateValue(_program?.average_ratings))
+                              Math.floor(getRateValue(_program?.average_ratings))
                               ? "★"
                               : "☆"}
                           </span>
@@ -254,7 +254,11 @@ export default function Page() {
                         {_program?.tags.map((tag, index) => (
                           <Chip
                             key={index}
-                            className="px-3 py-1 text-sm rounded-full whitespace-nowrap font-medium"
+                            style={{
+                              backgroundColor: tag.color,
+                              color: 'white'
+                            }}
+                            className={`px-3 py-1 text-sm rounded-full whitespace-nowrap font-medium text-white`}
                           >
                             {tag.name}
                           </Chip>
@@ -487,9 +491,9 @@ export default function Page() {
                           {"★★★★☆".split("").map((star, i) => (
                             <span key={i} className="text-purple-300 text-xl">
                               {i <
-                              Math.floor(
-                                getRateValue(_program?.average_ratings),
-                              )
+                                Math.floor(
+                                  getRateValue(_program?.average_ratings),
+                                )
                                 ? "★"
                                 : "☆"}
                             </span>
@@ -674,9 +678,9 @@ export default function Page() {
                                   className="text-purple-300 text-xl"
                                 >
                                   {i <
-                                  Math.floor(
-                                    getRateValue(sample.average_ratings),
-                                  )
+                                    Math.floor(
+                                      getRateValue(sample.average_ratings),
+                                    )
                                     ? "★"
                                     : "☆"}
                                 </span>

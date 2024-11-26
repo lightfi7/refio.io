@@ -10,7 +10,7 @@ interface PCardProps {
   commission: string;
   commissionPercent: string;
   cookieDuration: string;
-  tags: { id: number; name: string }[];
+  tags: { id: number; name: string, color: string; }[];
   isGrid?: boolean;
 }
 
@@ -100,9 +100,10 @@ const PCard = ({
                 <Chip
                   size={"sm"}
                   key={index}
-                  // style={{
-                  //     backgroundColor: tag.color,
-                  // }}
+                  style={{
+                    color: 'white',
+                    backgroundColor: tag.color,
+                  }}
                 >
                   {tag.name}
                 </Chip>
@@ -195,9 +196,9 @@ const PCard = ({
                 <Chip
                   size={"sm"}
                   key={index}
-                  // style={{
-                  //     backgroundColor: tag.name,
-                  // }}
+                  style={{
+                    backgroundColor: tag.name,
+                  }}
                 >
                   {tag.name}
                 </Chip>

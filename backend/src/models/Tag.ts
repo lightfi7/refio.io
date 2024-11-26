@@ -4,6 +4,7 @@ export interface ITag extends Document {
     id: number;
     slug: string;
     name: string;
+    color: string;
 }
 
 const tagSchema = new Schema<ITag>({
@@ -19,6 +20,10 @@ const tagSchema = new Schema<ITag>({
         type: String,
         default: "",
     },
+    color: {
+        type: String,
+        default: "#00000000",
+    }
 });
 
 const Tag = mongoose.model<ITag>("Tag", tagSchema);
