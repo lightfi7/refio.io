@@ -120,7 +120,7 @@ export const Navbar = () => {
                 color="foreground"
                 href={'/sign-in'}
               >
-                Sign in
+                Signin
               </NextLink>
             )
           }
