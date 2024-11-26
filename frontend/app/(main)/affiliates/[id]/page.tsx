@@ -459,7 +459,7 @@ export default function Page() {
           <div className="flex flex-col md:flex-row justify-around items-center gap-2">
             <Link href={'/dashboard'} target="_blank" className="text-sm text-secondary p-2 rounded-lg">Visit website</Link>
             <Link href={`/affiliates/${_program?.uuid}`} className="text-sm text-secondary p-2 rounded-lg">More Infos</Link>
-            <Link as={'button'} href={_program?.link ? _program?.link : '#'} target="_blank" className="text-sm text-secondary p-2 rounded-lg">Apply</Link>
+            <Link href={_program?.link ? _program?.link : '#'} target="_blank" className="text-sm text-secondary p-2 rounded-lg">Apply</Link>
           </div>
           {/*  */}
           <div
