@@ -118,22 +118,7 @@ export const Navbar = () => {
               </NextLink>
             </NavbarItem>
           ))}
-          {
-            session?.user == null && (
-              <NavbarItem key={'sign-in'}>
-                <NextLink
-                  className={clsx(
-                    linkStyles({ color: "foreground" }),
-                    "data-[active=true]:text-primary data-[active=true]:font-medium",
-                  )}
-                  color="foreground"
-                  href={'/sign-in'}
-                >
-                  Sign in
-                </NextLink>
-              </NavbarItem>
-            )
-          }
+
         </ul>
       </NavbarContent>
 
@@ -148,6 +133,22 @@ export const Navbar = () => {
         <NavbarItem className="gap-2">
           <ThemeSwitch />
         </NavbarItem>
+        {
+          session?.user == null && (
+            <NavbarItem key={'sign-in'}>
+              <NextLink
+                className={clsx(
+                  linkStyles({ color: "foreground" }),
+                  "data-[active=true]:text-primary data-[active=true]:font-medium",
+                )}
+                color="foreground"
+                href={'/sign-in'}
+              >
+                Sign in
+              </NextLink>
+            </NavbarItem>
+          )
+        }
         {UserAvatar()}
       </NavbarContent>
 

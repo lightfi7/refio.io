@@ -176,9 +176,9 @@ const Toolbar = () => {
           >
             Filters
           </Button>
-          <Modal size="3xl" backdrop="blur" placement="bottom" scrollBehavior="outside" isOpen={isOpen} onOpenChange={onOpenChange}>
+          <Modal radius="lg" size="3xl" backdrop="blur" placement="bottom" scrollBehavior="outside" isOpen={isOpen} onOpenChange={onOpenChange}>
             <ModalContent>
-              <div  className="p-2 pt-6 before:bg-default-200 bg-gradient-to-br from-white to-default-200 dark:from-default-100 dark:to-black">
+              <div className="p-2 pt-6 before:bg-default-200 bg-gradient-to-br from-white to-default-200 dark:from-default-100 dark:to-black">
                 <Filterbar />
               </div>
             </ModalContent>
