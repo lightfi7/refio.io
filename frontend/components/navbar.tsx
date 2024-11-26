@@ -146,16 +146,12 @@ export const Navbar = () => {
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {
             session?.user == null && (
-              <NextLink
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
-                )}
-                color="foreground"
+              <Link
                 href={'/sign-in'}
+                size="lg"
               >
                 Sign in
-              </NextLink>
+              </Link>
             )
           }
           {siteConfig.navMenuItems.map((item, index) => (
