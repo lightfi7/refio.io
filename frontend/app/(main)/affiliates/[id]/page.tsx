@@ -408,19 +408,21 @@ export default function Page() {
         </div>
       </div>
       <div className={"w-full md:max-w-[320px] flex-1 px-6"}>
-        <div>
+        <div className="flex gap-2 items-center">
           <Button
             color={"secondary"}
-            size={"md"}
-            className="w-full sm:w-auto"
-            startContent={<CornerUpRightIcon />}
-            variant={"flat"}
+            size={"lg"}
+            className="w-full md:w-auto"
+            // startContent={<CornerUpRightIcon />}
+            variant={"faded"}
             onClick={() => {
               router.push(`/affiliates/${params.id}/info`);
             }}
           >
-            Read Post
+            Apply
           </Button>
+          <Link href={'/dashboard'} target="_blank" className="text-sm text-secondary p-2 rounded-lg">Visit website</Link>
+          <Link href={`/affiliates/${_program?.uuid}`} className="text-sm text-secondary p-2 rounded-lg">More Infos</Link>
         </div>
         <div className="flex flex-col space-y-6">
           {/*  */}
@@ -459,7 +461,6 @@ export default function Page() {
           <div className="flex flex-col md:flex-row justify-around items-center gap-2">
             <Link href={'/dashboard'} target="_blank" className="text-sm text-secondary p-2 rounded-lg">Visit website</Link>
             <Link href={`/affiliates/${_program?.uuid}`} className="text-sm text-secondary p-2 rounded-lg">More Infos</Link>
-            <Link href={_program?.link ? _program?.link : '#'} target="_blank" className="text-sm text-secondary p-2 rounded-lg">Apply</Link>
           </div>
           {/*  */}
           <div

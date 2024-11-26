@@ -464,19 +464,21 @@ export default function Page() {
                   </div>
                 </div>
                 <div className={"md:max-w-[360px] flex-1 w-full md:px-6"}>
-                  <div>
+                  <div className="flex gap-2 items-center">
                     <Button
                       color={"secondary"}
-                      size={"md"}
+                      size={"lg"}
                       className="w-full md:w-auto"
-                      startContent={<CornerUpRightIcon />}
-                      variant={"flat"}
+                      // startContent={<CornerUpRightIcon />}
+                      variant={"faded"}
                       onClick={() => {
                         router.push(`/affiliates/${params.id}/info`);
                       }}
                     >
-                      Read Post
+                      Apply
                     </Button>
+                    <Link href={'/dashboard'} target="_blank" className="text-sm text-secondary p-2 rounded-lg">Visit website</Link>
+                    <Link href={`/affiliates/${_program?.uuid}`} className="text-sm text-secondary p-2 rounded-lg">More Infos</Link>
                   </div>
                   <div className="flex flex-col space-y-6">
                     {/*  */}
@@ -521,9 +523,9 @@ export default function Page() {
                     </div>
                     {/*  */}
                     <div className="flex flex-col md:flex-row justify-around items-center gap-2">
-                      <Link href={'/dashboard'} target="_blank" className="text-sm text-secondary p-2 rounded-lg">Visit website</Link>
+                      {/* <Link href={'/dashboard'} target="_blank" className="text-sm text-secondary p-2 rounded-lg">Visit website</Link>
                       <Link href={`/affiliates/${_program?.uuid}`} className="text-sm text-secondary p-2 rounded-lg">More Infos</Link>
-                      <Link href={_program?.link ? _program?.link : '#'} target="_blank" className="text-sm text-secondary p-2 rounded-lg">Apply</Link>
+                      <Link href={_program?.link ? _program?.link : '#'} target="_blank" className="text-sm text-secondary p-2 rounded-lg">Follow</Link> */}
                     </div>
                     {/*  */}
                     <div

@@ -16,7 +16,7 @@ import { ChangeEvent, useContext, useState } from "react";
 
 import { SearchContext } from "@/app/providers";
 import Filterbar from "./filterbar";
-import { Modal, ModalContent, useDisclosure } from "@nextui-org/modal";
+import { Modal, ModalBody, ModalContent, useDisclosure } from "@nextui-org/modal";
 
 const sortList = [
   { key: "latest_update", name: "Latest update" },
@@ -176,15 +176,21 @@ const Toolbar = () => {
           >
             Filters
           </Button>
-          <Modal radius="lg" size="3xl" backdrop="blur" placement="bottom" scrollBehavior="outside" isOpen={isOpen} onOpenChange={onOpenChange}>
-            <ModalContent>
-              <div className="p-2 pt-6 before:bg-default-200 bg-gradient-to-br from-white to-default-200 dark:from-default-100 dark:to-black">
-                <Filterbar />
-              </div>
-            </ModalContent>
-          </Modal>
         </div>
       </div>
+      <Modal
+        radius="lg"
+        size="xl"
+        backdrop="blur"
+        scrollBehavior="outside"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}>
+        <ModalContent className=" before:bg-default-200 bg-gradient-to-br from-white to-default-200 dark:from-default-100 dark:to-black">
+          <ModalBody>
+            <Filterbar />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </div>
   );
 };
