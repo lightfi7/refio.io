@@ -110,6 +110,20 @@ export const Navbar = () => {
               </NextLink>
             </NavbarItem>
           ))}
+          {
+            session?.user == null && (
+              <NextLink
+                className={clsx(
+                  linkStyles({ color: "foreground" }),
+                  "data-[active=true]:text-primary data-[active=true]:font-medium",
+                )}
+                color="foreground"
+                href={'/sign-in'}
+              >
+                Sign in
+              </NextLink>
+            )
+          }
         </ul>
       </NavbarContent>
 
@@ -140,6 +154,20 @@ export const Navbar = () => {
               </Link>
             </NavbarMenuItem>
           ))}
+          {
+            session?.user == null && (
+              <NextLink
+                className={clsx(
+                  linkStyles({ color: "foreground" }),
+                  "data-[active=true]:text-primary data-[active=true]:font-medium",
+                )}
+                color="foreground"
+                href={'/sign-in'}
+              >
+                Sign in
+              </NextLink>
+            )
+          }
         </div>
       </NavbarMenu>
     </NextUINavbar>
