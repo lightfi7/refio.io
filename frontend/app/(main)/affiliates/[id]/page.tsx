@@ -414,7 +414,6 @@ export default function Page() {
         <div className="flex flex-col md:flex-row gap-2 items-center">
           <Button
             color={"secondary"}
-            size={"lg"}
             className="w-full md:w-auto"
             // startContent={<CornerUpRightIcon />}
             onClick={() => {
