@@ -203,7 +203,7 @@ export default function Page() {
         backgroundImage: 'url(/images/bg-modal.png)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
-        backgroundColor: theme === 'light' ? 'rgba(255,255,255,0.8)' : 'rgba(0,0,0, 0.6)'
+        backgroundColor: theme === 'light' ? 'rgba(255,255,255,0.8)' : 'rgba(0,0,0, 0.8)'
       }}
     >
       <ModalContent className="before:bg-default-200 bg-gradient-to-br from-white to-default-200 bg-opacity-30 backdrop:blur-2xl dark:from-default-100 dark:to-black">
