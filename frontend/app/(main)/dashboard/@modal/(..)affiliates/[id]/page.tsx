@@ -464,7 +464,7 @@ export default function Page() {
                   </div>
                 </div>
                 <div className={"md:max-w-[360px] flex-1 w-full md:px-6"}>
-                  <div className="flex gap-2 items-center">
+                  <div className="flex flex-col md:flex-row gap-2 items-center">
                     <Button
                       color={"secondary"}
                       size={"lg"}
