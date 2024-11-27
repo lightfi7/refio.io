@@ -66,9 +66,13 @@ export default function Page() {
           <div className="flex items-center gap-x-4 sm:gap-x-6">
             <div>
               <div className="flex items-center gap-3">
-                <Link href={'/dashboard'} target="_blank" className="text-md text-secondary">Visit website</Link>
-                <Link href={`/affiliates/${program?.uuid}`} className="text-md text-secondary">More Infos</Link>
-                <Button href={program?.link ? program?.link : '#'} target="_blank" color="secondary">Apply</Button>
+                {/* <Link href={'/dashboard'} target="_blank" className="text-md text-secondary">Visit website</Link>
+                <Link href={`/affiliates/${program?.uuid}`} className="text-md text-secondary">More Infos</Link> */}
+                <Link href={program?.link ? program?.link : '#'} target="_blank">
+                  <Button color="secondary">
+                    Apply
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
