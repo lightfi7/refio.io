@@ -407,7 +407,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className={"w-full md:max-w-[320px] flex-1 px-6"}>
+      <div className={"w-full md:max-w-[360px] flex-1 px-6"}>
         <div className="flex gap-2 items-center">
           <Button
             color={"secondary"}
@@ -457,10 +457,6 @@ export default function Page() {
             >
               Follow
             </Button>
-          </div>
-          <div className="flex flex-col md:flex-row justify-around items-center gap-2">
-            <Link href={'/dashboard'} target="_blank" className="text-sm text-secondary p-2 rounded-lg">Visit website</Link>
-            <Link href={`/affiliates/${_program?.uuid}`} className="text-sm text-secondary p-2 rounded-lg">More Infos</Link>
           </div>
           {/*  */}
           <div
