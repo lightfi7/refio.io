@@ -26,8 +26,12 @@ export default function PublicLayout({
           />
         )}
         {children}
-        <div className={"hidden md:inline"}>
-          <Image
+        <div className={"hidden md:inline rounded-3xl"}
+          style={{
+            backgroundImage: 'url(/images/preview.png)',
+            backgroundSize: "cover",
+          }}>
+          {/* <Image
             alt="preview"
             className=""
             style={{
@@ -36,7 +40,7 @@ export default function PublicLayout({
             height={578}
             src={"/images/preview.png"}
             width={640}
-          />
+          /> */}
         </div>
       </section>
     </>
