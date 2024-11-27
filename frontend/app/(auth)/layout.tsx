@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { ToastContext } from "../providers";
 
 import Toast from "@/components/toast";
+import { useTheme } from "next-themes";
 
 export default function PublicLayout({
   children,
@@ -12,6 +13,7 @@ export default function PublicLayout({
   children: React.ReactNode;
 }) {
   const toast = useContext(ToastContext);
+  const { theme, setTheme } = useTheme();
 
   return (
     <>
@@ -28,7 +30,7 @@ export default function PublicLayout({
         {children}
         <div className={"hidden md:inline rounded-3xl"}
           style={{
-            backgroundImage: 'url(/images/preview.png)',
+            backgroundImage: theme === 'light' ? 'url(/images/preview-light.png)' : 'url(/images/preview-dark.png)',
             backgroundSize: "cover",
           }}>
           {/* <Image
