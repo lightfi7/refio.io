@@ -480,7 +480,6 @@ export default function Page() {
                       size={"lg"}
                       className="w-full md:w-auto"
                       // startContent={<CornerUpRightIcon />}
-                      variant={"faded"}
                       onClick={() => {
                         router.push(`/affiliates/${params.id}/info`);
                       }}

@@ -116,8 +116,8 @@ const Toolbar = () => {
           <div className="md:px-4">
             <Tabs
               aria-label="Options"
-              variant="solid"
-              size="sm"
+              color="secondary"
+              variant="bordered"
               onSelectionChange={(key) =>
                 onChangeViewMode(key === "Grid" ? "grid" : "list")
               }
