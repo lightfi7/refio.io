@@ -24,7 +24,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-import { getRateValue } from "@/utils/common";
+import { getRateValue, timeDiff } from "@/utils/common";
 import { Comment, Program } from "@/types/define";
 
 const sortList = [{ key: "latest_update", label: "Latest update" }];
@@ -357,53 +357,56 @@ export default function Page() {
           />
           {/*  Last comments*/}
           <div className={"flex flex-col space-y-4"}>
-            {comments?.map((c) => (
-              <div key={c._id} className={"flex items-start space-x-4"}>
-                <Avatar
-                  className={"min-w-10 min-h-10"}
-                  name={c.user?.name}
-                  src={c.user?.image}
-                />
-                <div className="flex-1">
-                  <div className={"flex space-x-2 items-center"}>
-                    <h3 className={"font-medium text-lg"}>{c.user?.name}</h3>
-                    <span className={"text-sm text-divider/30"}>
-                      {c.createdAt}
-                    </span>
-                  </div>
-                  <h6
-                    className={"font-medium text-start text-sm text-divider/70"}
-                  >
-                    {c.content}
-                  </h6>
-                  <div className={"flex justify-between items-center mt-2"}>
-                    <div>
-                      <Button
-                        isIconOnly
-                        variant={"light"}
-                        onClick={() => {
-                          addVote2Comment(c, "up");
-                        }}
-                      >
-                        <ThumbsUpIcon size={18} />
-                      </Button>
-                      <Button
-                        isIconOnly
-                        variant={"light"}
-                        onClick={() => {
-                          addVote2Comment(c, "down");
-                        }}
-                      >
-                        <ThumbsDownIcon size={18} />
-                      </Button>
+            {comments?.map((c) => {
+              const diff = timeDiff(c.createdAt, new Date());
+              return (
+                <div key={c._id} className={"flex items-start space-x-4"}>
+                  <Avatar
+                    className={"min-w-10 min-h-10"}
+                    name={c.user?.name}
+                    src={c.user?.image}
+                  />
+                  <div className="flex-1">
+                    <div className={"flex space-x-2 items-center"}>
+                      <h3 className={"font-medium text-lg"}>{c.user?.name}</h3>
+                      <span className={"text-sm text-divider/30"}>
+                        {`${diff.days ? `${diff.days} days` : diff.hours ? `${diff.hours} hrs` : `${diff.minutes} mins`} ago`}
+                      </span>
                     </div>
-                    <span className={"text-divider/60 font-medium text-sm"}>
-                      {c.up_votes.length} Upvote
-                    </span>
+                    <h6
+                      className={"font-medium text-start text-sm text-divider/70"}
+                    >
+                      {c.content}
+                    </h6>
+                    <div className={"flex justify-between items-center mt-2"}>
+                      <div>
+                        <Button
+                          isIconOnly
+                          variant={"light"}
+                          onClick={() => {
+                            addVote2Comment(c, "up");
+                          }}
+                        >
+                          <ThumbsUpIcon size={18} />
+                        </Button>
+                        <Button
+                          isIconOnly
+                          variant={"light"}
+                          onClick={() => {
+                            addVote2Comment(c, "down");
+                          }}
+                        >
+                          <ThumbsDownIcon size={18} />
+                        </Button>
+                      </div>
+                      <span className={"text-divider/60 font-medium text-sm"}>
+                        {c.up_votes.length} Upvote
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </div>
