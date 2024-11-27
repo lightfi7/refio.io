@@ -422,7 +422,7 @@ export default function Page() {
             Apply
           </Button>
           <Link href={'/dashboard'} target="_blank" className="text-sm text-secondary p-2 rounded-lg">Visit website</Link>
-          <Link href={`/affiliates/${_program?.uuid}`} className="text-sm text-secondary p-2 rounded-lg">More Infos</Link>
+          <Link href={`/affiliates/${_program?.uuid}/info`} className="text-sm text-secondary p-2 rounded-lg">More Infos</Link>
         </div>
         <div className="flex flex-col space-y-6">
           {/*  */}
