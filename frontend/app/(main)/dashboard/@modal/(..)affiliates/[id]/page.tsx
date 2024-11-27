@@ -34,6 +34,7 @@ import Link from "next/link";
 
 import { getRateValue, timeDiff } from "@/utils/common";
 import { Comment, Program } from "@/types/define";
+import { useTheme } from "next-themes";
 
 const sortList = [{ key: "latest_update", label: "Latest update" }];
 
@@ -41,7 +42,7 @@ export default function Page() {
   const { data: session } = useSession();
   const params = useParams();
   const router = useRouter();
-
+  const { theme, setTheme } = useTheme();
   const [_program, setProgram] = useState<Program>();
   const [samples, setSamples] = useState<Program[]>([]);
   const [comments, setComments] = useState<Comment[]>([]);
@@ -197,12 +198,12 @@ export default function Page() {
       size="5xl"
       radius="lg"
       backdrop="blur"
-      className="bg-transparent/90 dark:bg-black bg-white"
       onOpenChange={onOpenChange}
       style={{
-        backgroundImage:'url(/images/bg-modal.png)',
+        backgroundImage: 'url(/images/bg-modal.png)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
+        backgroundColor: theme === 'light' ? 'rgba(255,255,255,0.8)' : 'rgba(0,0,0, 0.9)'
       }}
     >
       <ModalContent className="before:bg-default-200 bg-gradient-to-br from-white to-default-200 bg-opacity-30 backdrop:blur-2xl dark:from-default-100 dark:to-black">
@@ -423,7 +424,7 @@ export default function Page() {
                                   {c.user?.name}
                                 </h3>
                                 <span className={"text-sm text-divider/30"}>
-                                  {`${diff.days ? `${diff.days } days`: diff.hours ? `${diff.hours} hrs` : `${diff.minutes} mins`} ago`}
+                                  {`${diff.days ? `${diff.days} days` : diff.hours ? `${diff.hours} hrs` : `${diff.minutes} mins`} ago`}
                                 </span>
                               </div>
                               <h6

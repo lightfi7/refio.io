@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-    --hero-image: url('/images/bg-light.png');
+  --hero-image: url('/images/bg-light.png');
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --hero-image: url('/images/bg-dark.png');
   }
-  
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --hero-image: url('/images/bg-dark.png');
-    }
-  }
+}
