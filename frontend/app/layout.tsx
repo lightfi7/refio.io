@@ -44,7 +44,11 @@ export default function RootLayout({
         <SessionProvider>
           <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
             <ToastProvider>
-              <div className="relative flex flex-col h-screen">
+              <div className="relative flex flex-col h-screen" style={{
+                backgroundImage: 'url(/images/bg-modal.png)',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+              }}>
                 <Navbar />
                 <main className="container mx-auto max-w-8xl pt-16 px-4 md:px-6 flex-grow">
                   {children}

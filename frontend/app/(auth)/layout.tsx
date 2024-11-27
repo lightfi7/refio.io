@@ -30,6 +30,9 @@ export default function PublicLayout({
           <Image
             alt="preview"
             className=""
+            style={{
+              backgroundSize: "cover",
+            }}
             height={578}
             src={"/images/preview.png"}
             width={640}

@@ -88,7 +88,7 @@ export const Navbar = () => {
 
   return (
     <NextUINavbar
-      className="border-b-[1px] border-divider"
+      className="border-b-[1px] border-divider bg-transparent"
       maxWidth="2xl"
       position="sticky"
     >

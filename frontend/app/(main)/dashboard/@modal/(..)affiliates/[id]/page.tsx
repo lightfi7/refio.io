@@ -196,7 +196,14 @@ export default function Page() {
       scrollBehavior={"outside"}
       size="5xl"
       radius="lg"
+      backdrop="blur"
       onOpenChange={onOpenChange}
+      style={{
+        backgroundImage:'url(/images/bg-modal.png)',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+      }}
     >
       <ModalContent className="before:bg-default-200 bg-gradient-to-br from-white to-default-200 bg-opacity-30 backdrop:blur-2xl dark:from-default-100 dark:to-black">
         {(onClose) => (
