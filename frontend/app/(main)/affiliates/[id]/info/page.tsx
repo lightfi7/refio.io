@@ -107,7 +107,9 @@ export default function Page() {
               }
             >
               <span className={"text-md"}>Affiliate Type</span>
-              <span>{program?.platform ? program?.platform.name : "--"}</span>
+              <span>{program?.commission_type
+                ?.replace(/_/g, " ")
+                .replace(/^\w/, (c: string) => c.toUpperCase())}</span>
             </div>
             <div
               className={
@@ -116,9 +118,7 @@ export default function Page() {
             >
               <span className={"text-md"}>Affiliate Program</span>
               <span>
-                {program?.commission_type
-                  ?.replace(/_/g, " ")
-                  .replace(/^\w/, (c: string) => c.toUpperCase())}
+                {program?.platform ? program?.platform.name : "--"}
               </span>
             </div>
             <div
