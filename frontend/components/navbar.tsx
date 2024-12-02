@@ -139,7 +139,7 @@ export const Navbar = () => {
               <NextLink
                 className={clsx(
                   linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
+                  "data-[active=true]:text-primary data-[active=true]:font-medium border-1 py-1.5 px-3 border-divider rounded-3xl",
                 )}
                 color="foreground"
                 href={'/sign-in'}

@@ -57,33 +57,33 @@ export default function RootLayout({
                   {children}
                 </main>
                 <footer className="w-full flex flex-col items-center justify-center py-3 px-4">
-                  <div className="bg-[#EBE7FF] container rounded-3xl flex flex-col divide-y-1 divide-black/10 py-2">
+                  <div className="bg-[#EBE7FF] dark:bg-transparent container rounded-3xl flex flex-col divide-y-1 divide-divider/10 py-2">
                     <div className="flex flex-col md:flex-row gap-8 justify-around items-start py-8 px-8">
                       <div className="flex  flex-col gap-3 pt-8">
                         <div>
-                          <h3 className="text-xl text-black font-semibold">Referalio</h3>
+                          <h3 className="text-xl font-semibold">Referalio</h3>
                         </div>
-                        <div className="text-black/80">The Ultimate Affiliate Program for Maximized
+                        <div className="text-divider/80">The Ultimate Affiliate Program for Maximized
                           Earnings</div>
                         <div className="flex gap-3">
-                          <Link className="text-black/70" href={'#'}>
+                          <Link className="text-divider/70" href={'#'}>
                             <TwitterIcon size={24} />
                           </Link>
-                          <Link className="text-black/70" href={'#'}>
+                          <Link className="text-divider/70" href={'#'}>
                             <FacebookIcon size={24} />
                           </Link>
-                          <Link className="text-black/70" href={'#'}>
+                          <Link className="text-divider/70" href={'#'}>
                             <InstagramIcon size={24} />
                           </Link>
                         </div>
                       </div>
                       <div className="flex gap-4 justify-between w-full sm:w-auto sm:gap-24">
                         <div className="pt-6 flex flex-col gap-4">
-                          <h3 className="text-black/60">Links</h3>
+                          <h3 className="text-divider/60">Links</h3>
                           <div className="flex flex-col gap-2">
                             {siteConfig.navMenuItems.map((item, index) => (
                               <Link
-                                className="text-black"
+                                color="foreground"
                                 href={item.href}
                               >
                                 {item.label}
@@ -92,16 +92,16 @@ export default function RootLayout({
                           </div>
                         </div>
                         <div className="pt-6 flex flex-col gap-4">
-                          <h3 className="text-black/60">Legal</h3>
+                          <h3 className="text-divider/60">Legal</h3>
                           <div className="flex flex-col gap-2">
                             <Link
-                              className="text-black"
+                              color="foreground"
                               href={'#'}
                             >
                               Terms of Services
                             </Link>
                             <Link
-                              className="text-black"
+                              color="foreground"
                               href={'#'}
                             >
                               Privacy Policy
@@ -111,7 +111,7 @@ export default function RootLayout({
                       </div>
                     </div>
                     <div className="w-full flex justify-center py-4">
-                      <span className="text-black flex gap-1 items-center">
+                      <span className="flex gap-1 items-center">
                         <CopyrightIcon size={16} />
                         2024 Referalio. All rights reserved.</span>
                     </div>

@@ -6,8 +6,11 @@ import { Divider } from "@nextui-org/divider";
 import { Image } from "@nextui-org/image";
 import { Input } from "@nextui-org/input";
 import {
+  ArrowRightIcon,
   BadgePercent,
   BookmarkIcon,
+  CircleDollarSignIcon,
+  CookieIcon,
   CopyIcon,
   CornerUpRightIcon,
   FacebookIcon,
@@ -15,6 +18,7 @@ import {
   LinkedinIcon,
   LinkIcon,
   MessageSquareIcon,
+  PercentCircleIcon,
   ThumbsDownIcon,
   ThumbsUpIcon,
   TwitterIcon,
@@ -411,19 +415,22 @@ export default function Page() {
         </div>
       </div>
       <div className={"w-full md:max-w-[360px] flex-1 px-6"}>
-        <div className="flex flex-col md:flex-row gap-2 items-center">
-          <Button
-            color={"secondary"}
-            className="w-full md:w-auto"
-            // startContent={<CornerUpRightIcon />}
-            onClick={() => {
-              router.push(`/affiliates/${params.id}/info`);
-            }}
+        <div className="flex flex-col gap-2 items-center">
+          <Link
+            className="w-full rounded-xl border-1 border-[#9A86FF] bg-[#9A86FF] flex px-4 py-2 justify-center items-center text-white gap-2"
+            href={`${_program?.link ? _program?.link : "#"}`}
           >
             Apply
-          </Button>
-          <Link href={'/dashboard'} target="_blank" className="text-sm text-secondary p-2 rounded-lg">Visit website</Link>
-          <Link href={`/affiliates/${_program?.uuid}/info`} className="text-sm text-secondary p-2 rounded-lg">More Infos</Link>
+            <ArrowRightIcon size={15} />
+          </Link>
+          <Link
+            color={"secondary"}
+            className="w-full rounded-xl border-1 border-[#9A86FF] flex px-4 py-2 justify-center items-center text-[#9A86FF] gap-2"
+
+            href={`/affiliates/${params.id}/info`}
+          >
+            Read Post
+          </Link>
         </div>
         <div className="flex flex-col space-y-6">
           {/*  */}
@@ -458,6 +465,56 @@ export default function Page() {
             >
               Follow
             </Button>
+          </div>
+          {/*  */}
+          <div
+            className={
+              "rounded-xl border border-divider flex flex-col justify-between divide-y divide-divider"
+            }
+          >
+            <div
+              className={"flex flex-col items-start p-4 rounded-t-xl"}
+              style={{
+                backgroundImage: "url(/images/bg-pcard.png)",
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+              }}
+            >
+              <h3 className="text-lg font-semibold ">Commission</h3>
+              <span className="font-medium">$49 Per Sale</span>
+            </div>
+            <div className={""}>
+              <div
+                className={"flex flex-col gap-4 border-b p-4 border-divider"}
+              >
+                <div className="flex items-center gap-2">
+                  <PercentCircleIcon className="text-divider/40" />
+                  <span>
+                    {_program?.commission_amount_formatted
+                      ? _program?.commission_amount_formatted
+                      : "--"}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CircleDollarSignIcon className="text-divider/40" />
+                  <span>
+                    {_program?.commission_in_percentage_formatted
+                      ? _program?.commission_in_percentage_formatted
+                      : "--"}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CookieIcon className="text-divider/40" />
+                  <span>
+                    {_program?.duration
+                      ? _program?.duration.replace("_", " ") + " Cookie Duration"
+                      : "--"}
+                  </span>
+                </div>
+              </div>
+
+            </div>
           </div>
           {/*  */}
           <div
@@ -550,7 +607,7 @@ export default function Page() {
             <div
               className={"p-4 rounded-t-xl"}
               style={{
-                backgroundImage: "url(images/bg-pcard.png)",
+                backgroundImage: "url(/images/bg-pcard.png)",
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
