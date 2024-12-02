@@ -12,7 +12,6 @@ import {
   CircleDollarSignIcon,
   CookieIcon,
   CopyIcon,
-  CornerUpRightIcon,
   FacebookIcon,
   InstagramIcon,
   LinkedinIcon,
@@ -233,7 +232,7 @@ export default function Page() {
                   className={`px-3 py-1 text-sm rounded-full whitespace-nowrap font-medium text-white`}
                   style={{
                     backgroundColor: tag.color,
-                    color: 'white'
+                    color: "white",
                   }}
                 >
                   {tag.name}
@@ -363,6 +362,7 @@ export default function Page() {
           <div className={"flex flex-col space-y-4"}>
             {comments?.map((c) => {
               const diff = timeDiff(c.createdAt, new Date());
+
               return (
                 <div key={c._id} className={"flex items-start space-x-4"}>
                   <Avatar
@@ -378,7 +378,9 @@ export default function Page() {
                       </span>
                     </div>
                     <h6
-                      className={"font-medium text-start text-sm text-divider/70"}
+                      className={
+                        "font-medium text-start text-sm text-divider/70"
+                      }
                     >
                       {c.content}
                     </h6>
@@ -409,7 +411,7 @@ export default function Page() {
                     </div>
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
@@ -424,9 +426,8 @@ export default function Page() {
             <ArrowRightIcon size={15} />
           </Link>
           <Link
-            color={"secondary"}
             className="w-full rounded-xl border-1 border-[#9A86FF] flex px-4 py-2 justify-center items-center text-[#9A86FF] gap-2"
-
+            color={"secondary"}
             href={`/affiliates/${params.id}/info`}
           >
             Read Post
@@ -508,12 +509,12 @@ export default function Page() {
                   <CookieIcon className="text-divider/40" />
                   <span>
                     {_program?.duration
-                      ? _program?.duration.replace("_", " ") + " Cookie Duration"
+                      ? _program?.duration.replace("_", " ") +
+                        " Cookie Duration"
                       : "--"}
                   </span>
                 </div>
               </div>
-
             </div>
           </div>
           {/*  */}

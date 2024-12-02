@@ -1,6 +1,7 @@
 "use client";
-import { Suspense, useCallback, useContext, useEffect, useState } from "react";
+import { Suspense, useContext, useEffect, useState } from "react";
 import { Pagination } from "@nextui-org/pagination";
+import { debounce } from "lodash";
 
 import PCard from "@/components/dashboard/pcard";
 import Banner from "@/components/dashboard/banner";
@@ -9,7 +10,6 @@ import Filterbar from "@/components/dashboard/filterbar";
 import { SearchContext, SearchContextProps } from "@/app/providers";
 import { getRateValue } from "@/utils/common";
 import { Program } from "@/types/define";
-import { debounce } from "lodash";
 
 export default function DashboardPage() {
   const { params } = useContext<SearchContextProps>(SearchContext);
@@ -20,13 +20,15 @@ export default function DashboardPage() {
   const [_, setTotalCount] = useState(0);
 
   const fetchPromoted = debounce(async () => {
-    const response = await fetch('/api/main/get-promoted', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const response = await fetch("/api/main/get-promoted", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({}),
     });
+
     if (response.ok) {
       const { program } = await response.json();
+
       setPromoted(program);
     }
   }, 300);
@@ -62,17 +64,20 @@ export default function DashboardPage() {
 
   useEffect(() => {
     fetchPromoted();
+
     return () => {
       fetchPromoted.cancel();
-    }
-  }, [])
+    };
+  }, []);
 
   useEffect(() => {
     fetchData();
+
     return () => {
       fetchData.cancel();
-    }
-  }, [_pageIndex,
+    };
+  }, [
+    _pageIndex,
     params.group,
     params.niches.length,
     params.text,
@@ -89,7 +94,8 @@ export default function DashboardPage() {
     params.productType,
     params.hideApplied,
     params.directedProgram,
-    params.sortType,]);
+    params.sortType,
+  ]);
 
   return (
     <div className="flex flex-col">

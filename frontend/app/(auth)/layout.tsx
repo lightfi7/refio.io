@@ -1,11 +1,10 @@
 "use client";
-import Image from "next/image";
 import { useContext } from "react";
+import { useTheme } from "next-themes";
 
 import { ToastContext } from "../providers";
 
 import Toast from "@/components/toast";
-import { useTheme } from "next-themes";
 
 export default function PublicLayout({
   children,
@@ -28,11 +27,16 @@ export default function PublicLayout({
           />
         )}
         {children}
-        <div className={"hidden md:inline rounded-3xl"}
+        <div
+          className={"hidden md:inline rounded-3xl"}
           style={{
-            backgroundImage: theme === 'light' ? 'url(/images/preview-light.png)' : 'url(/images/preview-dark.png)',
+            backgroundImage:
+              theme === "light"
+                ? "url(/images/preview-light.png)"
+                : "url(/images/preview-dark.png)",
             backgroundSize: "cover",
-          }}>
+          }}
+        >
           {/* <Image
             alt="preview"
             className=""

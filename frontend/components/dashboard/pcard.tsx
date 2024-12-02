@@ -10,7 +10,7 @@ interface PCardProps {
   commission: string;
   commissionPercent: string;
   cookieDuration: string;
-  tags: { id: number; name: string, color: string; }[];
+  tags: { id: number; name: string; color: string }[];
   isGrid?: boolean;
 }
 
@@ -98,10 +98,10 @@ const PCard = ({
             <div className="flex flex-wrap gap-3 overflow-x-auto p-4">
               {tags.map((tag, index) => (
                 <Chip
-                  size={"sm"}
                   key={index}
+                  size={"sm"}
                   style={{
-                    color: 'white',
+                    color: "white",
                     backgroundColor: tag.color,
                   }}
                 >
@@ -194,8 +194,8 @@ const PCard = ({
             <div className="flex flex-wrap items-center gap-2 overflow-x-auto px-4">
               {tags.map((tag, index) => (
                 <Chip
-                  size={"sm"}
                   key={index}
+                  size={"sm"}
                   style={{
                     backgroundColor: tag.name,
                   }}

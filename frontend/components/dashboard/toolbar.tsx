@@ -13,10 +13,16 @@ import { Input } from "@nextui-org/input";
 import { Tab, Tabs } from "@nextui-org/tabs";
 import { Select, SelectItem } from "@nextui-org/select";
 import { ChangeEvent, useContext, useState } from "react";
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  useDisclosure,
+} from "@nextui-org/modal";
+
+import Filterbar from "./filterbar";
 
 import { SearchContext } from "@/app/providers";
-import Filterbar from "./filterbar";
-import { Modal, ModalBody, ModalContent, useDisclosure } from "@nextui-org/modal";
 
 const sortList = [
   { key: "latest_update", name: "Latest update" },
@@ -170,21 +176,22 @@ const Toolbar = () => {
           />
           <Button
             radius={"lg"}
-            onPress={onOpen}
             startContent={<SlidersHorizontalIcon size={32} />}
             variant="solid"
+            onPress={onOpen}
           >
             Filters
           </Button>
         </div>
       </div>
       <Modal
-        radius="lg"
-        size="xl"
         backdrop="blur"
-        scrollBehavior="outside"
         isOpen={isOpen}
-        onOpenChange={onOpenChange}>
+        radius="lg"
+        scrollBehavior="outside"
+        size="xl"
+        onOpenChange={onOpenChange}
+      >
         <ModalContent className=" before:bg-default-200 bg-gradient-to-br from-white to-default-200 dark:from-default-100 dark:to-black">
           <ModalBody>
             <Filterbar />

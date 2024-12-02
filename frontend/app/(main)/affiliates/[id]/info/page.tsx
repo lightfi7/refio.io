@@ -10,9 +10,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { Chip } from "@nextui-org/chip";
 import Link from "next/link";
+import { Button } from "@nextui-org/button";
 
 import { getRateValue, timeDiff } from "@/utils/common";
-import { Button } from "@nextui-org/button";
 
 export default function Page() {
   const [program, setProgram] = useState<any>();
@@ -42,8 +42,14 @@ export default function Page() {
         <div className="mx-auto flex flex-col md:flex-row max-w-2xl items-center justify-between gap-8 lg:mx-0 lg:max-w-none">
           <div className="flex items-center gap-x-1">
             <div>
-              <div className="mt-1 text-base font-semibold leading-6 text-divider/90 flex items-center">{program?.name}
-                <Button isIconOnly variant="light" radius='full' className="ml-1">
+              <div className="mt-1 text-base font-semibold leading-6 text-divider/90 flex items-center">
+                {program?.name}
+                <Button
+                  isIconOnly
+                  className="ml-1"
+                  radius="full"
+                  variant="light"
+                >
                   <HeartIcon size={24} />
                 </Button>
               </div>
@@ -68,17 +74,20 @@ export default function Page() {
               <div className="flex items-center gap-3">
                 {/* <Link href={'/dashboard'} target="_blank" className="text-md text-secondary">Visit website</Link>
                 <Link href={`/affiliates/${program?.uuid}`} className="text-md text-secondary">More Infos</Link> */}
-                <Link href={program?.link ? program?.link : '#'} target="_blank">
-                  <Button color="secondary">
-                    Apply
-                  </Button>
+                <Link
+                  href={program?.link ? program?.link : "#"}
+                  target="_blank"
+                >
+                  <Button color="secondary">Apply</Button>
                 </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className={"flex flex-col md:flex-row justify-between gap-12 py-10 "}>
+      <div
+        className={"flex flex-col md:flex-row justify-between gap-12 py-10 "}
+      >
         <div className="flex-1 flex flex-col gap-12">
           <div className={"flex flex-col border border-divider rounded-xl"}>
             <div
@@ -93,7 +102,9 @@ export default function Page() {
               }}
             >
               <h1 className={"font-semibold text-xl"}>Information</h1>
-              <span className="text-divider/70">{program?.name} information</span>
+              <span className="text-divider/70">
+                {program?.name} information
+              </span>
             </div>
 
             <div
@@ -125,10 +136,10 @@ export default function Page() {
               <span>
                 {program?.product_type
                   ? program?.product_type.machine_name
-                    .split("_")
-                    .map((s: any) => s)
-                    .join(" ")
-                    .replace(/^\w/, (c: string) => c.toUpperCase())
+                      .split("_")
+                      .map((s: any) => s)
+                      .join(" ")
+                      .replace(/^\w/, (c: string) => c.toUpperCase())
                   : "--"}
               </span>
             </div>
@@ -143,9 +154,9 @@ export default function Page() {
                   ? "International"
                   : program?.langs.length
                     ? program?.langs
-                      .slice(0, 8)
-                      .map((item: any) => item.country_code)
-                      .join(", ")
+                        .slice(0, 8)
+                        .map((item: any) => item.country_code)
+                        .join(", ")
                     : "--"}
               </span>
             </div>
@@ -221,7 +232,9 @@ export default function Page() {
               <span className={"text-md"}>Niches</span>
               <div className={"flex flex-wrap gap-2"}>
                 {program?.tags.map((item: any, i: number) => (
-                  <Chip color={item.color} key={i}>{item.name}</Chip>
+                  <Chip key={i} color={item.color}>
+                    {item.name}
+                  </Chip>
                 ))}
               </div>
             </div>
@@ -243,7 +256,11 @@ export default function Page() {
               </div>
               {_activities.map(
                 (
-                  activity: { user: any; program: any; createdAt: string | Date },
+                  activity: {
+                    user: any;
+                    program: any;
+                    createdAt: string | Date;
+                  },
                   i,
                 ) => {
                   const { days, hours, minutes } = timeDiff(
@@ -252,7 +269,10 @@ export default function Page() {
                   );
 
                   return (
-                    <div key={i} className={"flex items-center gap-2 py-3 px-6"}>
+                    <div
+                      key={i}
+                      className={"flex items-center gap-2 py-3 px-6"}
+                    >
                       <li className="relative flex gap-x-4 w-full">
                         {i != _activities.length - 1 && (
                           <div className="absolute left-0 top-0 flex w-6 justify-center -bottom-6">
@@ -327,7 +347,8 @@ export default function Page() {
                     <CookieIcon className="text-divider/40" />
                     <span>
                       {program?.duration
-                        ? program?.duration.replace("_", " ") + " Cookie Duration"
+                        ? program?.duration.replace("_", " ") +
+                          " Cookie Duration"
                         : "--"}
                     </span>
                   </div>
@@ -366,14 +387,19 @@ export default function Page() {
               </div>
               <div className={"p-4 space-y-2"}>
                 <div className={"flex flex-col items-start"}>
-                  <span className={"text-sm text-divider/70"}>Easy to Join</span>
+                  <span className={"text-sm text-divider/70"}>
+                    Easy to Join
+                  </span>
                   <div className="flex items-center gap-1 mt-0">
                     {"★★★★☆".split("").map((star, i) => (
                       <span key={i} className="text-purple-300 text-xl">
                         {i <
-                          Math.floor(
-                            getRateValue(program?.average_ratings, "easy_to_join"),
-                          )
+                        Math.floor(
+                          getRateValue(
+                            program?.average_ratings,
+                            "easy_to_join",
+                          ),
+                        )
                           ? "★"
                           : "☆"}
                       </span>
@@ -391,9 +417,12 @@ export default function Page() {
                     {"★★★★☆".split("").map((star, i) => (
                       <span key={i} className="text-purple-300 text-xl">
                         {i <
-                          Math.floor(
-                            getRateValue(program?.average_ratings, "relationship"),
-                          )
+                        Math.floor(
+                          getRateValue(
+                            program?.average_ratings,
+                            "relationship",
+                          ),
+                        )
                           ? "★"
                           : "☆"}
                       </span>
@@ -411,18 +440,21 @@ export default function Page() {
                     {"★★★★☆".split("").map((star, i) => (
                       <span key={i} className="text-purple-300 text-xl">
                         {i <
-                          Math.floor(
-                            getRateValue(
-                              program?.average_ratings,
-                              "payment_deadline",
-                            ),
-                          )
+                        Math.floor(
+                          getRateValue(
+                            program?.average_ratings,
+                            "payment_deadline",
+                          ),
+                        )
                           ? "★"
                           : "☆"}
                       </span>
                     ))}
                     <span className="text-md text-divider/100 ml-1 font-medium">
-                      {getRateValue(program?.average_ratings, "payment_deadline")}
+                      {getRateValue(
+                        program?.average_ratings,
+                        "payment_deadline",
+                      )}
                       /5
                     </span>
                   </div>

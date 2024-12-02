@@ -2,15 +2,15 @@ import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 import { SessionProvider } from "next-auth/react";
+import { CopyrightIcon, FacebookIcon, InstagramIcon } from "lucide-react";
+import { Link } from "@nextui-org/link";
 
 import { Providers, ToastProvider } from "./providers";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
-import { CopyrightIcon, FacebookIcon, InstagramIcon, XIcon } from "lucide-react";
 import { TwitterIcon } from "@/components/icons";
-import { Link } from "@nextui-org/link";
 
 export const metadata: Metadata = {
   title: {
@@ -47,11 +47,14 @@ export default function RootLayout({
         <SessionProvider>
           <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
             <ToastProvider>
-              <div className="relative flex flex-col h-screen" style={{
-                backgroundImage: 'url(/images/bg-modal.png)',
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-              }}>
+              <div
+                className="relative flex flex-col h-screen"
+                style={{
+                  backgroundImage: "url(/images/bg-modal.png)",
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                }}
+              >
                 <Navbar />
                 <main className="container mx-auto max-w-8xl pt-16 px-4 md:px-6 flex-grow">
                   {children}
@@ -63,16 +66,17 @@ export default function RootLayout({
                         <div>
                           <h3 className="text-xl font-semibold">Referalio</h3>
                         </div>
-                        <div className="text-divider/80">The Ultimate Affiliate Program for Maximized
-                          Earnings</div>
+                        <div className="text-divider/80">
+                          The Ultimate Affiliate Program for Maximized Earnings
+                        </div>
                         <div className="flex gap-3">
-                          <Link className="text-divider/70" href={'#'}>
+                          <Link className="text-divider/70" href={"#"}>
                             <TwitterIcon size={24} />
                           </Link>
-                          <Link className="text-divider/70" href={'#'}>
+                          <Link className="text-divider/70" href={"#"}>
                             <FacebookIcon size={24} />
                           </Link>
-                          <Link className="text-divider/70" href={'#'}>
+                          <Link className="text-divider/70" href={"#"}>
                             <InstagramIcon size={24} />
                           </Link>
                         </div>
@@ -83,6 +87,7 @@ export default function RootLayout({
                           <div className="flex flex-col gap-2">
                             {siteConfig.navMenuItems.map((item, index) => (
                               <Link
+                                key={index}
                                 color="foreground"
                                 href={item.href}
                               >
@@ -94,16 +99,10 @@ export default function RootLayout({
                         <div className="pt-6 flex flex-col gap-4">
                           <h3 className="text-divider/60">Legal</h3>
                           <div className="flex flex-col gap-2">
-                            <Link
-                              color="foreground"
-                              href={'#'}
-                            >
+                            <Link color="foreground" href={"#"}>
                               Terms of Services
                             </Link>
-                            <Link
-                              color="foreground"
-                              href={'#'}
-                            >
+                            <Link color="foreground" href={"#"}>
                               Privacy Policy
                             </Link>
                           </div>
@@ -113,15 +112,16 @@ export default function RootLayout({
                     <div className="w-full flex justify-center py-4">
                       <span className="flex gap-1 items-center">
                         <CopyrightIcon size={16} />
-                        2024 Referalio. All rights reserved.</span>
+                        2024 Referalio. All rights reserved.
+                      </span>
                     </div>
                   </div>
                 </footer>
               </div>
             </ToastProvider>
-          </Providers >
-        </SessionProvider >
-      </body >
-    </html >
+          </Providers>
+        </SessionProvider>
+      </body>
+    </html>
   );
 }

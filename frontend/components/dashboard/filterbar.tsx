@@ -206,12 +206,12 @@ const Filterbar = () => {
         </div>
         <div>
           <Accordion
+            defaultExpandedKeys={["1"]}
             itemClasses={{
               title: "font-normal text-medium",
             }}
             selectionMode="multiple"
             showDivider={false}
-            defaultExpandedKeys={['1']}
           >
             <AccordionItem key="1" aria-label="Niches" title="Niches">
               {
@@ -287,14 +287,18 @@ const Filterbar = () => {
                         type={"number"}
                         value={`${minCommissionPercent}`}
                         variant={"bordered"}
-                        onValueChange={(v) => setMinCommissionPercent(Number(v))}
+                        onValueChange={(v) =>
+                          setMinCommissionPercent(Number(v))
+                        }
                       />
                       <Input
                         startContent={<span>Max:</span>}
                         type="number"
                         value={`${maxCommissionPercent}`}
                         variant={"bordered"}
-                        onValueChange={(v) => setMaxCommissionPercent(Number(v))}
+                        onValueChange={(v) =>
+                          setMaxCommissionPercent(Number(v))
+                        }
                       />
                     </div>
                   </div>
@@ -380,7 +384,11 @@ const Filterbar = () => {
                 </div>
               }
             </AccordionItem>
-            <AccordionItem key="7" aria-label="Product Type" title="Product Type">
+            <AccordionItem
+              key="7"
+              aria-label="Product Type"
+              title="Product Type"
+            >
               {
                 <div className={"p-4"}>
                   <RadioGroup
@@ -420,8 +428,8 @@ const Filterbar = () => {
               Show only directed program
             </Checkbox>
             <span className={"text-divider/60 text-start"}>
-              Hide affiliate program that comes from affiliate platforms and only
-              shows direct programs.
+              Hide affiliate program that comes from affiliate platforms and
+              only shows direct programs.
             </span>
           </div>
         </div>

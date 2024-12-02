@@ -16,7 +16,6 @@ import {
   CircleDollarSignIcon,
   CookieIcon,
   CopyIcon,
-  CornerUpRightIcon,
   FacebookIcon,
   InstagramIcon,
   LinkedinIcon,
@@ -35,10 +34,10 @@ import { useEffect, useState } from "react";
 import { Chip } from "@nextui-org/chip";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 
 import { getRateValue, timeDiff } from "@/utils/common";
 import { Comment, Program } from "@/types/define";
-import { useTheme } from "next-themes";
 
 const sortList = [{ key: "latest_update", label: "Latest update" }];
 
@@ -197,18 +196,19 @@ export default function Page() {
 
   return (
     <Modal
+      backdrop="blur"
       isOpen={isOpen}
+      radius="lg"
       scrollBehavior={"outside"}
       size="5xl"
-      radius="lg"
-      backdrop="blur"
-      onOpenChange={onOpenChange}
       style={{
-        backgroundImage: 'url(/images/bg-modal.png)',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundColor: theme === 'light' ? 'rgba(255,255,255,0.8)' : 'rgba(24,24,24, 0.8)'
+        backgroundImage: "url(/images/bg-modal.png)",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundColor:
+          theme === "light" ? "rgba(255,255,255,0.8)" : "rgba(24,24,24, 0.8)",
       }}
+      onOpenChange={onOpenChange}
     >
       <ModalContent className="before:bg-default-200 bg-gradient-to-br from-white to-default-200 bg-opacity-30 backdrop:blur-2xl dark:from-default-100 dark:to-black">
         {(onClose) => (
@@ -253,7 +253,7 @@ export default function Page() {
                         {"★★★★☆".split("").map((star, i) => (
                           <span key={i} className="text-purple-300 text-xl">
                             {i <
-                              Math.floor(getRateValue(_program?.average_ratings))
+                            Math.floor(getRateValue(_program?.average_ratings))
                               ? "★"
                               : "☆"}
                           </span>
@@ -267,11 +267,11 @@ export default function Page() {
                         {_program?.tags.map((tag, index) => (
                           <Chip
                             key={index}
+                            className={`px-3 py-1 text-sm rounded-full whitespace-nowrap font-medium text-white`}
                             style={{
                               backgroundColor: tag.color,
-                              color: 'white'
+                              color: "white",
                             }}
-                            className={`px-3 py-1 text-sm rounded-full whitespace-nowrap font-medium text-white`}
                           >
                             {tag.name}
                           </Chip>
@@ -412,6 +412,7 @@ export default function Page() {
                     <div className={"flex flex-col space-y-3"}>
                       {comments?.map((c) => {
                         const diff = timeDiff(c.createdAt, new Date());
+
                         return (
                           <div
                             key={c._id}
@@ -473,7 +474,7 @@ export default function Page() {
                               </div>
                             </div>
                           </div>
-                        )
+                        );
                       })}
                     </div>
                   </div>
@@ -488,9 +489,8 @@ export default function Page() {
                       <ArrowRightIcon size={15} />
                     </Link>
                     <Link
-                      color={"secondary"}
                       className="w-full rounded-xl border-1 border-[#9A86FF] flex px-4 py-2 justify-center items-center text-[#9A86FF] gap-2"
-
+                      color={"secondary"}
                       href={`/affiliates/${params.id}/info`}
                     >
                       Read Post
@@ -511,9 +511,9 @@ export default function Page() {
                           {"★★★★☆".split("").map((star, i) => (
                             <span key={i} className="text-purple-300 text-xl">
                               {i <
-                                Math.floor(
-                                  getRateValue(_program?.average_ratings),
-                                )
+                              Math.floor(
+                                getRateValue(_program?.average_ratings),
+                              )
                                 ? "★"
                                 : "☆"}
                             </span>
@@ -557,7 +557,9 @@ export default function Page() {
                       </div>
                       <div className={""}>
                         <div
-                          className={"flex flex-col gap-4 border-b p-4 border-divider"}
+                          className={
+                            "flex flex-col gap-4 border-b p-4 border-divider"
+                          }
                         >
                           <div className="flex items-center gap-2">
                             <PercentCircleIcon className="text-divider/40" />
@@ -579,12 +581,12 @@ export default function Page() {
                             <CookieIcon className="text-divider/40" />
                             <span>
                               {_program?.duration
-                                ? _program?.duration.replace("_", " ") + " Cookie Duration"
+                                ? _program?.duration.replace("_", " ") +
+                                  " Cookie Duration"
                                 : "--"}
                             </span>
                           </div>
                         </div>
-
                       </div>
                     </div>
 
@@ -754,9 +756,9 @@ export default function Page() {
                                   className="text-purple-300 text-xl"
                                 >
                                   {i <
-                                    Math.floor(
-                                      getRateValue(sample.average_ratings),
-                                    )
+                                  Math.floor(
+                                    getRateValue(sample.average_ratings),
+                                  )
                                     ? "★"
                                     : "☆"}
                                 </span>

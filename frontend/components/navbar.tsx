@@ -35,13 +35,14 @@ export const Navbar = () => {
       <>
         {session?.user != null && (
           <Dropdown
-            type="menu"
-            placement="left-end"
             backdrop="blur"
             classNames={{
               base: "before:bg-default-200", // change arrow background
-              content: "py-1 px-1 border border-default-200 bg-gradient-to-br from-white to-default-200 dark:from-default-50 dark:to-black",
+              content:
+                "py-1 px-1 border border-default-200 bg-gradient-to-br from-white to-default-200 dark:from-default-50 dark:to-black",
             }}
+            placement="left-end"
+            type="menu"
           >
             <DropdownTrigger>
               <Avatar
@@ -57,7 +58,7 @@ export const Navbar = () => {
                 }
               />
             </DropdownTrigger>
-            <DropdownMenu variant="solid" className="min-w-60">
+            <DropdownMenu className="min-w-60" variant="solid">
               <DropdownItem key="profile" isDisabled className="h-14 gap-2">
                 <p className="font-semibold">Signed in as</p>
                 <p className="font-semibold">{session?.user?.email}</p>
@@ -118,7 +119,6 @@ export const Navbar = () => {
               </NextLink>
             </NavbarItem>
           ))}
-
         </ul>
       </NavbarContent>
 
@@ -133,44 +133,34 @@ export const Navbar = () => {
         <NavbarItem className="gap-2">
           <ThemeSwitch />
         </NavbarItem>
-        {
-          session?.user == null && (
-            <NavbarItem key={'sign-in'}>
-              <NextLink
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium border-1 py-1.5 px-3 border-divider rounded-3xl",
-                )}
-                color="foreground"
-                href={'/sign-in'}
-              >
-                Sign in
-              </NextLink>
-            </NavbarItem>
-          )
-        }
+        {session?.user == null && (
+          <NavbarItem key={"sign-in"}>
+            <NextLink
+              className={clsx(
+                linkStyles({ color: "foreground" }),
+                "data-[active=true]:text-primary data-[active=true]:font-medium border-1 py-1.5 px-3 border-divider rounded-3xl",
+              )}
+              color="foreground"
+              href={"/sign-in"}
+            >
+              Sign in
+            </NextLink>
+          </NavbarItem>
+        )}
         {UserAvatar()}
       </NavbarContent>
 
       <NavbarMenu>
         {/*{searchInput}*/}
         <div className="mx-4 mt-2 flex flex-col gap-2">
-          {
-            session?.user == null && (
-              <Link
-                href={'/sign-in'}
-                size="lg"
-              >
-                Sign in
-              </Link>
-            )
-          }
+          {session?.user == null && (
+            <Link href={"/sign-in"} size="lg">
+              Sign in
+            </Link>
+          )}
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                href={item.href}
-                size="lg"
-              >
+              <Link href={item.href} size="lg">
                 {item.label}
               </Link>
             </NavbarMenuItem>
