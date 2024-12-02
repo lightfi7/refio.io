@@ -68,7 +68,7 @@ export default function Home() {
           <div className="text-center">
             <h1 className="text-[40px] font-semibold">But, Why Choose Referalio?</h1>
             <span className="font-medium text-divider/30 text-base">Yes, there are other affiliate program providers, but our goal is to
-              be the best, and we're almost there!</span>
+              be the best, and we&apos;re almost there!</span>
           </div>
         </div>
         <div className="pt-8 w-full flex flex-col items-center">
@@ -252,12 +252,12 @@ export default function Home() {
           <div className="flex gap-3 flex-col">
             <div className="p-4 w-full gap-20 md:gap-[156px] flex flex-col justify-between rounded-xl border-1 border-divider">
               <div>
-                "The affiliate program exceeded my
+                &quot;The affiliate program exceeded my
                 expectations! The dashboard is intuitive,
                 the commissions are competitive, and the
                 payments are always on time. Partnering
                 with this brand has been a game-changer
-                for my passive income strategy."
+                for my passive income strategy.&quot;
               </div>
               <div>
                 <span className="text-sm font-medium">Alex J.</span>
@@ -266,7 +266,7 @@ export default function Home() {
             </div>
             <div className="p-4 w-full gap-20 md:gap-32 flex flex-col justify-between rounded-xl border-1 border-divider">
               <div>
-                "What I love most about this affiliate
+                &quot;What I love most about this affiliate
                 program is the support team. They’re
                 always available to answer questions and
                 help optimize my campaigns”.
@@ -293,7 +293,7 @@ export default function Home() {
             </div>
             <div className="p-4 w-full gap-20 md:gap-[186px] flex flex-col justify-between rounded-xl border-1 border-divider">
               <div>
-                "What I love most about this affiliate
+                &quot;What I love most about this affiliate
                 program is the support team. They’re
                 always available to answer questions and
                 help optimize my campaigns”.
