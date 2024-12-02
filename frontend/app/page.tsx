@@ -1,8 +1,12 @@
+"use client";
 import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/image";
 import { BadgeDollarSign, CameraIcon, ChartNoAxesCombinedIcon, ChartPieIcon, CheckIcon, CloudIcon, Flower2Icon, GraduationCapIcon, HandshakeIcon, HeartIcon, HeartPulseIcon, MapPinnedIcon, MonitorSmartphoneIcon, Share2Icon, ShirtIcon, VideoIcon } from "lucide-react";
+import { useTheme } from "next-themes";
 
 export default function Home() {
+  const { theme } = useTheme();
+
   return (
     <section className="relative flex flex-col items-center justify-center rounded-xl gap-8 py-8 md:py-10"
     >
@@ -11,13 +15,13 @@ export default function Home() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-4xl text-center">
               <div className="mb-6">
-                <a className="md:inline-flex space-x-4 p-1.5 rounded-3xl bg-white" href="#affiliate">
-                  <span className="rounded  px-2.5 py-1 text-xs font-semibold tracking-wide uppercase">
+                <a className="md:inline-flex space-x-4 p-1.5 rounded-3xl bg-white dark:bg-black" href="#affiliate">
+                  <span className="rounded px-2.5 py-1 text-xs font-semibold tracking-wide uppercase">
                     Join the Leading Affiliate Program
                   </span>
                 </a>
               </div>
-              <h1 className="text-4xl font-bold tracking-tight text-divider/90 sm:text-6xl flex flex-col space-y-1">
+              <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl flex flex-col space-y-1">
                 <span>
                   The Ultimate Affiliate Program
                 </span>{" "}
@@ -25,7 +29,7 @@ export default function Home() {
                   for Maximized Earnings
                 </span>
               </h1>
-              <p className="mt-6 text-lg leading-8 text-divider/70 max-w-2xl mx-auto">
+              <p className="mt-6 text-lg leading-8 text-gray-950 max-w-2xl mx-auto">
                 join our affiliate program today and turn your audience into income
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -36,31 +40,28 @@ export default function Home() {
                   Get for $19
                 </a>
                 <a
-                  className="text-sm font-semibold leading-6 text-divider/90"
+                  className="text-sm font-semibold leading-6 text-black/90"
                   href="https://refio.io/sign-up"
                 >
                   Try for free <span aria-hidden="true">→</span>
                 </a>
               </div>
-
-              <div className="text-xs text-divider/70 mt-4">
-                <p>One time payment, lifetime access.</p>
-                <p>
-                  Access to all affiliate programs that we will add in the
-                  future also included.
-                </p>
-              </div>
             </div>
           </div>
         </div>
         <div className="px-24">
-          <img src="/images/home-light.png" className="backdrop-blur-sm bg-transparent rounded-3xl opacity-10 md:opacity-90 border-divider/10" alt="hero" />
+          {
+            theme == 'light' ?
+              <img src="/images/home-light.png" className="backdrop-blur-sm bg-transparent rounded-3xl opacity-10 md:opacity-90 border-divider/10" alt="hero" />
+              :
+              <img src="/images/home-dark.png" className="backdrop-blur-sm bg-transparent rounded-3xl opacity-10 md:opacity-90 border-divider/10" alt="hero" />
+          }
         </div>
       </section>
       <section className="relative isolate pt-40 w-full rounded-3xl" id="hero" >
         <div className="flex flex-col items-center gap-4 max-w-xl mx-auto">
           <div>
-            <a className="bg-white shadow-md py-2.5 px-3.5 rounded-3xl text-sm">
+            <a className="shadow-md py-2.5 px-3.5 rounded-3xl text-sm border-1 border-divider">
               Features
             </a>
           </div>
@@ -71,12 +72,12 @@ export default function Home() {
           </div>
         </div>
         <div className="pt-8 w-full flex flex-col items-center">
-          <div className="flex flex-col md:flex-row justify-around border-t-1">
+          <div className="flex flex-col md:flex-row justify-around border-t-1 border-divider">
             <div className="flex flex-col gap-2 p-9 items-start">
             </div>
             <div className="relative hidden md:inline-block md:h-[480px]">
               <div className="absolute h-full p-[0.5px] -left-[0.5px] bg-gradient-to-b from-divider to-divider/0 border-transparent"></div>
-              <div className="absolute w-[22px] h-[22px] -top-[11px] -left-[11px] border-1 shadow-md rounded-full bg-white">
+              <div className="absolute w-[22px] h-[22px] -top-[11px] -left-[11px] border-1 shadow-md rounded-full bg-white dark:bg-[#242424] border-divider">
               </div>
             </div>
             <div className="flex flex-col gap-2 p-9 items-start">
@@ -92,7 +93,7 @@ export default function Home() {
             </div>
             <div className="relative hidden md:inline-block md:h-[480px]">
               <div className="absolute h-full p-[0.5px] -left-[0.5px] bg-gradient-to-b from-divider to-divider/0 border-transparent"></div>
-              <div className="absolute w-[22px] h-[22px] -top-[11px] -left-[11px] border-1 shadow-md rounded-full bg-white">
+              <div className="absolute w-[22px] h-[22px] -top-[11px] -left-[11px] border-1 shadow-md rounded-full bg-white dark:bg-[#242424] border-divider">
               </div>
             </div>
             <div className="flex flex-col gap-2 p-9 items-start">
@@ -109,7 +110,7 @@ export default function Home() {
             </div>
             <div className="relative hidden md:inline-block md:h-[480px]">
               <div className="absolute h-full p-[0.5px] -left-[0.5px] bg-gradient-to-b from-divider to-divider/0 border-transparent"></div>
-              <div className="absolute w-[22px] h-[22px] -top-[11px] -left-[11px] border-1 shadow-md rounded-full bg-white">
+              <div className="absolute w-[22px] h-[22px] -top-[11px] -left-[11px] border-1 shadow-md rounded-full bg-white dark:bg-[#242424] border-divider">
               </div>
             </div>
             <div className="flex flex-col gap-2 p-9 items-start">
@@ -127,26 +128,31 @@ export default function Home() {
             </div>
             <div className="relative hidden md:inline-block md:h-[480px]">
               <div className="absolute h-full p-[0.5px] -left-[0.5px] bg-gradient-to-b from-divider to-divider/0 border-transparent"></div>
-              <div className="absolute w-[22px] h-[22px] -top-[11px] -left-[11px] border-1 shadow-md rounded-full bg-white">
+              <div className="absolute w-[22px] h-[22px] -top-[11px] -left-[11px] border-1 shadow-md rounded-full bg-white dark:bg-[#242424] border-divider">
               </div>
             </div>
             <div className="relative hidden md:inline-block md:h-[480px]">
               <div className="absolute h-full p-[0.5px] -left-[0.5px] bg-gradient-to-b from-divider to-divider/0 border-transparent"></div>
-              <div className="absolute w-[22px] h-[22px] -top-[11px] -left-[11px] border-1 shadow-md rounded-full bg-white">
+              <div className="absolute w-[22px] h-[22px] -top-[11px] -left-[11px] border-1 shadow-md rounded-full bg-white dark:bg-[#242424] border-divider">
               </div>
             </div>
             <div className="flex flex-col gap-2 p-9 items-start">
             </div>
           </div>
           <div className="relative md:-top-[180px]">
-            <Image src={"/images/provider-light.png"} alt="" className="" />
+            {
+              theme == 'light' ?
+                <Image src={"/images/provider-light.png"} alt="" className="" />
+                : <Image src={"/images/provider-dark.png"} alt="" className="" />
+
+            }
           </div>
         </div>
       </section>
       <section className="relative isolate pt-30 w-full rounded-3xl" id="hero" >
         <div className="flex flex-col items-center gap-4 max-w-xl mx-auto">
           <div>
-            <a className="bg-white shadow-md py-2.5 px-3.5 rounded-3xl text-sm">
+            <a className="shadow-md py-2.5 px-3.5 rounded-3xl text-sm border-1 border-divider">
               Niches
             </a>
           </div>
@@ -156,73 +162,73 @@ export default function Home() {
           </div>
         </div>
         <div className="pt-10 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl">
+          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl dark:border-1 border-divider">
             <ShirtIcon size={30} />
             <h3 className="text-lg font-semibold">Fashion</h3>
             <h5 className="text-divider/60 text-sm">15 affiliate programs for this
               available</h5>
           </div>
-          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl">
+          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl dark:border-1 border-divider">
             <Flower2Icon size={30} />
             <h3 className="text-lg font-semibold">Groceries</h3>
             <h5 className="text-divider/60 text-sm">34 affiliate programs for this
               available</h5>
           </div>
-          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl">
+          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl dark:border-1 border-divider">
             <GraduationCapIcon size={30} />
             <h3 className="text-lg font-semibold">Knowledge</h3>
             <h5 className="text-divider/60 text-sm">23 affiliate programs for this
               available</h5>
           </div>
-          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl">
+          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl dark:border-1 border-divider">
             <MapPinnedIcon size={30} />
             <h3 className="text-lg font-semibold">Travel</h3>
             <h5 className="text-divider/60 text-sm">11 affiliate programs for this
               available</h5>
           </div>
-          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl">
+          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl dark:border-1 border-divider">
             <VideoIcon size={30} />
             <h3 className="text-lg font-semibold">Video</h3>
             <h5 className="text-divider/60 text-sm">38 affiliate programs for this
               available</h5>
           </div>
-          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl">
+          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl dark:border-1 border-divider">
             <CloudIcon size={30} />
             <h3 className="text-lg font-semibold">SaaS</h3>
             <h5 className="text-divider/60 text-sm">7 affiliate programs for this
               available</h5>
           </div>
-          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl">
+          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl dark:border-1 border-divider">
             <HeartIcon size={30} />
             <h3 className="text-lg font-semibold">Beauty</h3>
             <h5 className="text-divider/60 text-sm">10 affiliate programs for this
               available</h5>
           </div>
-          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl">
+          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl dark:border-1 border-divider">
             <BadgeDollarSign size={30} />
             <h3 className="text-lg font-semibold">Marketing</h3>
             <h5 className="text-divider/60 text-sm">29 affiliate programs for this
               available</h5>
           </div>
-          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl">
+          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl dark:border-1 border-divider">
             <CameraIcon size={30} />
             <h3 className="text-lg font-semibold">Photography</h3>
             <h5 className="text-divider/60 text-sm">25 affiliate programs for this
               available</h5>
           </div>
-          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl">
+          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl dark:border-1 border-divider">
             <ChartNoAxesCombinedIcon size={30} />
             <h3 className="text-lg font-semibold">Influencer</h3>
             <h5 className="text-divider/60 text-sm">21 affiliate programs for this
               available</h5>
           </div>
-          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl">
+          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl dark:border-1 border-divider">
             <HeartPulseIcon size={30} />
             <h3 className="text-lg font-semibold">Health Supplements</h3>
             <h5 className="text-divider/60 text-sm">8 affiliate programs for this
               available</h5>
           </div>
-          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl">
+          <div className="bg-divider/5 p-9 flex flex-col gap-4 rounded-2xl dark:border-1 border-divider">
             <HandshakeIcon size={30} />
             <h3 className="text-lg font-semibold">Business</h3>
             <h5 className="text-divider/60 text-sm">32 affiliate programs for this
@@ -233,7 +239,7 @@ export default function Home() {
       <section className="relative isolate pt-40 w-full rounded-3xl" id="hero" >
         <div className="flex flex-col items-center gap-4 max-w-xl mx-auto">
           <div>
-            <a className="bg-white shadow-md py-2.5 px-3.5 rounded-3xl text-sm">
+            <a className="shadow-md py-2.5 px-3.5 rounded-3xl text-sm border-1 border-divider">
               Testimonials
             </a>
           </div>
@@ -244,7 +250,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 justify-center px-2 pt-8">
           <div className="flex gap-3 flex-col">
-            <div className="p-4 w-full gap-20 md:gap-[156px] flex flex-col justify-between rounded-xl border-1">
+            <div className="p-4 w-full gap-20 md:gap-[156px] flex flex-col justify-between rounded-xl border-1 border-divider">
               <div>
                 "The affiliate program exceeded my
                 expectations! The dashboard is intuitive,
@@ -258,7 +264,7 @@ export default function Home() {
                 <span className="text-base font-semibold">Digital Marketer</span>
               </div>
             </div>
-            <div className="p-4 w-full gap-20 md:gap-32 flex flex-col justify-between rounded-xl border-1">
+            <div className="p-4 w-full gap-20 md:gap-32 flex flex-col justify-between rounded-xl border-1 border-divider">
               <div>
                 "What I love most about this affiliate
                 program is the support team. They’re
@@ -273,7 +279,7 @@ export default function Home() {
           </div>
 
           <div className="flex gap-3 flex-col">
-            <div className="p-4 w-full gap-20 md:gap-36 flex flex-col justify-between rounded-xl border-1">
+            <div className="p-4 w-full gap-20 md:gap-36 flex flex-col justify-between rounded-xl border-1 border-divider">
               <div>
                 "What I love most about this affiliate
                 program is the support team. They’re
@@ -285,7 +291,7 @@ export default function Home() {
                 <span className="text-base font-semibold">Social Media Influencer</span>
               </div>
             </div>
-            <div className="p-4 w-full gap-20 md:gap-[186px] flex flex-col justify-between rounded-xl border-1">
+            <div className="p-4 w-full gap-20 md:gap-[186px] flex flex-col justify-between rounded-xl border-1 border-divider">
               <div>
                 "What I love most about this affiliate
                 program is the support team. They’re
@@ -300,7 +306,7 @@ export default function Home() {
           </div>
 
           <div className="flex gap-3 flex-col">
-            <div className="p-4 w-full gap-20 md:gap-36 flex flex-col justify-between rounded-xl border-1">
+            <div className="p-4 w-full gap-20 md:gap-36 flex flex-col justify-between rounded-xl border-1 border-divider">
               <div>
                 "What I love most about this affiliate
                 program is the support team. They’re
@@ -312,7 +318,7 @@ export default function Home() {
                 <span className="text-base font-semibold">Social Media Influencer</span>
               </div>
             </div>
-            <div className="p-4 w-full gap-20 md:gap-[186px] flex flex-col justify-between rounded-xl border-1">
+            <div className="p-4 w-full gap-20 md:gap-[186px] flex flex-col justify-between rounded-xl border-1 border-divider">
               <div>
                 "What I love most about this affiliate
                 program is the support team. They’re
@@ -331,7 +337,7 @@ export default function Home() {
       <section className="relative isolate pt-40 w-full rounded-3xl" id="hero" >
         <div className="flex flex-col items-center gap-4 max-w-xl mx-auto">
           <div>
-            <a className="bg-white shadow-md py-2.5 px-3.5 rounded-3xl text-sm">
+            <a className="shadow-md py-2.5 px-3.5 rounded-3xl text-sm border-1 border-divider">
               Pricing
             </a>
           </div>
@@ -341,8 +347,8 @@ export default function Home() {
               break the bank</span>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row gap-6">
-          <div className="flex flex-col gap-16 p-10 rounded-2xl border-1 shadow-sm h-90">
+        <div className="flex flex-col md:flex-row gap-6 mt-8">
+          <div className="flex flex-col gap-16 p-10 rounded-2xl border-1 border-divider shadow-sm h-90">
             <div className="flex-1">
               <div className="flex justify-between">
                 <h3 className="text-[40px] font-bold">Free</h3>
@@ -359,21 +365,21 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <Button radius="full" size="lg" className="bg-[#F9F2FF]">Sign up for free</Button>
+            <Button radius="full" size="lg" className="bg-[#F9F2FF] text-black">Sign up for free</Button>
           </div>
 
           <div className="w-full flex flex-col gap-16 p-10 rounded-2xl bg-[#C0B4FE] h-90">
             <div className="flex-1">
               <div className="flex flex-col md:flex-row justify-between gap-4">
                 <div className="flex flex-col">
-                  <h3 className="text-[40px] font-bold">Unlimited</h3>
-                  <span className="text-[15px] text-divider/50">Limtless possibilites</span>
+                  <h3 className="text-[40px] font-bold text-black">Unlimited</h3>
+                  <span className="text-[15px] text-black/90">Limtless possibilites</span>
                 </div>
                 <Button radius="full" className="bg-[#361C6C] text-white">RECOMMENDED</Button>
               </div>
             </div>
             <div className="flex flex-col justify-between">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-10 w-full md:min-w-80">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-10 w-full md:min-w-80 text-black/90">
                 <div className="flex gap-2">
                   <CheckIcon size={16} />
                   Unlimited Affiliate Programs
