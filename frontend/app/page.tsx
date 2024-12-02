@@ -61,7 +61,7 @@ export default function Home() {
       <section className="relative isolate pt-40 w-full rounded-3xl" id="hero" >
         <div className="flex flex-col items-center gap-4 max-w-xl mx-auto">
           <div>
-            <a className="shadow-md py-2.5 px-3.5 rounded-3xl text-sm border-1 border-divider">
+            <a href="#features" id="features" className="shadow-md py-2.5 px-3.5 rounded-3xl text-sm border-1 border-divider">
               Features
             </a>
           </div>
@@ -152,7 +152,7 @@ export default function Home() {
       <section className="relative isolate pt-30 w-full rounded-3xl" id="hero" >
         <div className="flex flex-col items-center gap-4 max-w-xl mx-auto">
           <div>
-            <a className="shadow-md py-2.5 px-3.5 rounded-3xl text-sm border-1 border-divider">
+            <a href="#niches" id="niches" className="shadow-md py-2.5 px-3.5 rounded-3xl text-sm border-1 border-divider">
               Niches
             </a>
           </div>
@@ -239,7 +239,7 @@ export default function Home() {
       <section className="relative isolate pt-40 w-full rounded-3xl" id="hero" >
         <div className="flex flex-col items-center gap-4 max-w-xl mx-auto">
           <div>
-            <a className="shadow-md py-2.5 px-3.5 rounded-3xl text-sm border-1 border-divider">
+            <a href="#testimonials" id="testimonials" className="shadow-md py-2.5 px-3.5 rounded-3xl text-sm border-1 border-divider">
               Testimonials
             </a>
           </div>
@@ -281,7 +281,7 @@ export default function Home() {
           <div className="flex gap-3 flex-col">
             <div className="p-4 w-full gap-20 md:gap-36 flex flex-col justify-between rounded-xl border-1 border-divider">
               <div>
-                "What I love most about this affiliate
+                &quot;What I love most about this affiliate
                 program is the support team. They’re
                 always available to answer questions and
                 help optimize my campaigns”.
@@ -308,7 +308,7 @@ export default function Home() {
           <div className="flex gap-3 flex-col">
             <div className="p-4 w-full gap-20 md:gap-36 flex flex-col justify-between rounded-xl border-1 border-divider">
               <div>
-                "What I love most about this affiliate
+                &quot;What I love most about this affiliate
                 program is the support team. They’re
                 always available to answer questions and
                 help optimize my campaigns”.
@@ -320,7 +320,7 @@ export default function Home() {
             </div>
             <div className="p-4 w-full gap-20 md:gap-[186px] flex flex-col justify-between rounded-xl border-1 border-divider">
               <div>
-                "What I love most about this affiliate
+                &quot;What I love most about this affiliate
                 program is the support team. They’re
                 always available to answer questions and
                 help optimize my campaigns”.
@@ -337,7 +337,7 @@ export default function Home() {
       <section className="relative isolate pt-40 w-full rounded-3xl" id="hero" >
         <div className="flex flex-col items-center gap-4 max-w-xl mx-auto">
           <div>
-            <a className="shadow-md py-2.5 px-3.5 rounded-3xl text-sm border-1 border-divider">
+            <a href="#pricing" id="pricing" className="shadow-md py-2.5 px-3.5 rounded-3xl text-sm border-1 border-divider">
               Pricing
             </a>
           </div>
