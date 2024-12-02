@@ -130,10 +130,10 @@ export default function Page() {
               <span>
                 {program?.product_type
                   ? program?.product_type.machine_name
-                      .split("_")
-                      .map((s: any) => s)
-                      .join(" ")
-                      .replace(/^\w/, (c: string) => c.toUpperCase())
+                    .split("_")
+                    .map((s: any) => s)
+                    .join(" ")
+                    .replace(/^\w/, (c: string) => c.toUpperCase())
                   : "--"}
               </span>
             </div>
@@ -148,9 +148,9 @@ export default function Page() {
                   ? "International"
                   : program?.langs.length
                     ? program?.langs
-                        .slice(0, 8)
-                        .map((item: any) => item.country_code)
-                        .join(", ")
+                      .slice(0, 8)
+                      .map((item: any) => item.country_code)
+                      .join(", ")
                     : "--"}
               </span>
             </div>
@@ -226,7 +226,13 @@ export default function Page() {
               <span className={"text-md"}>Niches</span>
               <div className={"flex flex-wrap gap-2"}>
                 {program?.tags.map((item: any, i: number) => (
-                  <Chip key={i} color={item.color}>
+                  <Chip
+                    key={i}
+                    className={`px-3 py-1 text-sm rounded-full whitespace-nowrap font-medium text-white`}
+                    style={{
+                      backgroundColor: item.color,
+                      color: "white",
+                    }}>
                     {item.name}
                   </Chip>
                 ))}
@@ -342,7 +348,7 @@ export default function Page() {
                     <span>
                       {program?.duration
                         ? program?.duration.replace("_", " ") +
-                          " Cookie Duration"
+                        " Cookie Duration"
                         : "--"}
                     </span>
                   </div>
@@ -388,12 +394,12 @@ export default function Page() {
                     {"★★★★☆".split("").map((star, i) => (
                       <span key={i} className="text-purple-300 text-xl">
                         {i <
-                        Math.floor(
-                          getRateValue(
-                            program?.average_ratings,
-                            "easy_to_join",
-                          ),
-                        )
+                          Math.floor(
+                            getRateValue(
+                              program?.average_ratings,
+                              "easy_to_join",
+                            ),
+                          )
                           ? "★"
                           : "☆"}
                       </span>
@@ -411,12 +417,12 @@ export default function Page() {
                     {"★★★★☆".split("").map((star, i) => (
                       <span key={i} className="text-purple-300 text-xl">
                         {i <
-                        Math.floor(
-                          getRateValue(
-                            program?.average_ratings,
-                            "relationship",
-                          ),
-                        )
+                          Math.floor(
+                            getRateValue(
+                              program?.average_ratings,
+                              "relationship",
+                            ),
+                          )
                           ? "★"
                           : "☆"}
                       </span>
@@ -434,12 +440,12 @@ export default function Page() {
                     {"★★★★☆".split("").map((star, i) => (
                       <span key={i} className="text-purple-300 text-xl">
                         {i <
-                        Math.floor(
-                          getRateValue(
-                            program?.average_ratings,
-                            "payment_deadline",
-                          ),
-                        )
+                          Math.floor(
+                            getRateValue(
+                              program?.average_ratings,
+                              "payment_deadline",
+                            ),
+                          )
                           ? "★"
                           : "☆"}
                       </span>
