@@ -1,8 +1,8 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { useState, Suspense } from "react";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { Suspense, useState } from "react";
 import { useSession } from "next-auth/react";
 
 function PaymentPage() {

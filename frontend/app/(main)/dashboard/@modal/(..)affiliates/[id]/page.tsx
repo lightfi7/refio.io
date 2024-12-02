@@ -1,14 +1,7 @@
 "use client";
 import { Button } from "@nextui-org/button";
 import { useParams, useRouter } from "next/navigation";
-import {
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  useDisclosure,
-} from "@nextui-org/modal";
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/modal";
 import {
   ArrowRightIcon,
   BadgePercent,
@@ -24,7 +17,7 @@ import {
   PercentCircleIcon,
   ThumbsDownIcon,
   ThumbsUpIcon,
-  TwitterIcon,
+  TwitterIcon
 } from "lucide-react";
 import { Image } from "@nextui-org/image";
 import { Divider } from "@nextui-org/divider";

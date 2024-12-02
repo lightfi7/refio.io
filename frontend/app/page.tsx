@@ -17,7 +17,7 @@ import {
   MonitorSmartphoneIcon,
   Share2Icon,
   ShirtIcon,
-  VideoIcon,
+  VideoIcon
 } from "lucide-react";
 import { useTheme } from "next-themes";
 

@@ -1,11 +1,5 @@
 "use client";
-import {
-  ArrowRightIcon,
-  CircleDollarSignIcon,
-  CookieIcon,
-  HeartIcon,
-  PercentCircleIcon,
-} from "lucide-react";
+import { ArrowRightIcon, CircleDollarSignIcon, CookieIcon, HeartIcon, PercentCircleIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { Chip } from "@nextui-org/chip";
