@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
 function PaymentPage() {
@@ -11,13 +11,28 @@ function PaymentPage() {
   const annual = searchParams.get("annual");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [clientId, setClientId] = useState(process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID as string);
 
   function Message({ content }: { content: string }) {
     return <p className="text-red-500">{content}</p>;
   }
 
+  useEffect(() => {
+    fetch("/api/main/get-config", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
+    }).then((response) => response.json())
+      .then(res => {
+        const { config } = res;
+        setClientId(config.paypal?.client_id || process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID as string);
+      })
+      .catch(error => console.error(error));
+  }, [])
+
+
   const initialOptions = {
-    clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "",
+    clientId: clientId,
     "enable-funding": "venmo",
     "buyer-country": "US",
     currency: "USD",

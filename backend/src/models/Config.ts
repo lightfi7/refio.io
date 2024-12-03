@@ -6,6 +6,7 @@ export interface IConfig extends Document {
         client_id: string;
         secret_key: string;
     };
+    intercom: string;
     scraper: {
         email: string;
         password: string;
@@ -25,6 +26,7 @@ const ConfigSchema = new Schema<IConfig>({
         type: String,
         default: 'system'
     },
+    intercom: String,
     paypal: {
         client_id: String,
         secret_key: String,

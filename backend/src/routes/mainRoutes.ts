@@ -5,7 +5,7 @@ import { authenticateJWT } from "../middleware/authMiddleware";
 
 const router = express.Router();
 
-router.post('/get-config', authenticateJWT, getConfig);
+router.post('/get-config', getConfig);
 router.post('/get-programs', authenticateJWT, getPrograms);
 router.post('/get-promoted', authenticateJWT, getPromoted);
 router.post('/get-sample-programs', authenticateJWT, getSamplePrograms);
