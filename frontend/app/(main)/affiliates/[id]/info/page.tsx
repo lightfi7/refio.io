@@ -1,5 +1,11 @@
 "use client";
-import { ArrowRightIcon, CircleDollarSignIcon, CookieIcon, HeartIcon, PercentCircleIcon } from "lucide-react";
+import {
+  ArrowRightIcon,
+  CircleDollarSignIcon,
+  CookieIcon,
+  HeartIcon,
+  PercentCircleIcon,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { Chip } from "@nextui-org/chip";
@@ -107,9 +113,11 @@ export default function Page() {
               }
             >
               <span className={"text-md"}>Affiliate Type</span>
-              <span>{program?.commission_type
-                ?.replace(/_/g, " ")
-                .replace(/^\w/, (c: string) => c.toUpperCase())}</span>
+              <span>
+                {program?.commission_type
+                  ?.replace(/_/g, " ")
+                  .replace(/^\w/, (c: string) => c.toUpperCase())}
+              </span>
             </div>
             <div
               className={
@@ -117,9 +125,7 @@ export default function Page() {
               }
             >
               <span className={"text-md"}>Affiliate Program</span>
-              <span>
-                {program?.platform ? program?.platform.name : "--"}
-              </span>
+              <span>{program?.platform ? program?.platform.name : "--"}</span>
             </div>
             <div
               className={
@@ -130,10 +136,10 @@ export default function Page() {
               <span>
                 {program?.product_type
                   ? program?.product_type.machine_name
-                    .split("_")
-                    .map((s: any) => s)
-                    .join(" ")
-                    .replace(/^\w/, (c: string) => c.toUpperCase())
+                      .split("_")
+                      .map((s: any) => s)
+                      .join(" ")
+                      .replace(/^\w/, (c: string) => c.toUpperCase())
                   : "--"}
               </span>
             </div>
@@ -148,9 +154,9 @@ export default function Page() {
                   ? "International"
                   : program?.langs.length
                     ? program?.langs
-                      .slice(0, 8)
-                      .map((item: any) => item.country_code)
-                      .join(", ")
+                        .slice(0, 8)
+                        .map((item: any) => item.country_code)
+                        .join(", ")
                     : "--"}
               </span>
             </div>
@@ -232,7 +238,8 @@ export default function Page() {
                     style={{
                       backgroundColor: item.color,
                       color: "white",
-                    }}>
+                    }}
+                  >
                     {item.name}
                   </Chip>
                 ))}
@@ -348,7 +355,7 @@ export default function Page() {
                     <span>
                       {program?.duration
                         ? program?.duration.replace("_", " ") +
-                        " Cookie Duration"
+                          " Cookie Duration"
                         : "--"}
                     </span>
                   </div>
@@ -394,12 +401,12 @@ export default function Page() {
                     {"★★★★☆".split("").map((star, i) => (
                       <span key={i} className="text-purple-300 text-xl">
                         {i <
-                          Math.floor(
-                            getRateValue(
-                              program?.average_ratings,
-                              "easy_to_join",
-                            ),
-                          )
+                        Math.floor(
+                          getRateValue(
+                            program?.average_ratings,
+                            "easy_to_join",
+                          ),
+                        )
                           ? "★"
                           : "☆"}
                       </span>
@@ -417,12 +424,12 @@ export default function Page() {
                     {"★★★★☆".split("").map((star, i) => (
                       <span key={i} className="text-purple-300 text-xl">
                         {i <
-                          Math.floor(
-                            getRateValue(
-                              program?.average_ratings,
-                              "relationship",
-                            ),
-                          )
+                        Math.floor(
+                          getRateValue(
+                            program?.average_ratings,
+                            "relationship",
+                          ),
+                        )
                           ? "★"
                           : "☆"}
                       </span>
@@ -440,12 +447,12 @@ export default function Page() {
                     {"★★★★☆".split("").map((star, i) => (
                       <span key={i} className="text-purple-300 text-xl">
                         {i <
-                          Math.floor(
-                            getRateValue(
-                              program?.average_ratings,
-                              "payment_deadline",
-                            ),
-                          )
+                        Math.floor(
+                          getRateValue(
+                            program?.average_ratings,
+                            "payment_deadline",
+                          ),
+                        )
                           ? "★"
                           : "☆"}
                       </span>
