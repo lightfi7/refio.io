@@ -137,6 +137,7 @@ export default function DashboardPage() {
                 platform={program.platform?.name}
                 rating={getRateValue(program?.average_ratings)}
                 tags={program.tags}
+                langs={program.langs}
                 uuid={program.uuid}
               />
             ))}

@@ -11,6 +11,7 @@ interface PCardProps {
   commissionPercent: string;
   cookieDuration: string;
   tags: { id: number; name: string; color: string }[];
+  langs: { id: number, country_code: string }[];
   isGrid?: boolean;
 }
 
@@ -24,6 +25,7 @@ const PCard = ({
   commissionPercent,
   cookieDuration,
   tags,
+  langs,
   isGrid,
 }: PCardProps) => {
   return (
@@ -106,6 +108,16 @@ const PCard = ({
                   }}
                 >
                   {tag.name}
+                </Chip>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-3 overflow-x-auto p-4">
+              {langs.map((lang, index) => (
+                <Chip
+                  key={index}
+                  size={"sm"}
+                >
+                  {lang.country_code}
                 </Chip>
               ))}
             </div>
