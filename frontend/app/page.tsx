@@ -20,9 +20,11 @@ import {
   VideoIcon,
 } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const { theme } = useTheme();
+  const router = useRouter();
 
   return (
     <section className="relative flex flex-col items-center justify-center rounded-xl gap-8 py-8 md:py-10">
@@ -432,7 +434,9 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <Button className="bg-[#F9F2FF] text-black" radius="full" size="lg">
+            <Button className="bg-[#F9F2FF] text-black" radius="full" size="lg" onClick={() => {
+              router.push('/sign-up')
+            }}>
               Sign up for free
             </Button>
           </div>
@@ -448,7 +452,7 @@ export default function Home() {
                     Limtless possibilites
                   </span>
                 </div>
-                <Button className="bg-[#361C6C] text-white" radius="full">
+                <Button className="bg-[#361C6C] text-white" radius="full" onClick={() => router.push('/sign-up')}>
                   RECOMMENDED
                 </Button>
               </div>
@@ -485,8 +489,9 @@ export default function Home() {
               className="bg-[#F9F2FF] text-[#4E2D92] md:w-64"
               radius="full"
               size="lg"
+              onClick={() => router.push('/pricing')}
             >
-              Choose plan ($45)
+              Choose plan ($19)
             </Button>
           </div>
         </div>
