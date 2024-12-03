@@ -98,6 +98,16 @@ const PCard = ({
               </div>
             </div>
             <div className="flex flex-wrap gap-3 overflow-x-auto p-4">
+              {langs.map((lang, index) => (
+                <Chip
+                  key={index}
+                  size={"sm"}
+                >
+                  {lang.country_code}
+                </Chip>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-3 overflow-x-auto p-4">
               {tags.map((tag, index) => (
                 <Chip
                   key={index}
@@ -111,16 +121,7 @@ const PCard = ({
                 </Chip>
               ))}
             </div>
-            <div className="flex flex-wrap gap-3 overflow-x-auto p-4">
-              {langs.map((lang, index) => (
-                <Chip
-                  key={index}
-                  size={"sm"}
-                >
-                  {lang.country_code}
-                </Chip>
-              ))}
-            </div>
+
           </>
         ) : (
           <div className={"p-2"}>
@@ -203,13 +204,24 @@ const PCard = ({
                 </div>
               </div>
             </div>
+            <div className="flex flex-wrap gap-3 overflow-x-auto p-4">
+              {langs.map((lang, index) => (
+                <Chip
+                  key={index}
+                  size={"sm"}
+                >
+                  {lang.country_code}
+                </Chip>
+              ))}
+            </div>
             <div className="flex flex-wrap items-center gap-2 overflow-x-auto px-4">
               {tags.map((tag, index) => (
                 <Chip
                   key={index}
                   size={"sm"}
                   style={{
-                    backgroundColor: tag.name,
+                    color: "white",
+                    backgroundColor: tag.color,
                   }}
                 >
                   {tag.name}
