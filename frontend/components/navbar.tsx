@@ -25,9 +25,11 @@ import Image from "next/image";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
+import { useTheme } from "next-themes";
 
 export const Navbar = () => {
   const router = useRouter();
+  const { theme } = useTheme();
   const { data: session } = useSession();
 
   const UserAvatar = () => {
@@ -100,8 +102,11 @@ export const Navbar = () => {
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit pr-4">
           <NextLink className="flex justify-start items-center gap-1" href="/">
-            <Image alt="logo" height={32} src={"/images/logo.png"} width={32} />
-            <p className="font-bold text-2xl">Referalio</p>
+            {theme == 'light' ?
+              <Image alt="logo" height={90} src={"/images/logo.png"} width={120} className=" min-w-40" />
+              :
+              <Image alt="logo" height={90} src={"/images/logo-dark.png"} width={120} className=" min-w-40" />
+            }
           </NextLink>
         </NavbarBrand>
         <ul className="hidden md:flex gap-4 justify-start ml-2">
