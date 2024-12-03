@@ -65,7 +65,7 @@ export default function RootLayout({
                     <div className="flex flex-col md:flex-row gap-8 justify-around items-start py-8 px-8">
                       <div className="flex  flex-col gap-3 pt-8">
                         <div>
-                          <h3 className="text-xl font-semibold">Referalio</h3>
+                          <h3 className="text-xl font-semibold">Refio</h3>
                         </div>
                         <div className="text-divider/80">
                           The Ultimate Affiliate Program for Maximized Earnings
@@ -113,7 +113,7 @@ export default function RootLayout({
                     <div className="w-full flex justify-center py-4">
                       <span className="flex gap-1 items-center">
                         <CopyrightIcon size={16} />
-                        2024 Referalio. All rights reserved.
+                        2024 Refio. All rights reserved.
                       </span>
                     </div>
                   </div>
