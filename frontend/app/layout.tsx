@@ -11,6 +11,7 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import { TwitterIcon } from "@/components/icons";
+import Intercon from "@/components/intercon";
 
 export const metadata: Metadata = {
   title: {
@@ -35,6 +36,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html suppressHydrationWarning lang="en">
       <head />
@@ -117,6 +119,7 @@ export default function RootLayout({
                     </div>
                   </div>
                 </footer>
+                <Intercon />
               </div>
             </ToastProvider>
           </Providers>
