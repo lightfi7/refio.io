@@ -22,10 +22,10 @@ import { Avatar } from "@nextui-org/avatar";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
-import { useTheme } from "next-themes";
 
 export const Navbar = () => {
   const router = useRouter();
@@ -102,11 +102,23 @@ export const Navbar = () => {
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit pr-4">
           <NextLink className="flex justify-start items-center gap-1" href="/">
-            {theme == 'light' ?
-              <Image alt="logo" height={90} src={"/images/logo.png"} width={120} className=" min-w-40" />
-              :
-              <Image alt="logo" height={90} src={"/images/logo-dark.png"} width={120} className=" min-w-40" />
-            }
+            {theme == "light" ? (
+              <Image
+                alt="logo"
+                className=" min-w-40"
+                height={90}
+                src={"/images/logo.png"}
+                width={120}
+              />
+            ) : (
+              <Image
+                alt="logo"
+                className=" min-w-40"
+                height={90}
+                src={"/images/logo-dark.png"}
+                width={120}
+              />
+            )}
           </NextLink>
         </NavbarBrand>
         <ul className="hidden md:flex gap-4 justify-start ml-2">

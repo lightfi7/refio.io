@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import React, { useContext, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { useTheme } from "next-themes";
 
 import { ToastContext } from "@/app/providers";
 
@@ -38,6 +39,7 @@ export default function Page() {
   const toast = useContext(ToastContext);
   const [error, setError] = useState<string>();
   const [pending, setPending] = useState(false);
+  const { theme } = useTheme();
 
   const formik = useFormik({
     initialValues,
@@ -73,7 +75,21 @@ export default function Page() {
   return (
     <div className="flex flex-col items-center py-24">
       <div className="flex flex-col items-center">
-        <Image height={42} src={"/images/logo.png"} width={42} />
+        {theme == "light" ? (
+          <Image
+            className="min-w-40"
+            height={90}
+            src={"/images/logo.png"}
+            width={160}
+          />
+        ) : (
+          <Image
+            className="min-w-40"
+            height={90}
+            src={"/images/logo-dark.png"}
+            width={160}
+          />
+        )}
         <h1 className="mt-5 text-2xl font-semibold">Get Started With Cosi</h1>
         <span className="mt-2 text-base font-medium">
           Please enter your details to get started!

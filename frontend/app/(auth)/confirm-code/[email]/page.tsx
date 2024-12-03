@@ -6,12 +6,14 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import React, { useContext, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { useTheme } from "next-themes";
 
 import VerificationCodeInput from "@/components/verification-code-input";
 import { ToastContext } from "@/app/providers";
 
 export default function Page() {
   const toast = useContext(ToastContext);
+  const { theme } = useTheme();
   const router = useRouter();
   const { email }: { email: string } = useParams();
   const searchParams = useSearchParams();
@@ -69,7 +71,21 @@ export default function Page() {
   return (
     <div className="flex flex-col items-center py-24">
       <div className="flex flex-col items-center">
-        <Image height={42} src={"/images/logo.png"} width={42} />
+        {theme == "light" ? (
+          <Image
+            className="min-w-40"
+            height={90}
+            src={"/images/logo.png"}
+            width={160}
+          />
+        ) : (
+          <Image
+            className="min-w-40"
+            height={90}
+            src={"/images/logo-dark.png"}
+            width={160}
+          />
+        )}
         <h1 className="mt-5 text-2xl font-semibold">Enter Verification Code</h1>
         <span className="mt-2 text-base font-medium">
           Enter the 6-digit code sent to your email

@@ -8,6 +8,7 @@ import { useParams, useRouter } from "next/navigation";
 import React, { useContext, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { useTheme } from "next-themes";
 
 import { ToastContext } from "@/app/providers";
 
@@ -17,6 +18,7 @@ export default function Page() {
   const { token }: { token: string } = useParams();
   const [error, setError] = useState<string>();
   const [pending, setPending] = useState(false);
+  const { theme } = useTheme();
 
   const initialValues = {
     validToken: token,
@@ -69,7 +71,23 @@ export default function Page() {
   return (
     <div className="flex flex-col items-center justify-center py-24">
       <div className="flex flex-col items-center">
-        <Image alt="" height={42} src={"/images/logo.png"} width={42} />
+        {theme == "light" ? (
+          <Image
+            alt={""}
+            className="min-w-40"
+            height={90}
+            src={"/images/logo.png"}
+            width={160}
+          />
+        ) : (
+          <Image
+            alt={""}
+            className="min-w-40"
+            height={90}
+            src={"/images/logo-dark.png"}
+            width={160}
+          />
+        )}
         <h1 className="mt-5 text-2xl font-semibold">Set New Password</h1>
         <span className="mt-2 text-base font-medium">
           Must be atleast 8 characters.

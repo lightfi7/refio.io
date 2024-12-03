@@ -434,9 +434,14 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <Button className="bg-[#F9F2FF] text-black" radius="full" size="lg" onClick={() => {
-              router.push('/sign-up')
-            }}>
+            <Button
+              className="bg-[#F9F2FF] text-black"
+              radius="full"
+              size="lg"
+              onClick={() => {
+                router.push("/sign-up");
+              }}
+            >
               Sign up for free
             </Button>
           </div>
@@ -452,7 +457,11 @@ export default function Home() {
                     Limtless possibilites
                   </span>
                 </div>
-                <Button className="bg-[#361C6C] text-white" radius="full" onClick={() => router.push('/sign-up')}>
+                <Button
+                  className="bg-[#361C6C] text-white"
+                  radius="full"
+                  onClick={() => router.push("/sign-up")}
+                >
                   RECOMMENDED
                 </Button>
               </div>
@@ -489,7 +498,7 @@ export default function Home() {
               className="bg-[#F9F2FF] text-[#4E2D92] md:w-64"
               radius="full"
               size="lg"
-              onClick={() => router.push('/pricing')}
+              onClick={() => router.push("/pricing")}
             >
               Choose plan ($19)
             </Button>
