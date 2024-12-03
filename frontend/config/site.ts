@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Referalio",
+  name: "Refio.io",
   description: "",
   navItems: [
     {
