@@ -20,7 +20,7 @@ import {
   VideoIcon,
 } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const { theme } = useTheme();
