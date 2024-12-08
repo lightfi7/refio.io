@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"@intercom/messenger-js-sdk": "^0.0.14",
+		"@next/third-parties": "^15.0.4",
 		"@nextui-org/accordion": "^2.0.40",
 		"@nextui-org/avatar": "^2.0.33",
 		"@nextui-org/badge": "^2.0.32",

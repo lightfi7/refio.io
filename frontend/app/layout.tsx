@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { SessionProvider } from "next-auth/react";
 import { CopyrightIcon, FacebookIcon, InstagramIcon } from "lucide-react";
 import { Link } from "@nextui-org/link";
-
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { Providers, ToastProvider } from "./providers";
 
 import { siteConfig } from "@/config/site";
@@ -124,6 +124,7 @@ export default function RootLayout({
           </Providers>
         </SessionProvider>
       </body>
+      <GoogleAnalytics gaId="G-GLK8G3VQ79" />
     </html>
   );
 }
