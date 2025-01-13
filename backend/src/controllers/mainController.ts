@@ -164,7 +164,7 @@ export const getPrograms = async (req: Request, res: Response) => {
             { $match: query },
             { $sort: sort },
             { $skip: skip },
-            { $limit: limit },
+            // { $limit: limit },
             {
                 $lookup: {
                     from: "tags",
