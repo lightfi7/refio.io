@@ -195,7 +195,7 @@ export const getPrograms = async (req: Request, res: Response) => {
                 }
             },
         ]);
-
+        console.log(programs)
         res.status(200).json({
             message: 'Success',
             programs,
