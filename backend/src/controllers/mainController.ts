@@ -164,36 +164,36 @@ export const getPrograms = async (req: Request, res: Response) => {
             { $match: query },
             { $sort: sort },
             { $skip: skip },
-            // { $limit: limit },
-            {
-                $lookup: {
-                    from: "tags",
-                    localField: "tags",
-                    foreignField: "id",
-                    as: "tags",
-                }
-            },
-            {
-                $lookup: {
-                    from: "langs",
-                    localField: "langs",
-                    foreignField: "id",
-                    as: "langs",
-                }
-            },
-            {
-                $lookup: {
-                    from: "platforms",
-                    localField: "platform",
-                    foreignField: "id",
-                    as: "platform",
-                }
-            },
-            {
-                $unwind: {
-                    path: "$platform",
-                }
-            },
+            { $limit: limit },
+            // {
+            //     $lookup: {
+            //         from: "tags",
+            //         localField: "tags",
+            //         foreignField: "id",
+            //         as: "tags",
+            //     }
+            // },
+            // {
+            //     $lookup: {
+            //         from: "langs",
+            //         localField: "langs",
+            //         foreignField: "id",
+            //         as: "langs",
+            //     }
+            // },
+            // {
+            //     $lookup: {
+            //         from: "platforms",
+            //         localField: "platform",
+            //         foreignField: "id",
+            //         as: "platform",
+            //     }
+            // },
+            // {
+            //     $unwind: {
+            //         path: "$platform",
+            //     }
+            // },
         ]);
         console.log(programs)
         res.status(200).json({
